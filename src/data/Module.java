@@ -20,11 +20,9 @@ public class Module {
 		this.shortName = shortName;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		
-		printModule();
 	}
 	
-	private void printModule() {
-		System.out.println("created new Module " + name + " (" + shortName + ")");
+	public void print() {
+		System.out.println("Module: " + name + " (" + shortName + ")");
 	}
 }

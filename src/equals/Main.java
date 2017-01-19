@@ -1,8 +1,14 @@
 package equals;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import dao.DAOFactory;
+import dao.ModuleDAO;
+import data.Module;
+
 public class Main {
 
-	private static String asda="basta";
 	
 	/**
 	 * The entry-point of this program.
@@ -10,8 +16,21 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.println(asda);
+		System.out.println("testing Database:");
 		
+		DAOFactory dao = DAOFactory.getInstance();
+		ModuleDAO moduleDAO = dao.createModuleDAO();
+		ArrayList<Module> modules = null;
+		try {
+			modules = moduleDAO.getAllModules();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(Module m : modules) {
+			m.print();
+		}
 	}
 
 }

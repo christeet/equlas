@@ -36,6 +36,10 @@ public class DAOFactory {
     connection = ds.getConnection("root", "alert");
     
 	}
+	
+	public ModuleDAO createModuleDAO() {
+		return new ModuleDAO(connection);
+	}
   
   public void disconnect() {
     try {
