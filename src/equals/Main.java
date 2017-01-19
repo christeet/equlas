@@ -1,4 +1,4 @@
-package bfh.equals;
+package equals;
 
 public class Main {
 
