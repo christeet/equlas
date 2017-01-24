@@ -3,8 +3,10 @@ package equals;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.CourseDAO;
 import dao.DAOFactory;
 import dao.ModuleDAO;
+import data.Course;
 import data.Module;
 
 public class Main {
@@ -27,9 +29,21 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+		CourseDAO courseDAO = dao.createCourseDAO();
 		for(Module m : modules) {
 			m.print();
+			System.out.println("Courses:");
+
+			try {
+				ArrayList<Course> courses = courseDAO.getCourses(m);
+				for(Course c : courses) {
+					c.print();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 

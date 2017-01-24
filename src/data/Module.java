@@ -25,4 +25,20 @@ public class Module {
 	public void print() {
 		System.out.println("Module: " + name + " (" + shortName + ")");
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getShortName() {
+		return shortName;
+	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+	
+	public Date getEndDate() {
+		return endDate;
+	}
 }

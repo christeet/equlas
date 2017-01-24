@@ -40,6 +40,10 @@ public class DAOFactory {
 	public ModuleDAO createModuleDAO() {
 		return new ModuleDAO(connection);
 	}
+	
+	public CourseDAO createCourseDAO() {
+		return new CourseDAO(connection);
+	}
   
   public void disconnect() {
     try {
