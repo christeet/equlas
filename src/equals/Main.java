@@ -1,5 +1,8 @@
 package equals;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -9,6 +12,7 @@ import dao.ModuleDAO;
 import dao.PersonDAO;
 import data.Course;
 import data.Module;
+import data.Person;
 import data.Student;
 
 public class Main {
@@ -52,8 +56,33 @@ public class Main {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
+		
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	        /*try{
+	            int i = Integer.parseInt(br.readLine());
+	        } catch(NumberFormatException nfe) {
+	            System.err.println("Invalid Format!");
+	        }*/
+
+			while(true) {
+				System.out.println("Username?");
+				String username = br.readLine();
+				try {
+					Person person = personDAO.getPersonByUserName(username);
+					System.out.format("Hello, %s %s\r\n", 
+							person.getFirstName(), 
+							person.getLastName());		
+				} catch (SQLException e) {
+					System.out.println("Could not find this user!");	
+				}
+			}
+		}
+		catch (IOException e) {
+            System.err.println("Boo-hoo!");
+		}
+        
 	}
 
 }

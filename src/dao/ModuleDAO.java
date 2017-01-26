@@ -8,45 +8,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import data.Module;
+import data.Student;
 
 public class ModuleDAO {
 
 	private  PreparedStatement psGetAllModules;
+	private  PreparedStatement psGetModulesByStudent;
 	
 	public ModuleDAO(Connection connection) throws SQLException {
 		psGetAllModules = connection.prepareStatement("SELECT * FROM equals1DB.Module;");
+		psGetModulesByStudent = connection.prepareStatement(
+				"SELECT * FROM equals1DB.Module m "
+				+ "left join Registration r on r.moduleId = m.id "
+				+ "left join Person p on r.studentId = p.id "
+				+ "where p.userName like ?;");
 	}
 	
 	public ArrayList<Module> getAllModules() throws SQLException {
-		ResultSet rs = null;
-		try {
-			rs = psGetAllModules.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		ResultSet resultSet = psGetAllModules.executeQuery();
+		return getModuleListFromResultSet(resultSet);
+	}
+	
+	public ArrayList<Module> getModulesByStudent(Student student) throws SQLException {
+		psGetModulesByStudent.setString(1, student.getUserName());
+		ResultSet resultSet = psGetModulesByStudent.executeQuery();
+		return getModuleListFromResultSet(resultSet);
+	}
+	
+	
+	
+	private ArrayList<Module> getModuleListFromResultSet(ResultSet resultSet) throws SQLException {
 		ArrayList<Module> resultList = new ArrayList<Module>();
-		while (rs != null && rs.next()) {
-			String name;
-			String shortName;
-			Date startDate;
-			Date endDate;
-			
-			try {
-				name = rs.getString("name");
-				shortName = rs.getString("shortName");
-				startDate = rs.getDate("startDate");
-				endDate = rs.getDate("endDate");
-				
-				Module module = new Module(name, shortName, startDate, endDate);
-				resultList.add(module);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		while (resultSet != null && resultSet.next()) {
+			Module module = new Module(
+					resultSet.getString("name"), 
+					resultSet.getString("shortName"), 
+					resultSet.getDate("startDate"), 
+					resultSet.getDate("endDate"));
+			resultList.add(module);
 		}
-		
 		return resultList;
 	}
 }
