@@ -11,19 +11,16 @@ import data.Module;
 
 public class ModuleDAO {
 
-	Connection connection;
+	private  PreparedStatement psGetAllModules;
 	
-	public ModuleDAO(Connection connection) {
-		this.connection = connection;
+	public ModuleDAO(Connection connection) throws SQLException {
+		psGetAllModules = connection.prepareStatement("SELECT * FROM equals1DB.Module;");
 	}
 	
 	public ArrayList<Module> getAllModules() throws SQLException {
-		PreparedStatement ps = connection.prepareStatement
-	              ("SELECT * FROM equals1DB.Module;");
-	            
 		ResultSet rs = null;
 		try {
-			rs = ps.executeQuery();
+			rs = psGetAllModules.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

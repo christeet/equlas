@@ -36,7 +36,7 @@ public class Main {
 			System.out.println("Courses:");
 
 			try {
-				ArrayList<Course> courses = courseDAO.getCourses(m);
+				ArrayList<Course> courses = courseDAO.getCoursesByModule(m);
 				for(Course c : courses) {
 					c.print();
 				}
