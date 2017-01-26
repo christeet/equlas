@@ -1,7 +1,5 @@
 package data;
 
-import java.sql.Date;
-
 public class Person {
 
 	private String lastName;
@@ -12,15 +10,14 @@ public class Person {
 	
 	
 	public Person(
-			String lastName,
 			String firstName,
+			String lastName,
 			String sex,
 			String userName,
 			String password
-			)
-	{
-		this.lastName = lastName;
+			) {
 		this.firstName = firstName;
+		this.lastName = lastName;
 		this.sex = sex;
 		this.userName = userName;
 		this.password = password;

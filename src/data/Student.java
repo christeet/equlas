@@ -9,8 +9,8 @@ public class Student extends Person {
 	
 	
 	public Student(
-			String lastName,
 			String firstName,
+			String lastName,
 			String sex,
 			String userName,
 			String password,
@@ -18,7 +18,7 @@ public class Student extends Person {
 			String placeOfOrigin
 			)
 	{
-		super(lastName, firstName, sex, userName, password);
+		super(firstName, lastName, sex, userName, password);
 		this.dateOfBirth = dateOfBirth;
 		this.placeOfOrigin = placeOfOrigin;
 	}

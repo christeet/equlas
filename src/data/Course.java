@@ -18,7 +18,7 @@ public class Course {
 	}
 	
 	public void print() {
-		System.out.format("    Course %s (%s) has weight %.1f\r\n",name, shortName, weight);
+		System.out.format("Course: %s (%s) has weight %.1f\r\n",name, shortName, weight);
 	}
 	
 	public String getName() {

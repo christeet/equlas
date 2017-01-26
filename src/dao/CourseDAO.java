@@ -53,36 +53,4 @@ public class CourseDAO {
 		return resultList;
 	}
 	
-
-	public ArrayList<Course> getCoursesByStudent(Module module) throws SQLException {
-		psGetCoursesByModule.setString(1, module.getShortName());
-		ResultSet rs = null;
-		try {
-			rs = psGetCoursesByModule.executeQuery();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		ArrayList<Course> resultList = new ArrayList<Course>();
-		while (rs != null && rs.next()) {
-			String name;
-			String shortName;
-			float weight;
-			
-			try {
-				name = rs.getString("name");
-				shortName = rs.getString("shortName");
-				weight = rs.getFloat("weight");
-				
-				Course course = new Course(name, shortName, weight);
-				resultList.add(course);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return resultList;
-	}
 }

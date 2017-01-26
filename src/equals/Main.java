@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import dao.CourseDAO;
 import dao.DAOFactory;
 import dao.ModuleDAO;
+import dao.PersonDAO;
 import data.Course;
 import data.Module;
+import data.Student;
 
 public class Main {
 
@@ -31,14 +33,21 @@ public class Main {
 		}
 
 		CourseDAO courseDAO = dao.createCourseDAO();
+		PersonDAO personDAO = dao.createPersonDAO();
 		for(Module m : modules) {
+			System.out.println("\r\n------------------------------------------------------------------------------");
 			m.print();
-			System.out.println("Courses:");
 
 			try {
+				System.out.println("-- Courses --");
 				ArrayList<Course> courses = courseDAO.getCoursesByModule(m);
 				for(Course c : courses) {
 					c.print();
+				}
+				System.out.println("-- Students --");
+				ArrayList<Student> students = personDAO.getStudentsByModule(m);
+				for(Student s : students) {
+					s.print();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();

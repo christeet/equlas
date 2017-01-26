@@ -47,10 +47,6 @@ public class DAOFactory {
     
 	}
 	
-	/**
-	 * creates a re-usable instance of ModuleDAO
-	 * @return a re-usable instance of ModuleDAO
-	 */
 	public ModuleDAO createModuleDAO() {
 		try {
 			return new ModuleDAO(connection);
@@ -60,13 +56,18 @@ public class DAOFactory {
 		}
 	}
 	
-	/**
-	 * creates a re-usable instance of CourseDAO
-	 * @return a re-usable instance of CourseDAO
-	 */
 	public CourseDAO createCourseDAO() {
 		try {
 			return new CourseDAO(connection);
+		} catch (SQLException e) {
+			System.out.println("SQL connection was lost");
+			return null;
+		}
+	}
+
+	public PersonDAO createPersonDAO() {
+		try {
+			return new PersonDAO(connection);
 		} catch (SQLException e) {
 			System.out.println("SQL connection was lost");
 			return null;
