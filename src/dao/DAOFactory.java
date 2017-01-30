@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class DAOFactory {
@@ -68,6 +69,15 @@ public class DAOFactory {
 	public PersonDAO createPersonDAO() {
 		try {
 			return new PersonDAO(connection);
+		} catch (SQLException e) {
+			System.out.println("SQL connection was lost");
+			return null;
+		}
+	}
+
+	public RatingDAO createRatingDAO() {
+		try {
+			return new RatingDAO(connection);
 		} catch (SQLException e) {
 			System.out.println("SQL connection was lost");
 			return null;

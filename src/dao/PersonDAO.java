@@ -29,7 +29,7 @@ public class PersonDAO {
 	public ArrayList<Student> getStudentsByModule(Module module) throws SQLException {
 		psGetStudentsByModule.setString(1, module.getShortName());
 		ResultSet resultSet = psGetStudentsByModule.executeQuery();
-		return getStudentsListFromResultSet(resultSet);
+		return getStudentListFromResultSet(resultSet);
 	}
 	
 	public Person getPersonByUserName(String username) throws SQLException {
@@ -45,7 +45,7 @@ public class PersonDAO {
 	
 
 	
-	private ArrayList<Student> getStudentsListFromResultSet(ResultSet resultSet) throws SQLException{
+	private ArrayList<Student> getStudentListFromResultSet(ResultSet resultSet) throws SQLException{
 		ArrayList<Student> resultList = new ArrayList<Student>();
 		while (resultSet != null && resultSet.next()) {
 			resultList.add(getStudentFromResultSet(resultSet));
@@ -53,7 +53,7 @@ public class PersonDAO {
 		return resultList;
 	}
 	
-	private ArrayList<Person> getPersonsListFromResultSet(ResultSet resultSet) throws SQLException{
+	private ArrayList<Person> getPersonListFromResultSet(ResultSet resultSet) throws SQLException{
 		ArrayList<Person> resultList = new ArrayList<Person>();
 		while (resultSet != null && resultSet.next()) {
 			resultList.add(getPersonFromResultSet(resultSet));
@@ -63,6 +63,7 @@ public class PersonDAO {
 	
 	private Student getStudentFromResultSet(ResultSet resultSet) throws SQLException{
 		return new Student(
+				resultSet.getInt("id"),
 				resultSet.getString("firstName"),
 				resultSet.getString("lastName"),
 				resultSet.getString("sex"),
@@ -74,6 +75,7 @@ public class PersonDAO {
 	
 	private Person getPersonFromResultSet(ResultSet resultSet) throws SQLException{
 		return new Person(
+				resultSet.getInt("id"),
 				resultSet.getString("firstName"),
 				resultSet.getString("lastName"),
 				resultSet.getString("sex"),

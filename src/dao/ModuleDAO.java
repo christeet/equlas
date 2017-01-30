@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,9 +15,9 @@ public class ModuleDAO {
 	private  PreparedStatement psGetModulesByStudent;
 	
 	public ModuleDAO(Connection connection) throws SQLException {
-		psGetAllModules = connection.prepareStatement("SELECT * FROM equals1DB.Module;");
+		psGetAllModules = connection.prepareStatement("SELECT * FROM Module;");
 		psGetModulesByStudent = connection.prepareStatement(
-				"SELECT * FROM equals1DB.Module m "
+				"SELECT * FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
 				+ "left join Person p on r.studentId = p.id "
 				+ "where p.userName like ?;");
@@ -41,6 +40,7 @@ public class ModuleDAO {
 		ArrayList<Module> resultList = new ArrayList<Module>();
 		while (resultSet != null && resultSet.next()) {
 			Module module = new Module(
+					resultSet.getInt("id"), 
 					resultSet.getString("name"), 
 					resultSet.getString("shortName"), 
 					resultSet.getDate("startDate"), 

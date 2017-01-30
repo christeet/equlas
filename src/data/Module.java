@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Module {
 
+	private int id;
 	private String name;
 	private String shortName;
 	private Date startDate;
@@ -11,11 +12,13 @@ public class Module {
 	
 	
 	public Module(
+			int id,
 			String name,
 			String shortName,
 			Date startDate,
 			Date endDate)
 	{
+		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
 		this.startDate = startDate;
@@ -23,7 +26,11 @@ public class Module {
 	}
 	
 	public void print() {
-		System.out.println("Module: " + name + " (" + shortName + ")");
+		System.out.format("Module %d: %s (%s)\r\n", getId(), getName(), getShortName());
+	}
+
+	public int getId() {
+		return id;
 	}
 	
 	public String getName() {

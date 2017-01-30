@@ -9,6 +9,7 @@ public class Student extends Person {
 	
 	
 	public Student(
+			int id,
 			String firstName,
 			String lastName,
 			String sex,
@@ -18,14 +19,14 @@ public class Student extends Person {
 			String placeOfOrigin
 			)
 	{
-		super(firstName, lastName, sex, userName, password);
+		super(id, firstName, lastName, sex, userName, password);
 		this.dateOfBirth = dateOfBirth;
 		this.placeOfOrigin = placeOfOrigin;
 	}
 	
 	@Override
 	public void print() {
-		System.out.println("Student: " + getFirstName() + " " + getLastName() + "");
+		System.out.format("Student %d: %s %s (%s)\r\n", getId(), getFirstName(), getLastName(), getUserName());
 	}
 	
 	public Date getDateOfBirth() {

@@ -1,7 +1,6 @@
 package equals;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import dao.CourseDAO;
 import dao.DAOFactory;
 import dao.ModuleDAO;
 import dao.PersonDAO;
+import dao.RatingDAO;
 import data.Course;
 import data.Module;
 import data.Person;
@@ -38,6 +38,7 @@ public class Main {
 
 		CourseDAO courseDAO = dao.createCourseDAO();
 		PersonDAO personDAO = dao.createPersonDAO();
+		RatingDAO ratingDAO = dao.createRatingDAO();
 		for(Module m : modules) {
 			System.out.println("\r\n------------------------------------------------------------------------------");
 			m.print();
@@ -58,31 +59,62 @@ public class Main {
 			}
 		}
 		
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	        /*try{
-	            int i = Integer.parseInt(br.readLine());
-	        } catch(NumberFormatException nfe) {
-	            System.err.println("Invalid Format!");
-	        }*/
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(true) {
+			try {
 
-			while(true) {
-				System.out.println("Username?");
-				String username = br.readLine();
-				try {
-					Person person = personDAO.getPersonByUserName(username);
-					System.out.format("Hello, %s %s\r\n", 
-							person.getFirstName(), 
-							person.getLastName());		
-				} catch (SQLException e) {
-					System.out.println("Could not find this user!");	
+				System.out.println("R - set Rating");
+				System.out.println("r - get Rating");
+				System.out.println("u - get User");
+				String command = br.readLine();
+				switch (command.charAt(0)){
+				case 'R':
+					setRating(br, ratingDAO);
+					break;
+				case 'u':
+					getUser(br, personDAO);
+					break;
+				default:
+					System.out.println("no valid input");
+					break;
 				}
+				
+				
+			}
+			catch (Exception e) {
+				System.err.println("try again.");
 			}
 		}
-		catch (IOException e) {
-            System.err.println("Boo-hoo!");
-		}
         
+	}
+
+	private static void getUser(BufferedReader br, PersonDAO personDAO) throws Exception {
+		System.out.println("Username?");
+		String username = br.readLine();
+		try {
+			Person person = personDAO.getPersonByUserName(username);
+			System.out.format("Hello, %s %s\r\n", 
+					person.getFirstName(), 
+					person.getLastName());		
+		} catch (SQLException e) {
+			System.out.println("Could not find this user!");	
+		}
+	}
+	
+	private static void setRating(BufferedReader br, RatingDAO ratingDAO) throws Exception {
+		System.out.println("UserId?");
+		int userId = Integer.parseInt(br.readLine());
+		System.out.println("CourseId?");
+		int courseId = Integer.parseInt(br.readLine());
+		System.out.println("Rating?");
+		int rating = Integer.parseInt(br.readLine());
+		try {
+			ratingDAO.setRating(userId, courseId, rating);
+			System.out.format("User %d has now Rating %d for Course %d\r\n", 
+					userId, rating, courseId);	
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());	
+		}
 	}
 
 }

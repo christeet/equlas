@@ -15,9 +15,9 @@ public class CourseDAO {
 	
 	public CourseDAO(Connection connection) throws SQLException {
 		psGetCoursesByModule = connection.prepareStatement(
-				"SELECT c.name, c.shortName, c.weight "
-				+ "FROM equals1DB.Course c "
-				+ "join equals1DB.Module m on c.moduleId = m.id "
+				"SELECT c.id, c.name, c.shortName, c.weight "
+				+ "FROM Course c "
+				+ "join Module m on c.moduleId = m.id "
 				+ "and m.shortName like ?;");
 	}
 	
@@ -37,6 +37,7 @@ public class CourseDAO {
 	
 	private Course getCourseFromResultSet(ResultSet resultSet) throws SQLException {
 		return new Course(
+				resultSet.getInt("id"),
 				resultSet.getString("name"), 
 				resultSet.getString("shortName"),
 				resultSet.getFloat("weight"));

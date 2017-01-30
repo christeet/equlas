@@ -1,7 +1,7 @@
 package data;
 
 public class Person {
-
+	private int id;
 	private String lastName;
 	private String firstName;
 	private String sex;
@@ -10,12 +10,14 @@ public class Person {
 	
 	
 	public Person(
+			int id,
 			String firstName,
 			String lastName,
 			String sex,
 			String userName,
 			String password
 			) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.sex = sex;
@@ -24,7 +26,11 @@ public class Person {
 	}
 	
 	public void print() {
-		System.out.println("Person: " + firstName + " " + lastName + "");
+		System.out.format("Person %d: %s %s (%s)\r\n", getId(), getFirstName(), getLastName(), getUserName());
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getFirstName() {
