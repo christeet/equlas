@@ -13,17 +13,17 @@
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="statusLabel" textAlignment="CENTER" textFill="RED" />
-            <TextField fx:id="usernameField" maxHeight="50.0" maxWidth="250.0" promptText="%login.username">
+            <TextField fx:id="usernameField" maxHeight="50.0" maxWidth="250.0" onAction="#checkUserCredentials" promptText="%login.username">
                <VBox.margin>
                   <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <PasswordField fx:id="passwordField" maxHeight="50.0" maxWidth="250.0" promptText="%login.password">
+            <PasswordField fx:id="passwordField" maxHeight="50.0" maxWidth="250.0" onAction="#checkUserCredentials" promptText="%login.password">
                <VBox.margin>
                   <Insets bottom="20.0" top="20.0" />
                </VBox.margin>
             </PasswordField>
-            <Button fx:id="checkCredentials" mnemonicParsing="false" onMouseClicked="#checkUserCredentials" text="%login.login" textAlignment="CENTER">
+            <Button fx:id="checkCredentials" mnemonicParsing="false" onAction="#checkUserCredentials" text="%login.login" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.UserLogin;
+import resources.I18n;
 
 public class UserLoginController {
 	
@@ -24,10 +25,11 @@ public class UserLoginController {
 	@FXML
 	protected void checkUserCredentials() {
 		if(this.login.checkPassword(passwordField.getText(), usernameField.getText())) {
-			this.statusLabel.setText("Login Succeeded!");
+			this.statusLabel.setStyle("-fx-text-fill: green;");
+			this.statusLabel.setText(I18n.getString("login.message.success"));
 		} else {
-			this.statusLabel.setStyle("-fx-font-fill: #f00;");
-			this.statusLabel.setText("Username or Password wrong!");
+			this.statusLabel.setStyle("-fx-font-fill: red;");
+			this.statusLabel.setText(I18n.getString("login.message.failed"));
 		}
 	}
 	
