@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import resources.I18n;
 
 public class UserLogin extends Stage {
 	
@@ -19,8 +20,10 @@ public class UserLogin extends Stage {
 	private Parent root;
 	
 	public UserLogin() {
-		loader = new FXMLLoader(getClass().getResource("UserLoginView.fxml"));
+		final String fxmlUrl = "../view/UserLoginView.fxml";
+		
 		try {
+			loader = new FXMLLoader(getClass().getResource(fxmlUrl), I18n.getResourceBundle());
 		  root = (Parent) loader.load();
 		} catch (IOException e) {
 			System.out.println("Could not load: " + e.getMessage());
@@ -29,7 +32,7 @@ public class UserLogin extends Stage {
 		
 		Scene scene = new Scene(root, 200, 200);
 		
-		this.setTitle("User Login:");
+		this.setTitle(I18n.getString("login.title"));
 		this.setScene(scene);
 	}
 	
