@@ -45,7 +45,7 @@ public class DAOFactory {
     ds.setServerName("localhost");
     ds.setDatabaseName("equals1DB");
     connection = ds.getConnection("root", "alert");
-    
+    System.out.println("Connected!");
 	}
 	
 	public ModuleDAO createModuleDAO() {
