@@ -12,17 +12,21 @@ import resources.I18n;
 
 public class ViewLoader {
 	
-	public static Parent create(URL fxmlUrl, EqualsModel model, EqualsController controller) throws MalformedURLException {
+	public static EqualsView create(
+			URL fxmlUrl, 
+			EqualsModel model, 
+			EqualsController controller) throws MalformedURLException {
 		FXMLLoader loader;
 		loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
-		Parent parent = null;
+		Parent parentNode = null;
 		try {
-			parent = (Parent)loader.load();
+			parentNode = (Parent)loader.load();
 		} catch (IOException e) {
 			System.out.println("Could not load: " + e.getMessage());
 		}
-		loader.<EqualsView>getController().init(model, controller);
-		return parent;
+		EqualsView view = loader.<EqualsView>getController();
+		view.init(parentNode, model, controller);
+		return view;
 	}
 	
 }

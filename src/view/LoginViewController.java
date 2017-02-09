@@ -11,7 +11,7 @@ import model.UserLogin;
 import resources.I18n;
 import util.IObserver;
 
-public class LoginViewController implements EqualsView, IObserver<UserLogin> {
+public class LoginViewController extends EqualsView implements IObserver<UserLogin> {
 
 	private EqualsController controller;
 	
@@ -31,12 +31,16 @@ public class LoginViewController implements EqualsView, IObserver<UserLogin> {
 	protected void checkUserCredentials() {
 		this.controller.loginDataEntered(passwordField.getText(), usernameField.getText());
 	}
-	
-	
-	public void init(EqualsModel model, EqualsController controller) {
-		this.controller = controller;
+
+	@Override
+	protected void init() {
 		model.getUserLogin().addObserver(this);
-		
+	}
+
+
+	@Override
+	public void dispose() {
+		model.getUserLogin().deleteObserver(this);
 	}
 
 

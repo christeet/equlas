@@ -17,11 +17,11 @@ import data.Module;
 import data.Person;
 import data.Student;
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.EqualsModel;
 import resources.I18n;
+import view.EqualsView;
 import view.ViewLoader;
 
 public class Main extends Application {
@@ -31,9 +31,9 @@ public class Main extends Application {
 		EqualsModel model = new EqualsModel();
 		EqualsController controller = new EqualsController(model);
 
-		Parent mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
+		EqualsView mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
 		//mainWindow.setContentView(userLogin);
-		Scene scene = new Scene(mainWindow, 800, 600);
+		Scene scene = new Scene(mainWindow.getParentNode(), 800, 600);
 		
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);

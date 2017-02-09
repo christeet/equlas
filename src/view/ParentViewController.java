@@ -2,32 +2,25 @@ package view;
 
 import java.net.MalformedURLException;
 
-import controller.EqualsController;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import model.EqualsModel;
 import model.UserLogin;
 import util.IObserver;
 
-public class ParentViewController implements EqualsView, IObserver<UserLogin> {
-	
+public class ParentViewController extends EqualsView implements IObserver<UserLogin> {
+
+	private EqualsView currentView;
 	
 	@FXML private BorderPane container;
-	private EqualsModel model;
-	private EqualsController controller;
-	private Parent currentView;
-	
-	public void setContentView(Parent content) {
-		container.setCenter(content);
-		//setTitle(I18n.getString("login.title"));
+
+	@Override
+	protected void init() {
+		model.getUserLogin().addObserver(this);
 	}
-	
-	public void init(EqualsModel model, EqualsController controller) {
-		this.model = model;
-		this.controller = controller;
-		
-		this.model.getUserLogin().addObserver(this);
+
+	@Override
+	public void dispose() {
+		model.getUserLogin().deleteObserver(this);
 	}
 	
 	@Override
@@ -47,23 +40,25 @@ public class ParentViewController implements EqualsView, IObserver<UserLogin> {
 	}
 
 	private void displayLoginView() {
-		try {
-			currentView = ViewLoader.create(getClass().getResource("LoginView.fxml"), model, controller);
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		setContentView(currentView);
+		setContentView("LoginView.fxml");
 	}
 	
 	private void displaySelectView() {
+		setContentView("SelectView.fxml");
+	}
+	
+	private void setContentView(String filename) {
+		if(currentView != null)  {
+			currentView.dispose();
+		}
 		try {
-			currentView = ViewLoader.create(getClass().getResource("SelectView.fxml"), model, controller);
+			EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
+			container.setCenter(newView.getParentNode());
+			currentView = newView;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setContentView(currentView);
 	}
 	
 }
