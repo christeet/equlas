@@ -3,7 +3,6 @@ package equals;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -22,7 +21,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.EqualsModel;
-import model.UserLogin;
 import resources.I18n;
 import view.ViewLoader;
 
@@ -31,7 +29,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws MalformedURLException {
 		EqualsModel model = new EqualsModel();
-		EqualsController controller = new EqualsController();
+		EqualsController controller = new EqualsController(model);
 
 		Parent mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
 		//mainWindow.setContentView(userLogin);

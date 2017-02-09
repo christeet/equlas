@@ -14,6 +14,7 @@ public class IObservable<T> {
             throw new NullPointerException();
         if (!obs.contains(o)) {
             obs.addElement(o);
+            o.update((T)this);
         }
     }
 
@@ -22,10 +23,6 @@ public class IObservable<T> {
     }
 
     public void notifyObservers() {
-        notifyObservers(null);
-    }
-
-    public void notifyObservers(T arg) {
         Object[] arrLocal;
 
         synchronized (this) {
@@ -48,7 +45,7 @@ public class IObservable<T> {
         }
 
         for (int i = arrLocal.length-1; i>=0; i--)
-            ((IObserver<T>)arrLocal[i]).update((T)this, arg);
+            ((IObserver<T>)arrLocal[i]).update((T)this);
     }
 
     public synchronized void deleteObservers() {

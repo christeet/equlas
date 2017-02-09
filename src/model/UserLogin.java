@@ -9,23 +9,27 @@ import util.IObservable;
 
 public class UserLogin extends IObservable<UserLogin> {
 	
+	public enum LoginState { LOGGED_OUT, LOGGED_IN, LOGIN_FAILED };
+	private LoginState loginState;
 	private String username;
 	
 	public UserLogin() {
+		this.loginState = LoginState.LOGGED_OUT;
 	}
 	
-	public boolean checkPassword(String password, String username) {
+	public void checkPassword(String password, String username) {
 		this.username = username;
-		boolean loggedIn = false;
+		loginState = LoginState.LOGIN_FAILED;
 		try {
-			loggedIn = getUser().getPassword().equals(String.valueOf(password.hashCode()));
+			if(getUser().getPassword().equals(String.valueOf(password.hashCode()))) {
+				loginState = LoginState.LOGGED_IN;
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			loggedIn = false;
+		} finally {
+			this.setChanged();
+			this.notifyObservers();
 		}
-		this.setChanged();
-		this.notifyObservers();
-		return loggedIn;
 	}
 	
 	private Person getUser() {
@@ -42,5 +46,7 @@ public class UserLogin extends IObservable<UserLogin> {
 		}
 		return person;
 	}
+	
+	public LoginState getLoginState() { return loginState; }
 	
 }

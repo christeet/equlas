@@ -9,8 +9,11 @@ import javafx.scene.control.TextField;
 import model.EqualsModel;
 import model.UserLogin;
 import resources.I18n;
+import util.IObserver;
 
-public class LoginViewController implements EqualsView {
+public class LoginViewController implements EqualsView, IObserver<UserLogin> {
+
+	private EqualsController controller;
 	
 	@FXML
 	private TextField usernameField;
@@ -26,18 +29,34 @@ public class LoginViewController implements EqualsView {
 
 	@FXML
 	protected void checkUserCredentials() {
-		if(this.login.checkPassword(passwordField.getText(), usernameField.getText())) {
-			this.statusLabel.setStyle("-fx-text-fill: green;");
-			this.statusLabel.setText(I18n.getString("login.message.success"));
-		} else {
-			this.statusLabel.setStyle("-fx-font-fill: red;");
-			this.statusLabel.setText(I18n.getString("login.message.failed"));
-		}
+		this.controller.loginDataEntered(passwordField.getText(), usernameField.getText());
 	}
 	
-	private UserLogin login;
 	
 	public void init(EqualsModel model, EqualsController controller) {
+		this.controller = controller;
+		model.getUserLogin().addObserver(this);
+		
+	}
+
+
+	@Override
+	public void update(UserLogin o) {
+		switch(o.getLoginState()) {
+		case LOGGED_IN:
+			this.statusLabel.setStyle("-fx-text-fill: green;");
+			this.statusLabel.setText(I18n.getString("login.message.success"));
+			break;
+		case LOGGED_OUT:
+			this.statusLabel.setText("");
+			break;
+		case LOGIN_FAILED:
+			this.statusLabel.setStyle("-fx-font-fill: red;");
+			this.statusLabel.setText(I18n.getString("login.message.failed"));
+			break;
+		default:
+			break;
+		}
 	}
 
 }

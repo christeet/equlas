@@ -12,7 +12,7 @@ public class EqualsModel {
 		userLogin = new UserLogin();
 	}
 	
-	public BooleanProperty LoggedInProperty() {
+	public BooleanProperty loggedInProperty() {
 		return loggedIn;
 	}
 	
