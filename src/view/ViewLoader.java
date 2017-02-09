@@ -18,14 +18,14 @@ public class ViewLoader {
 			EqualsController controller) throws MalformedURLException {
 		FXMLLoader loader;
 		loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
-		Parent parentNode = null;
+		Parent rootNode = null;
 		try {
-			parentNode = (Parent)loader.load();
+			rootNode = (Parent)loader.load();
 		} catch (IOException e) {
 			System.out.println("Could not load: " + e.getMessage());
 		}
 		EqualsView view = loader.<EqualsView>getController();
-		view.init(parentNode, model, controller);
+		view.init(rootNode, model, controller);
 		return view;
 	}
 	
