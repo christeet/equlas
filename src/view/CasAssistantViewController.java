@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class StudentViewController extends EqualsView {
+public class CasAssistantViewController extends EqualsView {
 	
 	private ObservableList<Data> data;
 	

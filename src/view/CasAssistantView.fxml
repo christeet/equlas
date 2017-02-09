@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" 
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CasAssistantViewController">
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="398.0" prefWidth="599.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="176.0" prefWidth="461.0">
+                    <columns>
+                      <TableColumn fx:id="courseColumn" prefWidth="99.0" text="%view.course" />
+                      <TableColumn fx:id="weightColumn" prefWidth="91.0" text="%view.weight" />
+                        <TableColumn fx:id="successColumn" prefWidth="115.0" text="%view.success" />
+                    </columns>
+                  </TableView>
+                  <Separator prefWidth="200.0" />
+                  <HBox prefHeight="133.0" prefWidth="461.0">
+                     <children>
+                        <Label text="%view.successPartComplete" />
+                        <Label fx:id="successPartComplete" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="saveButton" alignment="TOP_LEFT" defaultButton="true" mnemonicParsing="false" onMouseClicked="#onSave" text="%view.save" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
