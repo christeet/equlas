@@ -2,9 +2,12 @@ package equals;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import controller.EqualsController;
 import dao.CourseDAO;
 import dao.DAOFactory;
 import dao.ModuleDAO;
@@ -14,15 +17,36 @@ import data.Course;
 import data.Module;
 import data.Person;
 import data.Student;
+import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import model.EqualsModel;
+import model.UserLogin;
+import resources.I18n;
+import view.ViewLoader;
 
-public class Main {
+public class Main extends Application {
 
-	
+	@Override
+	public void start(Stage stage) throws MalformedURLException {
+		EqualsModel model = new EqualsModel();
+		EqualsController controller = new EqualsController();
+
+		Parent mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
+		//mainWindow.setContentView(userLogin);
+		Scene scene = new Scene(mainWindow, 800, 600);
+		
+		stage.setTitle(I18n.getString("login.title"));
+		stage.setScene(scene);
+		stage.show();
+	}
 	/**
 	 * The entry-point of this program.
 	 * @param args commandline arguments
 	 */
 	public static void main(String[] args) {
+		launch(args);
 		// TODO Auto-generated method stub
 		System.out.println("testing Database:");
 		
