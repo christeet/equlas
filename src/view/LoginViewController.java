@@ -1,19 +1,15 @@
 package view;
 
-import controller.EqualsController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.EqualsModel;
 import model.UserLogin;
 import resources.I18n;
 import util.IObserver;
 
 public class LoginViewController extends EqualsView implements IObserver<UserLogin> {
-
-	private EqualsController controller;
 	
 	@FXML
 	private TextField usernameField;

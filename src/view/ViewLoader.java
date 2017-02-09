@@ -19,13 +19,15 @@ public class ViewLoader {
 		FXMLLoader loader;
 		loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
 		Parent rootNode = null;
+		EqualsView view = null;
 		try {
 			rootNode = (Parent)loader.load();
+			view = loader.<EqualsView>getController();
+			view.init(rootNode, model, controller);
 		} catch (IOException e) {
 			System.out.println("Could not load: " + e.getMessage());
+			e.printStackTrace();
 		}
-		EqualsView view = loader.<EqualsView>getController();
-		view.init(rootNode, model, controller);
 		return view;
 	}
 	

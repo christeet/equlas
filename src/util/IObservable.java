@@ -44,8 +44,11 @@ public class IObservable<T> {
             clearChanged();
         }
 
-        for (int i = arrLocal.length-1; i>=0; i--)
-            ((IObserver<T>)arrLocal[i]).update((T)this);
+        for (int i = arrLocal.length-1; i>=0; i--) {
+        	if(obs.contains(arrLocal[i])) {
+        		((IObserver<T>)arrLocal[i]).update((T)this);
+        	}
+        }
     }
 
     public synchronized void deleteObservers() {
