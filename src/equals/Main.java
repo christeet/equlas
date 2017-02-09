@@ -33,7 +33,7 @@ public class Main extends Application {
 
 		EqualsView mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
 		//mainWindow.setContentView(userLogin);
-		Scene scene = new Scene(mainWindow.getParentNode(), 800, 600);
+		Scene scene = new Scene(mainWindow.getRootNode(), 800, 600);
 		
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);

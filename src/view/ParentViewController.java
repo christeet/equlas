@@ -53,7 +53,7 @@ public class ParentViewController extends EqualsView implements IObserver<UserLo
 		}
 		try {
 			EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
-			container.setCenter(newView.getParentNode());
+			container.setCenter(newView.getRootNode());
 			currentView = newView;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

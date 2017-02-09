@@ -5,7 +5,7 @@ import javafx.scene.Parent;
 import model.EqualsModel;
 
 public abstract class EqualsView {
-	protected Parent parentNode;
+	protected Parent rootNode;
 	protected EqualsModel model;
 	protected EqualsController controller;
 	
@@ -21,16 +21,16 @@ public abstract class EqualsView {
 	
 	/**
 	 * This method gets called automatically by ViewLoader.create()
-	 * @param parentNode The hierarchically uppermost node of the scene-graph of the freshly created view.
+	 * @param rootNode The hierarchically uppermost node of the scene-graph of the freshly created view.
 	 * @param model the EqualsModel to which we may create bindings.
 	 * @param controller the EqualsController, to whom we may delegate commands.
 	 */
-	public void init(Parent parentNode, EqualsModel model, EqualsController controller) {
-		this.parentNode = parentNode;
+	public void init(Parent rootNode, EqualsModel model, EqualsController controller) {
+		this.rootNode = rootNode;
 		this.model = model;
 		this.controller = controller;
 		init();
 	}
 
-	public Parent getParentNode() { return parentNode; }
+	public Parent getRootNode() { return rootNode; }
 }
