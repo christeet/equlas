@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -16,16 +16,16 @@ public class TeacherViewController extends EqualsView {
 	private ObservableList<Data> data;
 	
 	@FXML
-	private Label successPartComplete;
+	private TableView<Data> table;
 	
 	@FXML
-	private TableView<Data> table;
+	private Button saveButton;
 	
 	@FXML
 	private TableColumn<Data, String> courseColumn;
 	
 	@FXML
-	private TableColumn<Data, Number> weightColumn, successColumn;
+	private TableColumn<Data, Number> weightColumn;
 	
 	@FXML
 	protected void onSave() {
@@ -36,7 +36,6 @@ public class TeacherViewController extends EqualsView {
 	protected void initialize() {
 		courseColumn.setCellValueFactory(d -> d.getValue().courseProperty());
 		weightColumn.setCellValueFactory(d -> d.getValue().weightProperty());
-		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
 		
 	  this.data = FXCollections.observableArrayList();
 	}
@@ -63,12 +62,10 @@ public class TeacherViewController extends EqualsView {
   private static class Data {
     private final StringProperty course;
     private final DoubleProperty weight;
-    private final DoubleProperty success;
 
-    private Data(String course, double weight, int success) {
+    private Data(String course, double weight) {
         this.course = new SimpleStringProperty(course);
         this.weight = new SimpleDoubleProperty(weight);
-        this.success = new SimpleDoubleProperty(success);
     }
 
     private String getCourse() { 
@@ -85,14 +82,6 @@ public class TeacherViewController extends EqualsView {
     
     private DoubleProperty weightProperty() {
     	return this.weight;
-    }
-
-    private double getSuccess() {
-    	return this.success.get();
-    }
-    
-    private DoubleProperty successProperty() { 
-    	return this.success;
     }
   }
 

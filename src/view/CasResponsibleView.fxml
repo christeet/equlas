@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StudentViewController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CasResponsibleViewController">
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
@@ -15,9 +15,7 @@
                <children>
                   <TableView fx:id="table" prefHeight="176.0" prefWidth="461.0">
                     <columns>
-                      <TableColumn fx:id="courseColumn" prefWidth="99.0" text="%view.course" />
-                      <TableColumn fx:id="weightColumn" prefWidth="91.0" text="%view.weight" />
-                        <TableColumn fx:id="successColumn" prefWidth="115.0" text="%view.success" />
+                      <TableColumn fx:id="courseColumn" prefWidth="99.0" text="%view.student" />
                     </columns>
                   </TableView>
                   <Separator prefWidth="200.0" />

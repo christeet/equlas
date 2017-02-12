@@ -43,6 +43,8 @@ public class StudentViewController extends EqualsView {
 	
 	@Override
 	public void init() {
+		TableColumn<Data, String> courseNameCol = new TableColumn<>("Course Name");
+		
 		
 //		for(String name : this.model.getStudentName()) {
 //			if(name.equals(this.userName())) {

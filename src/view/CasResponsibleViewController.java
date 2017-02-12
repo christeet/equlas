@@ -16,16 +16,10 @@ public class CasResponsibleViewController extends EqualsView {
 	private ObservableList<Data> data;
 	
 	@FXML
-	private Label successPartComplete;
-	
-	@FXML
 	private TableView<Data> table;
 	
 	@FXML
-	private TableColumn<Data, String> courseColumn;
-	
-	@FXML
-	private TableColumn<Data, Number> weightColumn, successColumn;
+	private TableColumn<Data, String> studentColumn;
 	
 	@FXML
 	protected void onSave() {
@@ -34,9 +28,7 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	@FXML
 	protected void initialize() {
-		courseColumn.setCellValueFactory(d -> d.getValue().courseProperty());
-		weightColumn.setCellValueFactory(d -> d.getValue().weightProperty());
-		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
+		studentColumn.setCellValueFactory(d -> d.getValue().courseProperty());
 		
 	  this.data = FXCollections.observableArrayList();
 	}
@@ -61,12 +53,12 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	
   private static class Data {
-    private final StringProperty course;
+    private final StringProperty student;
     private final DoubleProperty weight;
     private final DoubleProperty success;
 
-    private Data(String course, double weight, int success) {
-        this.course = new SimpleStringProperty(course);
+    private Data(String student, double weight, int success) {
+        this.student = new SimpleStringProperty(student);
         this.weight = new SimpleDoubleProperty(weight);
         this.success = new SimpleDoubleProperty(success);
     }
