@@ -12,17 +12,25 @@ public class UserLogin extends IObservable<UserLogin> {
 	public enum LoginState { LOGGED_OUT, LOGGED_IN, LOGIN_FAILED };
 	private LoginState loginState;
 	private String username;
+	private Person currentUser;
 	
 	public UserLogin() {
 		this.loginState = LoginState.LOGGED_OUT;
 	}
 	
 	public void checkPassword(String password, String username) {
+		
+		//***************** <DEBUG CODE>  ****************************************/
+		if(username.isEmpty() && password.isEmpty()) { username="swp1"; password="stud"; }
+		//***************** </DEBUG CODE> ****************************************/
+		
 		this.username = username;
 		loginState = LoginState.LOGIN_FAILED;
 		try {
-			if(getUser().getPassword().equals(String.valueOf(password.hashCode()))) {
+			Person p = getDAOUser();
+			if(p.getPassword().equals(String.valueOf(password.hashCode()))) {
 				loginState = LoginState.LOGGED_IN;
+				currentUser = p;
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -32,8 +40,8 @@ public class UserLogin extends IObservable<UserLogin> {
 		}
 	}
 	
-	private Person getUser() {
-		return getDAOUser();
+	public Person getUser() {
+		return currentUser;
 	}
 	
 	private Person getDAOUser() {

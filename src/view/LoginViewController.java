@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,21 +43,23 @@ public class LoginViewController extends EqualsView implements IObserver<UserLog
 
 	@Override
 	public void update(UserLogin o) {
-		switch(o.getLoginState()) {
-		case LOGGED_IN:
-			this.statusLabel.setStyle("-fx-text-fill: green;");
-			this.statusLabel.setText(I18n.getString("login.message.success"));
-			break;
-		case LOGGED_OUT:
-			this.statusLabel.setText("");
-			break;
-		case LOGIN_FAILED:
-			this.statusLabel.setStyle("-fx-font-fill: red;");
-			this.statusLabel.setText(I18n.getString("login.message.failed"));
-			break;
-		default:
-			break;
-		}
+		Platform.runLater(() -> {
+			switch(o.getLoginState()) {
+			case LOGGED_IN:
+				this.statusLabel.setStyle("-fx-text-fill: green;");
+				this.statusLabel.setText(I18n.getString("login.message.success"));
+				break;
+			case LOGGED_OUT:
+				this.statusLabel.setText("");
+				break;
+			case LOGIN_FAILED:
+				this.statusLabel.setStyle("-fx-font-fill: red;");
+				this.statusLabel.setText(I18n.getString("login.message.failed"));
+				break;
+			default:
+				break;
+			}
+		});
 	}
 
 }
