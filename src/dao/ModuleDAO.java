@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import data.Module;
+import data.Person;
 import data.Student;
 
 public class ModuleDAO {
@@ -28,7 +29,7 @@ public class ModuleDAO {
 		return getModuleListFromResultSet(resultSet);
 	}
 	
-	public ArrayList<Module> getModulesByStudent(Student student) throws SQLException {
+	public ArrayList<Module> getModulesByStudent(Person student) throws SQLException {
 		psGetModulesByStudent.setString(1, student.getUserName());
 		ResultSet resultSet = psGetModulesByStudent.executeQuery();
 		return getModuleListFromResultSet(resultSet);
