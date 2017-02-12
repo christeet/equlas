@@ -40,6 +40,10 @@ public class UserLogin extends IObservable<UserLogin> {
 		}
 	}
 	
+	public String getUsername() {
+		return  username;
+	}
+	
 	public Person getUser() {
 		return currentUser;
 	}
