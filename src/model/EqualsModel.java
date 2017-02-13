@@ -7,13 +7,12 @@ import dao.ModuleDAO;
 import data.Module;
 import data.Person;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.IObserver;
 
-public class EqualsModel implements IObserver<UserLogin>{
+public class EqualsModel implements IObserver<UserLogin> {
 
 	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 	private UserLogin userLogin;
@@ -50,7 +49,10 @@ public class EqualsModel implements IObserver<UserLogin>{
 		ModuleDAO moduleDao = DAOFactory.getInstance().createModuleDAO();
 		Person user = userLogin.getUser();
 		try {
-			moduleList.setAll(moduleDao.getModulesByStudent(user));
+			moduleList.clear();
+			moduleList.addAll(moduleDao.getModulesByHead(user));
+			moduleList.addAll(moduleDao.getModulesByTeacher(user));
+			moduleList.addAll(moduleDao.getModulesByStudent(user));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

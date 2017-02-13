@@ -51,6 +51,6 @@ public class Module {
 	
 	@Override
 	public String toString() {
-		return getName();
+		return String.format("%s\r\n%s", getName(), getShortName());
 	}
 }

@@ -8,20 +8,29 @@ import java.util.ArrayList;
 
 import data.Module;
 import data.Person;
-import data.Student;
 
 public class ModuleDAO {
 
-	private  PreparedStatement psGetAllModules;
-	private  PreparedStatement psGetModulesByStudent;
+	private PreparedStatement psGetAllModules;
+	private PreparedStatement psGetModulesByStudent;
+	private PreparedStatement psGetModulesByHead;
+	private PreparedStatement psGetModulesByTeacher;
 	
 	public ModuleDAO(Connection connection) throws SQLException {
 		psGetAllModules = connection.prepareStatement("SELECT * FROM Module;");
 		psGetModulesByStudent = connection.prepareStatement(
 				"SELECT * FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
-				+ "left join Person p on r.studentId = p.id "
-				+ "where p.userName like ?;");
+				+ "where r.studentId=?");
+		psGetModulesByHead = connection.prepareStatement(
+				"SELECT * FROM Module "
+				+ "where headId=?;");
+		
+		// only select module, if the teacher is not also the head of the module:
+		psGetModulesByTeacher = connection.prepareStatement(
+				"SELECT * FROM Module m "
+				+ "left join Course c on c.moduleId = m.id "
+				+ "where c.professorId=? and m.headId!=?");
 	}
 	
 	public ArrayList<Module> getAllModules() throws SQLException {
@@ -30,8 +39,21 @@ public class ModuleDAO {
 	}
 	
 	public ArrayList<Module> getModulesByStudent(Person student) throws SQLException {
-		psGetModulesByStudent.setString(1, student.getUserName());
+		psGetModulesByStudent.setInt(1, student.getId());
 		ResultSet resultSet = psGetModulesByStudent.executeQuery();
+		return getModuleListFromResultSet(resultSet);
+	}
+	
+	public ArrayList<Module> getModulesByHead(Person head) throws SQLException {
+		psGetModulesByHead.setInt(1, head.getId());
+		ResultSet resultSet = psGetModulesByHead.executeQuery();
+		return getModuleListFromResultSet(resultSet);
+	}
+	
+	public ArrayList<Module> getModulesByTeacher(Person teacher) throws SQLException {
+		psGetModulesByTeacher.setInt(1, teacher.getId());
+		psGetModulesByTeacher.setInt(2, teacher.getId());
+		ResultSet resultSet = psGetModulesByTeacher.executeQuery();
 		return getModuleListFromResultSet(resultSet);
 	}
 	
