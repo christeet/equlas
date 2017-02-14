@@ -45,7 +45,10 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
-		// TODO Auto-generated method stub
+		//consoleDebug();
+	}
+	
+	private static void consoleDebug() {
 		System.out.println("testing Database:");
 		
 		DAOFactory dao = DAOFactory.getInstance();
@@ -54,7 +57,6 @@ public class Main extends Application {
 		try {
 			modules = moduleDAO.getAllModules();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -88,6 +90,7 @@ public class Main extends Application {
 				System.out.println("R - set Rating");
 				System.out.println("r - get Rating");
 				System.out.println("u - get User");
+				System.out.println("q - quit");
 				String command = br.readLine();
 				switch (command.charAt(0)){
 				case 'R':
@@ -96,6 +99,8 @@ public class Main extends Application {
 				case 'u':
 					getUser(br, personDAO);
 					break;
+				case 'q':
+					return;
 				default:
 					System.out.println("no valid input");
 					break;
@@ -107,7 +112,6 @@ public class Main extends Application {
 				System.err.println("try again.");
 			}
 		}
-        
 	}
 
 	private static void getUser(BufferedReader br, PersonDAO personDAO) throws Exception {

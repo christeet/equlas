@@ -11,11 +11,13 @@ public abstract class EqualsView {
 	
 	/**
 	 * Implement this method to initialize bindings to the model.
+	 * Caution: this method may not necessarily be called from the JavaFX GUI-Thread!
 	 */
 	protected abstract void init();
 	
 	/**
 	 * Implement this method to clean up bindings to the model, before this view gets destroyed.
+	 * Caution: this method may not necessarily be called from the JavaFX GUI-Thread!
 	 */
 	public abstract void dispose();
 	

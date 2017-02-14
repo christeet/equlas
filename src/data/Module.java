@@ -48,4 +48,9 @@ public class Module {
 	public Date getEndDate() {
 		return endDate;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("%s\r\n%s", getName(), getShortName());
+	}
 }
