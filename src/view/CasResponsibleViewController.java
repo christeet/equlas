@@ -33,6 +33,12 @@ public class CasResponsibleViewController extends EqualsView {
 	  this.data = FXCollections.observableArrayList();
 	}
 	
+	private void getCoursesFromModule() {
+		
+	}
+	
+	
+	
 	@Override
 	public void init() {
 		
@@ -54,13 +60,23 @@ public class CasResponsibleViewController extends EqualsView {
 	
   private static class Data {
     private final StringProperty student;
-    private final DoubleProperty weight;
     private final DoubleProperty success;
+		private final StringProperty course;
 
-    private Data(String student, double weight, int success) {
+    private Data(String student, int success, String course) {
         this.student = new SimpleStringProperty(student);
-        this.weight = new SimpleDoubleProperty(weight);
         this.success = new SimpleDoubleProperty(success);
+        this.course = new SimpleStringProperty(course);
+    }
+    
+    private String getStudent()  {
+    	
+    	return student.getName();
+    }
+    
+    private StringProperty studentProperty() {
+    	
+    	return student;
     }
 
     private String getCourse() { 
@@ -69,14 +85,6 @@ public class CasResponsibleViewController extends EqualsView {
     
     private StringProperty courseProperty() {
     	return this.course;
-    }
-    
-    private double getWeight() {
-    	return this.weight.get();
-    }
-    
-    private DoubleProperty weightProperty() {
-    	return this.weight;
     }
 
     private double getSuccess() {
