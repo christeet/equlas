@@ -1,5 +1,6 @@
 package view;
 
+import data.Person;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -7,7 +8,6 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -41,6 +41,15 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	@Override
 	public void init() {
+		Person person = this.model.getUserLogin().getUser();
+		System.out.println(
+		"FirstName: "
+		+ person.getFirstName()
+		+ "\nLastName: "
+		+ person.getLastName()
+		+ "\nName: "
+		+ person.getName()
+		);
 		
 //		for(String name : this.model.getStudentName()) {
 //			if(name.equals(this.userName())) {
