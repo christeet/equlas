@@ -6,8 +6,13 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.util.Callback;
 
 public class SelectViewController extends EqualsView {
 
@@ -43,6 +48,32 @@ public class SelectViewController extends EqualsView {
 		Platform.runLater(() -> {
 			entityList.getSelectionModel().select(0);
 		});
+		
+		
+		entityList.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
+            @Override
+            public ListCell<Module> call(ListView<Module> arg0) {
+                return new ListCell<Module>() {
+
+                    @Override
+                    protected void updateItem(Module item, boolean bln) {
+                		Platform.runLater(() -> {
+	                        super.updateItem(item, bln);
+	                        if (item != null) {
+	                            VBox vBox = new VBox(new Text(item.getShortName()), 
+	                            		new Text(String.format("%s $", item.getName())));
+	                            HBox hBox = new HBox(new Label("[Graphic]"), vBox);
+	                            hBox.setSpacing(10);
+	                            setGraphic(hBox);
+	                        }
+                		});
+                    }
+
+                };
+            }
+
+        });
+
 	}
 
 	@Override

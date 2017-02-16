@@ -9,6 +9,7 @@ public class Module {
 	private String shortName;
 	private Date startDate;
 	private Date endDate;
+	private UserRole userRole;
 	
 	
 	public Module(
@@ -16,13 +17,15 @@ public class Module {
 			String name,
 			String shortName,
 			Date startDate,
-			Date endDate)
+			Date endDate,
+			UserRole userRole)
 	{
 		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.userRole = userRole;
 	}
 	
 	public void print() {
@@ -47,6 +50,10 @@ public class Module {
 	
 	public Date getEndDate() {
 		return endDate;
+	}
+	
+	public UserRole getUserRole() {
+		return userRole;
 	}
 	
 	@Override
