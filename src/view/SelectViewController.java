@@ -1,5 +1,7 @@
 package view;
 
+import java.net.MalformedURLException;
+
 import data.Module;
 import data.Person;
 import javafx.application.Platform;
@@ -10,17 +12,18 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 public class SelectViewController extends EqualsView {
 
-	@FXML
-	private Label userName;
-	
-	@FXML
-	private ListView<Module> entityList;
+	@FXML private Label userName;
+	@FXML private Pane container;
+	@FXML private ListView<Module> entityList;
+
+	private EqualsView currentView;
 	
 	@Override
 	protected void init() {
@@ -42,6 +45,7 @@ public class SelectViewController extends EqualsView {
 		    @Override
 		    public void onChanged(Change<? extends Module> change) {
 		    	System.out.format("selected %s\r\n",entityList.getSelectionModel().getSelectedItem());
+		    	setContent(entityList.getSelectionModel().getSelectedItem());
 		    }
 		});
 		entityList.setItems(model.getModuleListProperty());
@@ -74,6 +78,40 @@ public class SelectViewController extends EqualsView {
 
         });
 
+	}
+	
+	private void setContent(Module selectedModule) {
+		switch(selectedModule.getUserRole()) {
+		case ASSISTANT:
+			setContentView("CasAssistantView.fxml");
+			break;
+		case HEAD:
+			setContentView("CasResponsibleView.fxml");
+			break;
+		case STUDENT:
+			setContentView("StudentView.fxml");
+			break;
+		case TEACHER:
+			setContentView("TeacherView.fxml");
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void setContentView(String filename) {
+		if(currentView != null)  {
+			currentView.dispose();
+		}
+		try {
+			EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
+			container.getChildren().clear();
+			container.getChildren().add(newView.getRootNode());
+			currentView = newView;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
