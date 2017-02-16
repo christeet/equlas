@@ -80,11 +80,11 @@ public class CasResponsibleViewController extends EqualsView {
     }
 
     private String getCourse() { 
-    	return this.course.get(); 
+    	return "";//this.course.get(); 
     }
     
     private StringProperty courseProperty() {
-    	return this.course;
+    	return null;//this.course;
     }
 
     private double getSuccess() {
