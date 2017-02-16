@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,10 +18,10 @@
             </Label>
          </children>
       </HBox>
-      <HBox>
+      <HBox VBox.vgrow="ALWAYS">
          <children>
             <ListView fx:id="entityList" />
-            <Pane fx:id="container" />
+            <AnchorPane fx:id="container" style="-fx-background-color: red;" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

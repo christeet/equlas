@@ -14,6 +14,7 @@ public class ModuleDAO {
 
 	private PreparedStatement psGetAllModules;
 	private PreparedStatement psGetModulesByStudent;
+	private PreparedStatement psGetModulesByAssistant;
 	private PreparedStatement psGetModulesByHead;
 	private PreparedStatement psGetModulesByTeacher;
 	
@@ -23,6 +24,9 @@ public class ModuleDAO {
 				"SELECT * FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
 				+ "where r.studentId=?");
+		psGetModulesByAssistant = connection.prepareStatement(
+				"SELECT * FROM Module "
+				+ "where assistantId=?;");
 		psGetModulesByHead = connection.prepareStatement(
 				"SELECT * FROM Module "
 				+ "where headId=?;");
@@ -37,6 +41,12 @@ public class ModuleDAO {
 	public ArrayList<Module> getAllModules() throws SQLException {
 		ResultSet resultSet = psGetAllModules.executeQuery();
 		return getModuleListFromResultSet(resultSet, null);
+	}
+	
+	public ArrayList<Module> getModulesByAssistant(Person assistant) throws SQLException {
+		psGetModulesByAssistant.setInt(1, assistant.getId());
+		ResultSet resultSet = psGetModulesByAssistant.executeQuery();
+		return getModuleListFromResultSet(resultSet, UserRole.ASSISTANT);
 	}
 	
 	public ArrayList<Module> getModulesByStudent(Person student) throws SQLException {

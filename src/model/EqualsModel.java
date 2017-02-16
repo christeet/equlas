@@ -53,6 +53,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 			moduleList.addAll(moduleDao.getModulesByHead(user));
 			moduleList.addAll(moduleDao.getModulesByTeacher(user));
 			moduleList.addAll(moduleDao.getModulesByStudent(user));
+			moduleList.addAll(moduleDao.getModulesByAssistant(user));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
