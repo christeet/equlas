@@ -1,5 +1,5 @@
 package data;
 
 public enum UserRole {
-	STUDENT, TEACHER, HEAD;
+	STUDENT, TEACHER, HEAD, ASSISTANT;
 }

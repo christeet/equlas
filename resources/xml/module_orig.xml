@@ -2,7 +2,7 @@
 <module>
   <acronym>SD</acronym>
   <assistant>
-    <email>andrea.moser@bfh.ch</email>
+    <email>andrea.moser@bfh.ch</email> <!-- Not used! -->
     <firstName>Andrea</firstName>
     <lastName>Moser</lastName>
     <sex>f</sex>

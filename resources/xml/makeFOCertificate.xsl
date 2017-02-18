@@ -52,8 +52,8 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="h:div[@class='diploma']">
-        <xsl:element name="fo:block" use-attribute-sets="diploma">
+    <xsl:template match="h:div[@class='certificate']">
+        <xsl:element name="fo:block" use-attribute-sets="certificate">
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -89,12 +89,12 @@
         <xsl:attribute name="font-size">10pt</xsl:attribute>
         <xsl:attribute name="line-height">15pt</xsl:attribute>
     </xsl:attribute-set>
-    <xsl:attribute-set name="heading1" use-attribute-sets="diploma">
+    <xsl:attribute-set name="heading1" use-attribute-sets="certificate">
         <xsl:attribute name="font-size">20pt</xsl:attribute>
         <xsl:attribute name="font-weight">bold</xsl:attribute>
         <xsl:attribute name="line-height">28pt</xsl:attribute>
     </xsl:attribute-set>
-    <xsl:attribute-set name="diploma">
+    <xsl:attribute-set name="certificate">
         <xsl:attribute name="font-family">Arial</xsl:attribute>
         <xsl:attribute name="font-size">14pt</xsl:attribute>
         <xsl:attribute name="line-height">22pt</xsl:attribute>

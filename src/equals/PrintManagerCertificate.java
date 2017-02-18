@@ -18,7 +18,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
 
-public class PrintManagerTest {
+public class PrintManagerCertificate {
 
 	private static final String OUTPUT_PATH = "./resources/output/";
 
@@ -27,33 +27,33 @@ public class PrintManagerTest {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
-			params.put("moduleDocument", builder.parse(PrintManagerTest.class
-					.getResourceAsStream("/xml/module.xml")));
+			params.put("moduleDocument", builder.parse(PrintManagerCertificate.class
+					.getResourceAsStream("/xml/module_orig.xml")));
 
 			// transform template to XHTML document
 			Source stylesheet = new StreamSource(
-					PrintManagerTest.class
-							.getResourceAsStream("/xml/resolve.xsl"));
+					PrintManagerCertificate.class
+							.getResourceAsStream("/xml/resolveCertificate.xsl"));
 			Source template = new StreamSource(
-					PrintManagerTest.class
-							.getResourceAsStream("/xml/diplomaTemplate.xml"));
+					PrintManagerCertificate.class
+							.getResourceAsStream("/xml/certificateTemplate.xml"));
 			Document xhtmlDocument = PrintManager.transform(stylesheet,
 					template, params);
-			writeDocument(xhtmlDocument, "document.html");
+			writeDocument(xhtmlDocument, "documentCertificate.html");
 
 			// transform XHTML document to FO document
 			stylesheet = new StreamSource(
-					PrintManagerTest.class
-							.getResourceAsStream("/xml/makeFO.xsl"));
+					PrintManagerCertificate.class
+							.getResourceAsStream("/xml/makeFOCertificate.xsl"));
 			Document foDocument = PrintManager.transform(stylesheet,
 					new DOMSource(xhtmlDocument));
-			writeDocument(foDocument, "diploma.fo");
+			writeDocument(foDocument, "certificate.fo");
 
 			// render FO document to PDF document
-			File pdfFile = new File(OUTPUT_PATH + "/diploma.pdf");
+			File pdfFile = new File(OUTPUT_PATH + "/certificate.pdf");
 			PrintManager.renderToPDF(new DOMSource(foDocument), pdfFile);
 		} catch (Exception ex) {
-			Logger.getLogger(PrintManagerTest.class.getName()).log(
+			Logger.getLogger(PrintManagerCertificate.class.getName()).log(
 					Level.SEVERE, null, ex);
 		}
 	}

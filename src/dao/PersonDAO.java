@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import data.Course;
 import data.Module;
 import data.Person;
 import data.Student;
@@ -13,7 +14,11 @@ import data.Student;
 public class PersonDAO {
 
 	private PreparedStatement psGetStudentsByModule;
+	private PreparedStatement psGetStudentsByCourse;
+	private PreparedStatement psGetPersonByModule;
+	private PreparedStatement psGetPersonByCourse;
 	private PreparedStatement psGetPersonByUsername;
+	private PreparedStatement psGetAllUsers;
 	
 	public PersonDAO(Connection connection) throws SQLException {
 		psGetStudentsByModule = connection.prepareStatement(
@@ -22,8 +27,61 @@ public class PersonDAO {
 				+ "left join Module m on r.moduleId = m.id "
 				+ "where m.shortName like ? and m.assistantId != p.id and m.headId != p.id;");
 		
+		psGetStudentsByCourse = connection.prepareStatement(
+				"SELECT * FROM Person p "
+				+ "left join Registration r on r.studentId = p.id "
+				+ "left join Module m on r.moduleId = m.id "
+				+ "left join Course c on m.id = c.moduleId "
+				+ "where c.id like ? and m.assistantId != p.id and m.headId != p.id;");
+		
 		psGetPersonByUsername = connection.prepareStatement(
 				"SELECT * FROM Person p where p.userName like ?;");
+		
+		psGetAllUsers = connection.prepareStatement(
+			"Select * from person where id > 200;");
+		
+		psGetPersonByModule = connection.prepareStatement(
+				"SELECT * FROM Person p "
+				+ "left join Module m on p.id = m.assistantId "
+				+ "where m.shortName like ?");
+		
+		psGetPersonByCourse = connection.prepareStatement(
+				"SELECT * FROM Person p "
+				+ "left join Course c on c.professorId = p.id "
+				+ "where c.id = ?");
+	}
+	
+	public ArrayList<Student> getAllStudents() throws SQLException {
+		ResultSet resultSet = psGetAllUsers.executeQuery();
+		return getStudentListFromResultSet(resultSet);
+	}
+	
+	public Person getPersonByModule(String shortName) throws SQLException {
+		psGetPersonByModule.setString(1, shortName);
+		ResultSet resultSet = psGetPersonByModule.executeQuery();
+		if(resultSet.next()) {
+			return getPersonFromResultSet(resultSet);
+		}
+		else {
+			throw new SQLException();
+		}
+	}
+	
+	public Person getPersonByCourse(Course course) throws SQLException {
+		psGetPersonByCourse.setString(1, String.valueOf(course.getId()));
+		ResultSet resultSet = psGetPersonByCourse.executeQuery();
+		if(resultSet.next()) {
+			return getPersonFromResultSet(resultSet);
+		}
+		else {
+			throw new SQLException();
+		}
+	}
+	
+	public ArrayList<Student> getStudentsByCourse(Course course) throws SQLException {
+		psGetStudentsByCourse.setString(1, String.valueOf(course.getId()));
+		ResultSet resultSet = psGetStudentsByCourse.executeQuery();
+		return getStudentListFromResultSet(resultSet);
 	}
 	
 	public ArrayList<Student> getStudentsByModule(Module module) throws SQLException {

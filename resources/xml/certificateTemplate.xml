@@ -9,15 +9,15 @@
         <iqs:iteration id="students">
             <iqs:pageBreak/>
             <iqs:mediumSpace/>
-            <div class="diploma">
+            <div class="certificate">
               Die Berner Fachhochschule
             </div>    
-            <div class="diploma">
+            <div class="certificate">
                 erteilt
             </div>    
             <iqs:mediumSpace/>
 
-            <div class="diploma">
+            <div class="certificate">
                 <iqs:data id="studentSalutation"/>
             </div>
             <iqs:smallspace/>
@@ -25,11 +25,11 @@
             <h1><iqs:data id="studentName"/></h1>
             <iqs:smallspace/>
             
-            <div class="diploma">von <iqs:data id="studentPlaceOfOrigin"/>, geboren am <iqs:data id="studentDateOfBirth"/></div>
+            <div class="certificate">von <iqs:data id="studentPlaceOfOrigin"/>, geboren am <iqs:data id="studentDateOfBirth"/></div>
 
             <iqs:mediumSpace/>
 
-            <div class="diploma">das</div>
+            <div class="certificate">das</div>
             <iqs:smallspace/>
             <h1>Certificate of Advanced Studies BFH in</h1>
             <h1><iqs:data id="moduleName"/></h1>
@@ -37,7 +37,7 @@
             <iqs:largeSpace/>
             <iqs:largeSpace/>
                    
-            <div class="diploma">
+            <div class="certificate">
                 Das CAS dauerte vom <iqs:data id="moduleStartDate"/> bis zum  <iqs:data id="moduleEndDate"/>
                 und entsprach einem Arbeitspensum von 12 ECTS.
             </div>
