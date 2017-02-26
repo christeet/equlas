@@ -6,18 +6,21 @@ public class Course {
 	private String name;
 	private String shortName;
 	private float weight;
+	private int moduleId;
 	
 	
 	public Course(
 			int id,
 			String name,
 			String shortName,
-			float weight)
+			float weight,
+			int moduleId)
 	{
 		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
 		this.weight = weight;
+		this.moduleId = moduleId;
 	}
 	
 	public void print() {
@@ -38,5 +41,14 @@ public class Course {
 	
 	public float getWeight() {
 		return weight;
+	}
+	
+	public int getModuleId() {
+		return moduleId;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getName();
 	}
 }

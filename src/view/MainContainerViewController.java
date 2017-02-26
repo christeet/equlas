@@ -1,13 +1,11 @@
 package view;
 
-import java.net.MalformedURLException;
-
 import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import model.UserLogin;
 import util.IObserver;
 
-public class ParentViewController extends EqualsView implements IObserver<UserLogin> {
+public class MainContainerViewController extends EqualsView implements IObserver<UserLogin> {
 
 	private EqualsView currentView;
 	
@@ -48,17 +46,12 @@ public class ParentViewController extends EqualsView implements IObserver<UserLo
 	}
 	
 	private void setContentView(String filename) {
-		if(currentView != null)  {
+		if(currentView != null) {
 			currentView.dispose();
 		}
-		try {
-			EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
-			container.setCenter(newView.getRootNode());
-			currentView = newView;
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
+		container.setCenter(newView.getRootNode());
+		currentView = newView;
 	}
 	
 }

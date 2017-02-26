@@ -27,11 +27,13 @@ import view.ViewLoader;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage stage) throws MalformedURLException {
+	public void start(Stage stage) {
 		EqualsModel model = new EqualsModel();
 		EqualsController controller = new EqualsController(model);
 
-		EqualsView mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
+		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
+				"../view/MainContainerView.fxml")
+				, model, controller);
 		//mainWindow.setContentView(userLogin);
 		Scene scene = new Scene(mainWindow.getRootNode(), 800, 600);
 		

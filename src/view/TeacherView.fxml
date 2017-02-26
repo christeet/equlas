@@ -14,8 +14,8 @@
              <children>
                 <TableView fx:id="table" VBox.vgrow="ALWAYS">
                    <columns>
-                      <TableColumn fx:id="courseColumn" prefWidth="99.0" text="%view.student" />
-                      <TableColumn fx:id="weightColumn" prefWidth="150.0" text="%view.success" />
+                      <TableColumn fx:id="studentColumn" prefWidth="99.0" text="%view.student" />
+                      <TableColumn fx:id="successColumn" prefWidth="150.0" text="%view.success" />
                    </columns>
                 </TableView>
                 <Button fx:id="saveButton" alignment="TOP_LEFT" defaultButton="true" mnemonicParsing="false" onMouseClicked="#onSave" text="%view.save" />
