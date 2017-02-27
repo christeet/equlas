@@ -16,9 +16,11 @@ public class ModuleDAO {
 	private PreparedStatement psGetModulesByStudent;
 	private PreparedStatement psGetModulesByHead;
 	private PreparedStatement psGetModulesByTeacher;
+	private PreparedStatement psGetAllModulesByName;
 	
 	public ModuleDAO(Connection connection) throws SQLException {
 		psGetAllModules = connection.prepareStatement("SELECT * FROM Module;");
+		psGetAllModulesByName = connection.prepareStatement("SELECT * FROM Module where shortname = ?;");
 		psGetModulesByStudent = connection.prepareStatement(
 				"SELECT * FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
@@ -32,6 +34,12 @@ public class ModuleDAO {
 				"SELECT * FROM Module m "
 				+ "left join Course c on c.moduleId = m.id "
 				+ "where c.professorId=? and m.headId!=?");
+	}
+	
+	public ArrayList<Module> getAllModulesByName(String shortName) throws SQLException {
+		psGetAllModulesByName.setString(1, shortName);
+		ResultSet resultSet = psGetAllModulesByName.executeQuery();
+		return getModuleListFromResultSet(resultSet, null);
 	}
 	
 	public ArrayList<Module> getAllModules() throws SQLException {

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?><fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:h="http://www.w3.org/1999/xhtml"><fo:layout-master-set><fo:simple-page-master margin-bottom="5mm" margin-left="25mm" margin-right="25mm" margin-top="15mm" master-name="first" page-height="297mm" page-width="210mm"><fo:region-body margin-bottom="10mm" margin-top="25mm"/><fo:region-before extent="25mm" region-name="before"/><fo:region-after extent="10mm" region-name="after"/></fo:simple-page-master></fo:layout-master-set><fo:page-sequence master-reference="first"><fo:static-content flow-name="before"><fo:block><fo:external-graphic content-height="20mm" src="logo.png"/></fo:block></fo:static-content><fo:static-content flow-name="after"><fo:block color="gray" font-family="Arial" font-size="8pt">
+                    Berner Fachhochschule | Haute école spécialisée bernoise | Bern University of Applied Sciences
+                </fo:block></fo:static-content><fo:flow flow-name="xsl-region-body"><fo:block>
+   
+   
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Alex Aargauer</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Frankfurt am Main, geboren am 18. September 1966 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Stefan Abacus</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Nyon, geboren am 18. Februar 1966 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Renato Alliance</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Zürich, geboren am 24. September 1980 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Christian Bekler</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Lenzburg, geboren am 15. Juli 1967 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Matthias Caceis</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Zürich, geboren am 16. April 1959 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Daniel Dreyfus</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Sarnen, geboren am 28. Oktober 1976 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Thomas Dritten</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Lausanne, geboren am 06. September 1966 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Frau</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Stephanie Fortis</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Oberwil, geboren am 25. Juli 1959 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Marcel Hard</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Zürich, geboren am 18. August 1968 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Simon Hasbec</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Genf, geboren am 25. März 1967 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Frau</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Christiane Kaslin</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Luzern, geboren am 28. Juni 1964 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Daniel Lombard</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Baar, geboren am 19. Januar 1968 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Dominik Oppenheim</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Schaffhausen, geboren am 24. April 1965 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      <fo:block page-break-before="always"/>
+      <fo:block space-before="10mm"/>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Herr</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Philippe Sarasin</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center"> von Altdorf, geboren am 24. Juni 1961 das 
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">Das CAS dauerte vom 23. März 2016 bis zum 23. September 2016 und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      <fo:block space-before="20mm"/>
+      <fo:block space-before="20mm"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 27. Februar 2017</fo:block>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+   
+</fo:block></fo:flow></fo:page-sequence></fo:root>

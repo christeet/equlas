@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--System-ID: /Users/tgdetch1/equalsSd/resources/xml/resolveLeistungsnachweis.xsl
+Umwandlung: module
+XML-Datei: /Users/tgdetch1/equalsSd/resources/xml/module.xml
+XSL-Datei: /Users/tgdetch1/equalsSd/resources/xml/resolveLeistungsnachweis.xsl
+Programmname: Saxon-PE 9.6.0.7
+Fehlerlevel: warning
+Beschreibung: SXXP0005: The source document is in no namespace, but the template rules all expect elements in a namespace (Use -\-suppressXsltNamespaceCheck:on to avoid this warning)
+URL: http://www.saxonica.com/html/documentation/javadoc/net/sf/saxon/trans/SaxonErrorCode.html#SXXP0005-->
 
 <!-- XSL stylesheet for the resolution of the IQS elements in the XHTML template -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

@@ -14,7 +14,6 @@ import data.Student;
 public class PersonDAO {
 
 	private PreparedStatement psGetStudentsByModule;
-	private PreparedStatement psGetStudentsByCourse;
 	private PreparedStatement psGetPersonByModule;
 	private PreparedStatement psGetPersonByCourse;
 	private PreparedStatement psGetPersonByUsername;
@@ -22,17 +21,14 @@ public class PersonDAO {
 	
 	public PersonDAO(Connection connection) throws SQLException {
 		psGetStudentsByModule = connection.prepareStatement(
-				"SELECT * FROM Person p "
-				+ "left join Registration r on r.studentId = p.id "
-				+ "left join Module m on r.moduleId = m.id "
-				+ "where m.shortName like ? and m.assistantId != p.id and m.headId != p.id;");
-		
-		psGetStudentsByCourse = connection.prepareStatement(
-				"SELECT * FROM Person p "
-				+ "left join Registration r on r.studentId = p.id "
-				+ "left join Module m on r.moduleId = m.id "
-				+ "left join Course c on m.id = c.moduleId "
-				+ "where c.id like ? and m.assistantId != p.id and m.headId != p.id;");
+				"SELECT p.id, p.firstName, p.lastName, p.password, "
+				+ "p.sex, p.placeOfOrigin, p.dateOfBirth, p.userName FROM Person p "
+        + "left join Registration r on r.studentId = p.id "
+        + "left join Module m on r.moduleId = m.id "
+        + "left join Course c on m.id = c.moduleId "
+        + "left join rating ra on ra.courseId = c.id and ra.studentId = p.id "
+        + "where m.assistantId != p.id and m.headId != p.id and m.shortName like ? "
+        + "group by p.id;");
 		
 		psGetPersonByUsername = connection.prepareStatement(
 				"SELECT * FROM Person p where p.userName like ?;");
@@ -78,12 +74,6 @@ public class PersonDAO {
 		}
 	}
 	
-	public ArrayList<Student> getStudentsByCourse(Course course) throws SQLException {
-		psGetStudentsByCourse.setString(1, String.valueOf(course.getId()));
-		ResultSet resultSet = psGetStudentsByCourse.executeQuery();
-		return getStudentListFromResultSet(resultSet);
-	}
-	
 	public ArrayList<Student> getStudentsByModule(Module module) throws SQLException {
 		psGetStudentsByModule.setString(1, module.getShortName());
 		ResultSet resultSet = psGetStudentsByModule.executeQuery();
@@ -100,8 +90,6 @@ public class PersonDAO {
 			throw new SQLException();
 		}
 	}
-	
-
 	
 	private ArrayList<Student> getStudentListFromResultSet(ResultSet resultSet) throws SQLException{
 		ArrayList<Student> resultList = new ArrayList<Student>();

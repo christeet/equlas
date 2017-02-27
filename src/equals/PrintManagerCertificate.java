@@ -8,7 +8,9 @@ import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
 import javax.xml.transform.Source;
+import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -20,41 +22,37 @@ import org.w3c.dom.Document;
 
 public class PrintManagerCertificate {
 
-	private static final String OUTPUT_PATH = "./resources/output/";
+	private static final String OUTPUT_PATH = "resources/output/";
 
 	public static void main(String[] args) {
 		try {
-			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			Map<String, Object> params = new HashMap<>();
-			params.put("moduleDocument", builder.parse(PrintManagerCertificate.class
-					.getResourceAsStream("/xml/module_orig.xml")));
+			File stylesheet = new File("resources/xml/resolveSourceCertificate.xsl");
+			File datafile = new File("resources/xml/module.xml");
 
-			// transform template to XHTML document
-			Source stylesheet = new StreamSource(
-					PrintManagerCertificate.class
-							.getResourceAsStream("/xml/resolveCertificate.xsl"));
-			Source template = new StreamSource(
-					PrintManagerCertificate.class
-							.getResourceAsStream("/xml/certificateTemplate.xml"));
-			Document xhtmlDocument = PrintManager.transform(stylesheet,
-					template, params);
-			writeDocument(xhtmlDocument, "documentCertificate.html");
-
-			// transform XHTML document to FO document
-			stylesheet = new StreamSource(
-					PrintManagerCertificate.class
-							.getResourceAsStream("/xml/makeFOCertificate.xsl"));
-			Document foDocument = PrintManager.transform(stylesheet,
-					new DOMSource(xhtmlDocument));
-			writeDocument(foDocument, "certificate.fo");
-
-			// render FO document to PDF document
-			File pdfFile = new File(OUTPUT_PATH + "/certificate.pdf");
-			PrintManager.renderToPDF(new DOMSource(foDocument), pdfFile);
-		} catch (Exception ex) {
-			Logger.getLogger(PrintManagerCertificate.class.getName()).log(
-					Level.SEVERE, null, ex);
+			TransformerFactory factory = TransformerFactory.newInstance();
+			
+			Source xsl = new StreamSource(stylesheet);
+			Templates template = factory.newTemplates(xsl);
+			Transformer transformer = template.newTransformer();
+			
+			Source xml = new StreamSource(datafile);
+      Result result = new StreamResult(OUTPUT_PATH + "autoCertificate.html");
+      transformer.transform(xml, result);
+      
+	  	// transform XHTML document to FO document
+	    Source htmlDocument = new StreamSource(OUTPUT_PATH + "autoCertificate.html");    
+	  	Source foStylesheet = new StreamSource("resources/xml/makeFOCertificate.xsl");
+	  	Document foDocument = PrintManager.transform(foStylesheet, htmlDocument);
+	  	writeDocument(foDocument, "autoCertificate.fo");
+	      
+	    //render FO document to PDF document
+	    File htmlfile = new File(OUTPUT_PATH + "autoCertificate.fo");
+	    Source html = new StreamSource(htmlfile);
+	  	File pdfFile = new File(OUTPUT_PATH + "/fertigCertificate.pdf");
+	  	PrintManager.renderToPDF(html, pdfFile);
+  	} catch (Exception ex) {
+  	Logger.getLogger(PrintManagerLeistungsnachweis.class.getName()).log(
+  			Level.SEVERE, null, ex);
 		}
 	}
 

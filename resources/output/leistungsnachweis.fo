@@ -6,9 +6,11 @@
     
         
             <fo:block page-break-before="always"/>
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
-              Leistungsnachweis
-            </fo:block>       
+            
+            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            Leistungsnachweis
+            </fo:block> 
+                  
             <fo:block space-before="5mm"/>
 
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
@@ -26,11 +28,11 @@
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Certificate of Advanced Studies BFH in</fo:block>
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Software Development</fo:block>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">erfolgreich abgeschlossen.</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">erfolgreich abgeschlossen.</fo:block>
             
             <fo:block space-before="5mm"/>
                    
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
                 Das CAS dauerte vom 19. Oktober 2015 bis zum 2. März 2016 und entsprach einem Arbeitspensum von 12 ECTS.
             </fo:block>
 
@@ -52,23 +54,25 @@
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Gesamterfolg
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             student.grade.sum
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             ECTS-Note
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             grade.letter
             </fo:block>
             
-            <fo:block space-before="20mm"/>
+            <fo:block space-before="10mm"/>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Der Lehrgang beinhaltete neben den bewerteten Kompetenznachweisen die Themen Software Ergonomie und Design Pattern.
             </fo:block>
+            
+            <fo:block space-before="20mm"/>
 
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 18. Februar 2017</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 20. Februar 2017</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt"><fo:external-graphic src="schmidhauser.jpg"/></fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
@@ -76,9 +80,11 @@
 
         
             <fo:block page-break-before="always"/>
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
-              Leistungsnachweis
-            </fo:block>       
+            
+            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            Leistungsnachweis
+            </fo:block> 
+                  
             <fo:block space-before="5mm"/>
 
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
@@ -96,11 +102,11 @@
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Certificate of Advanced Studies BFH in</fo:block>
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Software Development</fo:block>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">erfolgreich abgeschlossen.</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">erfolgreich abgeschlossen.</fo:block>
             
             <fo:block space-before="5mm"/>
                    
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
                 Das CAS dauerte vom 19. Oktober 2015 bis zum 2. März 2016 und entsprach einem Arbeitspensum von 12 ECTS.
             </fo:block>
 
@@ -122,23 +128,25 @@
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Gesamterfolg
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             student.grade.sum
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             ECTS-Note
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             grade.letter
             </fo:block>
             
-            <fo:block space-before="20mm"/>
+            <fo:block space-before="10mm"/>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Der Lehrgang beinhaltete neben den bewerteten Kompetenznachweisen die Themen Software Ergonomie und Design Pattern.
             </fo:block>
+            
+            <fo:block space-before="20mm"/>
 
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 18. Februar 2017</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 20. Februar 2017</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt"><fo:external-graphic src="schmidhauser.jpg"/></fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
@@ -146,9 +154,11 @@
 
         
             <fo:block page-break-before="always"/>
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
-              Leistungsnachweis
-            </fo:block>       
+            
+            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            Leistungsnachweis
+            </fo:block> 
+                  
             <fo:block space-before="5mm"/>
 
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
@@ -166,11 +176,11 @@
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Certificate of Advanced Studies BFH in</fo:block>
             <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="left">Software Development</fo:block>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">erfolgreich abgeschlossen.</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">erfolgreich abgeschlossen.</fo:block>
             
             <fo:block space-before="5mm"/>
                    
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
                 Das CAS dauerte vom 19. Oktober 2015 bis zum 2. März 2016 und entsprach einem Arbeitspensum von 12 ECTS.
             </fo:block>
 
@@ -192,23 +202,25 @@
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Gesamterfolg
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             student.grade.sum
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             ECTS-Note
             </fo:block>
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             grade.letter
             </fo:block>
             
-            <fo:block space-before="20mm"/>
+            <fo:block space-before="10mm"/>
             
-            <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="left">
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">
             Der Lehrgang beinhaltete neben den bewerteten Kompetenznachweisen die Themen Software Ergonomie und Design Pattern.
             </fo:block>
+            
+            <fo:block space-before="20mm"/>
 
-            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 18. Februar 2017</fo:block>
+            <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 20. Februar 2017</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt"><fo:external-graphic src="schmidhauser.jpg"/></fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
             <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>

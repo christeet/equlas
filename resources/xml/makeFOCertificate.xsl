@@ -52,13 +52,18 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-    <xsl:template match="h:div[@class='certificate']">
-        <xsl:element name="fo:block" use-attribute-sets="certificate">
+    <xsl:template match="h:div[@class='standart']">
+        <xsl:element name="fo:block" use-attribute-sets="standart">
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
-        <xsl:template match="h:div">
+    <xsl:template match="h:div[@class='normal']">
         <xsl:element name="fo:block" use-attribute-sets="normal">
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    <xsl:template match="h:div[@class='normal-center']">
+        <xsl:element name="fo:block" use-attribute-sets="normal-center">
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -70,13 +75,13 @@
         </fo:external-graphic>
     </xsl:template>
     
-    <xsl:template match="h:div[@class='smallSpace']">
+    <xsl:template match="h:div[@class='emptyLines1']">
         <fo:block space-before="5mm"/>
     </xsl:template>
-    <xsl:template match="h:div[@class='mediumSpace']">
+    <xsl:template match="h:div[@class='emptyLines3']">
         <fo:block space-before="10mm"/>
     </xsl:template>
-    <xsl:template match="h:div[@class='largeSpace']">
+    <xsl:template match="h:div[@class='emptyLines6']">
         <fo:block space-before="20mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class = 'pageBreak']">
@@ -84,17 +89,23 @@
     </xsl:template>
 
     <!-- styles -->
+    <xsl:attribute-set name="normal-center">
+        <xsl:attribute name="font-family">Arial</xsl:attribute>
+        <xsl:attribute name="font-size">10pt</xsl:attribute>
+        <xsl:attribute name="line-height">15pt</xsl:attribute>
+        <xsl:attribute name="text-align">center</xsl:attribute>
+    </xsl:attribute-set>
     <xsl:attribute-set name="normal">
         <xsl:attribute name="font-family">Arial</xsl:attribute>
         <xsl:attribute name="font-size">10pt</xsl:attribute>
         <xsl:attribute name="line-height">15pt</xsl:attribute>
     </xsl:attribute-set>
-    <xsl:attribute-set name="heading1" use-attribute-sets="certificate">
+    <xsl:attribute-set name="heading1" use-attribute-sets="standart">
         <xsl:attribute name="font-size">20pt</xsl:attribute>
         <xsl:attribute name="font-weight">bold</xsl:attribute>
         <xsl:attribute name="line-height">28pt</xsl:attribute>
     </xsl:attribute-set>
-    <xsl:attribute-set name="certificate">
+    <xsl:attribute-set name="standart">
         <xsl:attribute name="font-family">Arial</xsl:attribute>
         <xsl:attribute name="font-size">14pt</xsl:attribute>
         <xsl:attribute name="line-height">22pt</xsl:attribute>
