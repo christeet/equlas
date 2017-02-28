@@ -33,18 +33,18 @@ public class PrintManagerLeistungsnachweis {
 					.newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
 			params.put("moduleDocument", builder.parse(PrintManagerLeistungsnachweis.class
-					.getResourceAsStream("resources/xml/module.xml")));
+					.getResourceAsStream("/xml/module.xml")));
 
 			// transform template to XHTML document
 			Source stylesheet = new StreamSource(
 					PrintManagerLeistungsnachweis.class
-							.getResourceAsStream("resources/xml/resolveLeistungsnachweis.xsl"));
+							.getResourceAsStream("/xml/resolveLeistungsnachweis.xsl"));
 			Source template = new StreamSource(
 					PrintManagerLeistungsnachweis.class
-							.getResourceAsStream("resources/xml/leistungsnachweisTemplate.xml"));
+							.getResourceAsStream("/xml/leistungsnachweisTemplate.xml"));
 			Document xhtmlDocument = PrintManager.transform(stylesheet,
 					template, params);
-			writeDocument(xhtmlDocument, "resources/xml/autoLeistungsnachweis.html");
+			writeDocument(xhtmlDocument, OUTPUT_PATH + "/autoLeistungsnachweis.html");
 //			
 //			TransformerFactory factory = TransformerFactory.newInstance();
 //			

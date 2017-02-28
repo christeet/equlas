@@ -36,7 +36,7 @@
                 <xsl:value-of select="$student/lastName"/>
             </xsl:when>
             <xsl:when test="@id = 'studentDateOfBirth'">
-                <xsl:value-of select="format-dateTime($student/dateOfBirth, '[D]. [MNn] [Y]', 'de', (), ())"/>
+                <xsl:value-of select="format-date($student/dateOfBirth, '[D]. [MNn] [Y]', 'de', (), ())"/>
             </xsl:when>
             <xsl:when test="@id = 'studentPlaceOfOrigin'">
                 <xsl:value-of select="$student/placeOfOrigin"/>

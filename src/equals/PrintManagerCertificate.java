@@ -26,24 +26,28 @@ public class PrintManagerCertificate {
 
 	public static void main(String[] args) {
 		try {
-			File stylesheet = new File("resources/xml/resolveSourceCertificate.xsl");
-			File datafile = new File("resources/xml/module.xml");
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
+			Map<String, Object> params = new HashMap<>();
+			params.put("moduleDocument", builder.parse(PrintManagerCertificate.class
+					.getResourceAsStream("/xml/module.xml")));
 
-			TransformerFactory factory = TransformerFactory.newInstance();
-			
-			Source xsl = new StreamSource(stylesheet);
-			Templates template = factory.newTemplates(xsl);
-			Transformer transformer = template.newTransformer();
-			
-			Source xml = new StreamSource(datafile);
-      Result result = new StreamResult(OUTPUT_PATH + "autoCertificate.html");
-      transformer.transform(xml, result);
+			// transform template to XHTML document
+			Source stylesheet = new StreamSource(
+					PrintManagerCertificate.class
+							.getResourceAsStream("/xml/resolveCertificate.xsl"));
+			Source template = new StreamSource(
+					PrintManagerCertificate.class
+							.getResourceAsStream("/xml/certificateTemplate.xml"));
+			Document xhtmlDocument = PrintManager.transform(stylesheet,
+					template, params);
+			writeDocument(xhtmlDocument, OUTPUT_PATH + "/autoCertificate.html");
       
 	  	// transform XHTML document to FO document
-	    Source htmlDocument = new StreamSource(OUTPUT_PATH + "autoCertificate.html");    
+	    Source htmlDocument = new StreamSource(OUTPUT_PATH + "autoCertificate.html");
 	  	Source foStylesheet = new StreamSource("resources/xml/makeFOCertificate.xsl");
 	  	Document foDocument = PrintManager.transform(foStylesheet, htmlDocument);
-	  	writeDocument(foDocument, "autoCertificate.fo");
+	  	writeDocument(foDocument, OUTPUT_PATH + "autoCertificate.fo");
 	      
 	    //render FO document to PDF document
 	    File htmlfile = new File(OUTPUT_PATH + "autoCertificate.fo");
@@ -51,7 +55,7 @@ public class PrintManagerCertificate {
 	  	File pdfFile = new File(OUTPUT_PATH + "/fertigCertificate.pdf");
 	  	PrintManager.renderToPDF(html, pdfFile);
   	} catch (Exception ex) {
-  	Logger.getLogger(PrintManagerLeistungsnachweis.class.getName()).log(
+  	Logger.getLogger(PrintManagerCertificate.class.getName()).log(
   			Level.SEVERE, null, ex);
 		}
 	}
