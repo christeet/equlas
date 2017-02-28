@@ -22,13 +22,10 @@ import org.w3c.dom.Document;
 
 public class PrintManagerLeistungsnachweis {
 
-	private static final String OUTPUT_PATH = "resources/output/";
+	private static final String OUTPUT_PATH = "/output/";
 
 	public static void main(String[] args) {
 		try {
-//			File stylesheetSource = new File("resources/xml/resolveSourceLeistungsnachweis.xsl");
-//			File datafile = new File("resources/xml/module.xml");
-			
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
 					.newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
@@ -44,28 +41,18 @@ public class PrintManagerLeistungsnachweis {
 							.getResourceAsStream("/xml/leistungsnachweisTemplate.xml"));
 			Document xhtmlDocument = PrintManager.transform(stylesheet,
 					template, params);
-			writeDocument(xhtmlDocument, OUTPUT_PATH + "/autoLeistungsnachweis.html");
-//			
-//			TransformerFactory factory = TransformerFactory.newInstance();
-//			
-//			Source xsl = new StreamSource(stylesheetSource);
-//			Templates template = factory.newTemplates(xsl);
-//			Transformer transformer = template.newTransformer();
-//			
-//			Source xml = new StreamSource(datafile);
-//      Result result = new StreamResult(OUTPUT_PATH + "autoLeistungsnachweis.html");
-//      transformer.transform(xml, result);
+			writeDocument(xhtmlDocument, "autoLeistungsnachweis.html");
       
 	  	// transform XHTML document to FO document
 	    Source htmlDocument = new StreamSource(OUTPUT_PATH + "autoLeistungsnachweis.html");    
-	  	Source foStylesheet = new StreamSource("resources/xml/makeFOLeistungsnachweis.xsl");
+	  	Source foStylesheet = new StreamSource("/makeFOLeistungsnachweis.xsl");
 	  	Document foDocument = PrintManager.transform(foStylesheet, htmlDocument);
-	  	writeDocument(foDocument, "autoLeistungsnachweis.fo");
+	  	writeDocument(foDocument, OUTPUT_PATH + "autoLeistungsnachweis.fo");
 	      
 	    //render FO document to PDF document
 	    File htmlfile = new File(OUTPUT_PATH + "autoLeistungsnachweis.fo");
 	    Source html = new StreamSource(htmlfile);
-	  	File pdfFile = new File(OUTPUT_PATH + "/fertigLeistungsnachweis.pdf");
+	  	File pdfFile = new File(OUTPUT_PATH + "fertigLeistungsnachweis.pdf");
 	  	PrintManager.renderToPDF(html, pdfFile);
   	} catch (Exception ex) {
   	Logger.getLogger(PrintManagerLeistungsnachweis.class.getName()).log(

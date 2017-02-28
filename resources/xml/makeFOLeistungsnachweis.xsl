@@ -75,6 +75,35 @@
         </fo:external-graphic>
     </xsl:template>
     
+    <xsl:template match="h:table">
+        <fo:table table-layout="fixed">
+            <fo:table-column column-number="1" column-width="80mm"/>
+            <fo:table-column column-number="2" column-width="40mm"/>
+            <fo:table-column column-number="3" column-width="40mm"/>
+            <fo:table-body>
+                <xsl:for-each select="h:tr">
+                    <xsl:choose>
+                        <xsl:when test="h:th">
+                            <fo:table-row>
+                                <xsl:for-each select="h:th">
+                                    <fo:table-cell><fo:block font-size="12" font-weight="1600"><xsl:apply-templates /></fo:block></fo:table-cell>
+                                </xsl:for-each>
+                            </fo:table-row>
+                        </xsl:when>
+                        <xsl:when test="h:td">
+                            <fo:table-row>
+                            <xsl:for-each select="h:td">
+                                <fo:table-cell><fo:block font-size="10"><xsl:apply-templates /></fo:block></fo:table-cell>
+                            </xsl:for-each>
+                            </fo:table-row>
+                        </xsl:when>
+                    </xsl:choose>
+                    
+                </xsl:for-each>
+            </fo:table-body>
+        </fo:table>
+    </xsl:template>
+    
     <xsl:template match="h:div[@class='emptyLines1']">
         <fo:block space-before="5mm"/>
     </xsl:template>
@@ -85,7 +114,7 @@
         <fo:block space-before="20mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class = 'pageBreak']">
-        <fo:block page-break-before="always"/>
+        <fo:block page-break-after="always"/>
     </xsl:template>
 
     <!-- styles -->

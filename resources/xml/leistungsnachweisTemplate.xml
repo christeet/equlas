@@ -7,7 +7,6 @@
 
     <body>
         <iqs:iteration id="students">
-            <iqs:pageBreak/>
             
             <div class="normal">
             <b>Leistungsnachweis</b>
@@ -59,6 +58,8 @@
             <div>Arno Schmidhauser</div>
             <div>Leiter Weiterbildung</div>
             <div>Technik und Informatik</div>
+            
+            <iqs:pageBreak/>
 
         </iqs:iteration>
     </body>

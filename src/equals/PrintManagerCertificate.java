@@ -30,7 +30,7 @@ public class PrintManagerCertificate {
 					.newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
 			params.put("moduleDocument", builder.parse(PrintManagerCertificate.class
-					.getResourceAsStream("/xml/module.xml")));
+					.getResourceAsStream("../resources/xml/module.xml")));
 
 			// transform template to XHTML document
 			Source stylesheet = new StreamSource(

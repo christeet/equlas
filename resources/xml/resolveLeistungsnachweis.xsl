@@ -55,6 +55,7 @@
             
             <!-- course data -->
             <xsl:when test="@id = 'courses'">
+                <xsl:variable name="courses" select="$student/courses"/>
                 <xsl:for-each select="$student/courses">
                     <tr>
                         <td><xsl:value-of select="name"/></td>
@@ -62,34 +63,14 @@
                         <td><xsl:value-of select="rating"/> </td>
                     </tr>
                 </xsl:for-each>
+                <tr>
+                    <td>Gesammt Erfolg:</td>
+                    <td></td>
+                    <td><xsl:value-of select="format-number(sum(for $x in $courses return sum($x/rating * $x/weight)) div sum($courses/weight), '#.0')" /></td>
+                </tr>
             </xsl:when>
-            
-            <!-- signature data -->
         </xsl:choose>
     </xsl:template>
- <!--   <xsl:template match="iqs:iteration">
-        <xsl:param name="studentShortName"/>
-        <xsl:variable name="iteration" select="."/>
-        <xsl:for-each select="$module/student">
-            <xsl:sort select="lastName"/>
-            <xsl:sort select="firstName"/>
-            <xsl:apply-templates select="$iteration/node() | @*">
-                <xsl:with-param name="studentShortName" select="shortName"/>
-            </xsl:apply-templates>
-        </xsl:for-each>
-    </xsl:template>
-    <xsl:template match="iqs:course">
-        <xsl:param name="courseId"/>
-        <xsl:variable name="courseIteration" select="."/>
-        <xsl:for-each select="$course">
-            <xsl:choose>
-                <xsl:when test=""></xsl:when>
-                <xsl:when test=""></xsl:when>
-                <xsl:when test=""></xsl:when>
-            </xsl:choose>
-        </xsl:for-each>
-    </xsl:template>-->
-
     <xsl:template match="iqs:*">
         <xsl:element name="h:div">
             <xsl:attribute name="class">
