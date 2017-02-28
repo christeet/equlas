@@ -22,10 +22,10 @@ public class TeacherViewController extends EqualsView {
 	private Button saveButton;
 	
 	@FXML
-	private TableColumn<Data, String> courseColumn;
+	private TableColumn<Data, String> studentColumn;
 	
 	@FXML
-	private TableColumn<Data, Number> weightColumn;
+	private TableColumn<Data, Number> successColumn;
 	
 	@FXML
 	protected void onSave() {
@@ -34,8 +34,8 @@ public class TeacherViewController extends EqualsView {
 	
 	@FXML
 	protected void initialize() {
-		courseColumn.setCellValueFactory(d -> d.getValue().courseProperty());
-		weightColumn.setCellValueFactory(d -> d.getValue().weightProperty());
+		studentColumn.setCellValueFactory(d -> d.getValue().studentNameProperty());
+		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
 		
 	  this.data = FXCollections.observableArrayList();
 	}
@@ -60,28 +60,28 @@ public class TeacherViewController extends EqualsView {
 	
 	
   private static class Data {
-    private final StringProperty course;
-    private final DoubleProperty weight;
+    private final StringProperty studentName;
+    private final DoubleProperty success;
 
     private Data(String course, double weight) {
-        this.course = new SimpleStringProperty(course);
-        this.weight = new SimpleDoubleProperty(weight);
+        this.studentName = new SimpleStringProperty(course);
+        this.success = new SimpleDoubleProperty(weight);
     }
 
-    private String getCourse() { 
-    	return this.course.get(); 
+    private String getStudentName() { 
+    	return this.studentName.get(); 
     }
     
-    private StringProperty courseProperty() {
-    	return this.course;
+    private StringProperty studentNameProperty() {
+    	return this.studentName;
     }
     
-    private double getWeight() {
-    	return this.weight.get();
+    private double getSuccess() {
+    	return this.success.get();
     }
     
-    private DoubleProperty weightProperty() {
-    	return this.weight;
+    private DoubleProperty successProperty() {
+    	return this.success;
     }
   }
 

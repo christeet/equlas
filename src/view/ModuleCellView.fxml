@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ModuleCellViewController">
+   <children>
+      <HBox>
+         <children>
+            <ImageView fx:id="userRoleIcon" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox>
+               <children>
+                  <Label fx:id="moduleTitleLabel" text="The Title of the Module">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="semesterLabel" text="Semester" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <ListView fx:id="coursesList" />
+   </children>
+</VBox>

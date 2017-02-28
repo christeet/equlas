@@ -28,9 +28,9 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	@FXML
 	protected void initialize() {
-		studentColumn.setCellValueFactory(d -> d.getValue().courseProperty());
+		//studentColumn.setCellValueFactory(d -> d.getValue().courseProperty());
 		
-	  this.data = FXCollections.observableArrayList();
+	  //this.data = FXCollections.observableArrayList();
 	}
 	
 	private void getCoursesFromModule() {
