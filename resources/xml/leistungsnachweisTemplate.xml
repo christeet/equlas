@@ -9,7 +9,7 @@
         <iqs:iteration id="students">
             <iqs:pageBreak/>
             
-            <div class="leistungsnachweis">
+            <div class="normal">
             <b>Leistungsnachweis</b>
             </div> 
                   
@@ -40,37 +40,17 @@
 
             <iqs:mediumSpace/>
             
-            <div class="heading1">
-            Kompetenznachweis
-            </div>
-            <div class="normal">
-            course.name
-            </div>
-            <div class="normal">
-            course.weight
-            </div>
-            <div class="normal">
-            student.grade
-            </div>
             
-            <div class="norm">
-            <b>Gesamterfolg</b>
-            </div>
-            <div class="normal">
-            student.grade.sum
-            </div>
-            <div class="normal">
-            <b>ECTS-Note</b>
-            </div>
-            <div class="normal">
-            <b>grade.letter</b>
-            </div>
-            
-            <iqs:mediumSpace/>
-            
-            <div class="normal">
-            Der Lehrgang beinhaltete neben den bewerteten Kompetenznachweisen die Themen Software Ergonomie und Design Pattern.
-            </div>
+            <table>
+                <tr>
+                    <th>Kompetenznachweis</th>
+                    <th>Gewicht</th>
+                    <th>Erfolg</th>
+                </tr>
+                <iqs:data id="courses" />
+                    
+                
+            </table>
             
             <iqs:largeSpace/>
 

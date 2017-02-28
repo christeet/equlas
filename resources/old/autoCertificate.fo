@@ -28,7 +28,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -57,7 +57,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -86,7 +86,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -115,7 +115,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -144,7 +144,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -173,7 +173,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -202,7 +202,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -231,7 +231,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -260,7 +260,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -289,7 +289,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -318,7 +318,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -347,7 +347,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -376,7 +376,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
@@ -405,7 +405,7 @@
       <fo:block space-before="20mm"/>
       <fo:block space-before="20mm"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 28. Februar 2017</fo:block>
-      <fo:external-graphic src="./schmidhauser.jpg"/>
+      <fo:external-graphic src="../resources/xml/images/schmidhauser.jpg"/>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
       <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>

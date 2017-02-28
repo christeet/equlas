@@ -47,26 +47,24 @@
             <xsl:text> und entsprach einem Arbeitspensum von 12 ECTS.</xsl:text>
         </div>
         <div class="emptyLines3" />
-        <div class="table" style="display: table; border-collapse:collapse;">
-            <div class="row" style="display:table-row;">
-                <div class="table-cell">Kompetenznachweis</div>
-                <div class="table-cell">Gewicht</div>
-                <div class="table-cell">Erfolg</div>
-            </div>
-            
+        <table>
+            <tr>
+                <td>Kompetenznachweis</td>
+                <td>Gewicht</td>
+                <td>Erfolg</td>
+            </tr>
             <xsl:for-each select="courses">
-                <div class="row" style="display:table-row;">
-                    <div class="table-cell" align="left"><xsl:value-of select="name"/></div>
-                    <div class="table-cell" align="left"><xsl:value-of select="weight"/></div>
-                    <div class="table-cell" align="left"><xsl:value-of select="rating"/></div>
-                </div>
+                <tr>
+                    <td><xsl:value-of select="name"/></td>
+                    <td><xsl:value-of select="weight"/></td>
+                    <td><xsl:value-of select="rating"/></td>
+                </tr>
             </xsl:for-each>
-            
-        </div>
+        </table>
         
         <div class="emptyLines6" />
         <div><xsl:text>Bern, </xsl:text><xsl:value-of select="format-dateTime(current-dateTime(), '[D01]. [MNn] [Y0001]')"/></div>
-        <div><img src="../../images/schmidhauser.jpg" /></div>
+        <div><img src="./schmidhauser.jpg" /></div>
         <div>Arno Schmidhauser</div>
         <div>Leiter Weiterbildung</div>
         <div>Technik und Informatik</div>

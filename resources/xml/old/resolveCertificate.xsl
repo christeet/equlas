@@ -7,7 +7,7 @@
     <xsl:output method="xhtml" indent="yes"/>
 
     <xsl:param name="moduleDocument"/>
-    <xsl:variable name="module" select="document($moduleDocument)/students"/>
+    <xsl:variable name="module" select="$moduleDocument/module"/>
 	
     <xsl:template match="iqs:iteration">
         <xsl:param name="studentShortName"/>

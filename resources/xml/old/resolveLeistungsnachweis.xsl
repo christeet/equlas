@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- XSL stylesheet for the resolution of the IQS elements in the XHTML template -->
-<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:iqs="http://iqs.ti.bfh.ch" xmlns:h="http://www.w3.org/1999/xhtml">
 
     <xsl:output method="xhtml" indent="yes"/>
 
     <xsl:param name="moduleDocument"/>
-    <xsl:variable name="module" select="document($moduleDocument)/students"/>
+    <xsl:variable name="module" select="$moduleDocument/module"/>
 	
     <xsl:template match="iqs:iteration">
         <xsl:param name="studentShortName"/>

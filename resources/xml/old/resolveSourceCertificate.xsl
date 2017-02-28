@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://www.w3.org/1999/xhtml" version="2.0">
+    xmlns:h="http://www.w3.org/1999/xhtml" xmlns:iqs="http://iqs.ti.bfh.ch" version="2.0">
     
     <xsl:output method="xhtml" indent="yes"/>
     
@@ -49,7 +49,7 @@
         <div class="emptyLines6" />
         <div class="emptyLines6" />
         <div class="normal"><xsl:text>Bern, </xsl:text><xsl:value-of select="format-dateTime(current-dateTime(), '[D01]. [MNn] [Y0001]')"/></div>
-        <div><img src="../resources/xml/images/schmidhauser.jpg" /></div>
+        <div><img src="./schmidhauser.jpg" /></div>
         <div class="normal">Arno Schmidhauser</div>
         <div class="normal">Leiter Weiterbildung</div>
         <div class="normal">Technik und Informatik</div>

@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--System-ID: /Users/tgdetch1/equalsSd/resources/xml/resolveLeistungsnachweis.xsl
-Umwandlung: module
-XML-Datei: /Users/tgdetch1/equalsSd/resources/xml/module.xml
-XSL-Datei: /Users/tgdetch1/equalsSd/resources/xml/resolveLeistungsnachweis.xsl
-Programmname: Saxon-PE 9.6.0.7
-Fehlerlevel: warning
-Beschreibung: SXXP0005: The source document is in no namespace, but the template rules all expect elements in a namespace (Use -\-suppressXsltNamespaceCheck:on to avoid this warning)
-URL: http://www.saxonica.com/html/documentation/javadoc/net/sf/saxon/trans/SaxonErrorCode.html#SXXP0005-->
 
 <!-- XSL stylesheet for the resolution of the IQS elements in the XHTML template -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:iqs="http://iqs.ti.bfh.ch" xmlns:h="http://www.w3.org/1999/xhtml">
+    xmlns:iqs="http://iqs.ti.bfh.ch" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://www.w3.org/1999/xhtml">
 
     <xsl:output method="xhtml" indent="yes"/>
 
     <xsl:param name="moduleDocument"/>
-    <xsl:variable name="module" select="$moduleDocument/module"/>
+    <xsl:variable name="module" select="document($moduleDocument)/students"/>
 	
     <xsl:template match="iqs:iteration">
         <xsl:param name="studentShortName"/>
@@ -44,7 +36,7 @@ URL: http://www.saxonica.com/html/documentation/javadoc/net/sf/saxon/trans/Saxon
                 <xsl:value-of select="$student/lastName"/>
             </xsl:when>
             <xsl:when test="@id = 'studentDateOfBirth'">
-                <xsl:value-of select="format-dateTime($student/dateOfBirth, '[D]. [MNn] [Y]', 'de', (), ())"/>
+                <xsl:value-of select="format-date($student/dateOfBirth, '[D]. [MNn] [Y]', 'de', (), ())"/>
             </xsl:when>
             <xsl:when test="@id = 'studentPlaceOfOrigin'">
                 <xsl:value-of select="$student/placeOfOrigin"/>
@@ -60,9 +52,43 @@ URL: http://www.saxonica.com/html/documentation/javadoc/net/sf/saxon/trans/Saxon
             <xsl:when test="@id = 'moduleEndDate'">
                 <xsl:value-of select="format-dateTime($module/endDate, '[D]. [MNn] [Y]', 'de', (), ())"/>
             </xsl:when>
+            
+            <!-- course data -->
+            <xsl:when test="@id = 'courses'">
+                <xsl:for-each select="$student/courses">
+                    <tr>
+                        <td><xsl:value-of select="name"/></td>
+                        <td><xsl:value-of select="weight"/></td>
+                        <td><xsl:value-of select="rating"/> </td>
+                    </tr>
+                </xsl:for-each>
+            </xsl:when>
+            
             <!-- signature data -->
         </xsl:choose>
     </xsl:template>
+ <!--   <xsl:template match="iqs:iteration">
+        <xsl:param name="studentShortName"/>
+        <xsl:variable name="iteration" select="."/>
+        <xsl:for-each select="$module/student">
+            <xsl:sort select="lastName"/>
+            <xsl:sort select="firstName"/>
+            <xsl:apply-templates select="$iteration/node() | @*">
+                <xsl:with-param name="studentShortName" select="shortName"/>
+            </xsl:apply-templates>
+        </xsl:for-each>
+    </xsl:template>
+    <xsl:template match="iqs:course">
+        <xsl:param name="courseId"/>
+        <xsl:variable name="courseIteration" select="."/>
+        <xsl:for-each select="$course">
+            <xsl:choose>
+                <xsl:when test=""></xsl:when>
+                <xsl:when test=""></xsl:when>
+                <xsl:when test=""></xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>-->
 
     <xsl:template match="iqs:*">
         <xsl:element name="h:div">

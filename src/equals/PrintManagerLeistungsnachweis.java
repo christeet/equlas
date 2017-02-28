@@ -1,9 +1,13 @@
 package equals;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Templates;
@@ -22,18 +26,35 @@ public class PrintManagerLeistungsnachweis {
 
 	public static void main(String[] args) {
 		try {
-			File stylesheet = new File("resources/xml/resolveSourceLeistungsnachweis.xsl");
-			File datafile = new File("resources/xml/module.xml");
+//			File stylesheetSource = new File("resources/xml/resolveSourceLeistungsnachweis.xsl");
+//			File datafile = new File("resources/xml/module.xml");
+			
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance()
+					.newDocumentBuilder();
+			Map<String, Object> params = new HashMap<>();
+			params.put("moduleDocument", builder.parse(PrintManagerLeistungsnachweis.class
+					.getResourceAsStream("resources/xml/module.xml")));
 
-			TransformerFactory factory = TransformerFactory.newInstance();
-			
-			Source xsl = new StreamSource(stylesheet);
-			Templates template = factory.newTemplates(xsl);
-			Transformer transformer = template.newTransformer();
-			
-			Source xml = new StreamSource(datafile);
-      Result result = new StreamResult(OUTPUT_PATH + "autoLeistungsnachweis.html");
-      transformer.transform(xml, result);
+			// transform template to XHTML document
+			Source stylesheet = new StreamSource(
+					PrintManagerLeistungsnachweis.class
+							.getResourceAsStream("resources/xml/resolveLeistungsnachweis.xsl"));
+			Source template = new StreamSource(
+					PrintManagerLeistungsnachweis.class
+							.getResourceAsStream("resources/xml/leistungsnachweisTemplate.xml"));
+			Document xhtmlDocument = PrintManager.transform(stylesheet,
+					template, params);
+			writeDocument(xhtmlDocument, "resources/xml/autoLeistungsnachweis.html");
+//			
+//			TransformerFactory factory = TransformerFactory.newInstance();
+//			
+//			Source xsl = new StreamSource(stylesheetSource);
+//			Templates template = factory.newTemplates(xsl);
+//			Transformer transformer = template.newTransformer();
+//			
+//			Source xml = new StreamSource(datafile);
+//      Result result = new StreamResult(OUTPUT_PATH + "autoLeistungsnachweis.html");
+//      transformer.transform(xml, result);
       
 	  	// transform XHTML document to FO document
 	    Source htmlDocument = new StreamSource(OUTPUT_PATH + "autoLeistungsnachweis.html");    
