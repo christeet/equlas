@@ -5,9 +5,11 @@ import java.sql.SQLException;
 import dao.CourseDAO;
 import dao.DAOFactory;
 import dao.ModuleDAO;
+import dao.RatingDAO;
 import data.Course;
 import data.Module;
 import data.Person;
+import data.Rating;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -18,13 +20,18 @@ public class EqualsModel implements IObserver<UserLogin> {
 
 	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 	private UserLogin userLogin;
+	private Module contextModule = null;
+	RatingDAO ratingDao;
 
 	private ObservableList<Module> moduleList = FXCollections.observableArrayList();
 	private ObservableList<Course> coursesList = FXCollections.observableArrayList();
+	private ObservableList<Rating> ratingList = FXCollections.observableArrayList();
 	
 	public EqualsModel() {
 		userLogin = new UserLogin();
 		userLogin.addObserver(this);
+
+		ratingDao = DAOFactory.getInstance().createRatingDAO();
 	}
 	
 	public BooleanProperty loggedInProperty() {
@@ -70,9 +77,10 @@ public class EqualsModel implements IObserver<UserLogin> {
 		CourseDAO courseDao = DAOFactory.getInstance().createCourseDAO();
 		Person user = userLogin.getUser();
 		try {
-			coursesList.clear();
+			//coursesList.clear();
 			for(Module m : moduleList) {
 				coursesList.addAll(courseDao.getCoursesByModuleAndTeacher(m, user));
+				coursesList.addAll(courseDao.getCoursesByModuleAndStudent(m, user));
 			}
 			for(Course c : coursesList) {
 				System.out.format("Course %d of Module %d loaded: %s\r\n", 
@@ -87,6 +95,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	}
 	
 	public void setSelectedModule(Module module) {
+		Person user = userLogin.getUser();
 		switch(module.getUserRole()){
 		case ASSISTANT:
 			// TODO: get Ratings of all Students for all Courses of this Module
@@ -95,14 +104,43 @@ public class EqualsModel implements IObserver<UserLogin> {
 			// TODO: get Ratings of all Students for all Courses of this Module
 			break;
 		case STUDENT:
-			// TODO: get Ratings for all Courses of this Module
+			// get Ratings for all Courses of this Module
+			try {
+				ratingList.addAll(ratingDao.getRatingListForStudent(user.getId()));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		case TEACHER:
 			// do nothing
 			break;
 		default:
-			break;
+			return;
 		}
+		contextModule = module;
+	}
+	
+	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
+		try {
+			System.out.println("setting new SuccessRate");
+			ratingDao.setRating(studentId, courseId, newSuccessRate);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeRating(int studentId, int courseId) {
+		try {
+			System.out.println("remove rating");
+			ratingDao.removeRating(studentId, courseId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Module getContextModule() {
+		return contextModule;
 	}
 	
 	public ObservableList<Module> getModuleListProperty() {
@@ -111,5 +149,9 @@ public class EqualsModel implements IObserver<UserLogin> {
 	
 	public ObservableList<Course> getCoursesListProperty() {
 		return coursesList;
+	}
+	
+	public ObservableList<Rating> getRatingListProperty() {
+		return ratingList;
 	}
 }

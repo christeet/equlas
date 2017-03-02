@@ -18,7 +18,8 @@ public class ModuleCellViewController extends EqualsView {
 	@FXML private Label moduleTitleLabel;
 	@FXML private Label semesterLabel;
 	@FXML private ListView<Course> coursesList;
-	
+
+	private static double maxWidth = 0;
 	private Module module;
 	
 	@FXML
@@ -35,7 +36,22 @@ public class ModuleCellViewController extends EqualsView {
 		this.moduleTitleLabel.setText(module.getName());
 		this.semesterLabel.setText(module.getShortName());
 		setImageByUserRole(module.getUserRole());
-		setCoursesList();
+		
+		switch(this.module.getUserRole()) {
+		case ASSISTANT:
+			break;
+		case HEAD:
+			setCoursesList();
+			break;
+		case STUDENT:
+			break;
+		case TEACHER:
+			setCoursesList();
+			break;
+		default:
+			break;
+		
+		}
 	}
 	
 	private void setImageByUserRole(UserRole userRole) {
@@ -63,7 +79,7 @@ public class ModuleCellViewController extends EqualsView {
 	}
 	
 	private void setCoursesList() {
-
+		maxWidth = 0;
 		coursesList.setCellFactory(new Callback<ListView<Course>, ListCell<Course>>() {
             @Override
             public ListCell<Course> call(ListView<Course> listView) {
@@ -82,11 +98,11 @@ public class ModuleCellViewController extends EqualsView {
                         		cellView.setModuleAndCourse(module, cellCourse);
                         		setGraphic(cellView.getRootNode());
 	                        }
-	                        /*this.widthProperty().addListener((obs,old,value) -> {
+	                        this.widthProperty().addListener((obs,old,value) -> {
 	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
 	                            maxWidth = Math.max(maxWidth, (double)value);
 	                            listView.setPrefWidth(maxWidth);
-	                        });*/
+	                        });
                 		});
                     }
                 };
@@ -96,10 +112,11 @@ public class ModuleCellViewController extends EqualsView {
         });
 		
         coursesList.setItems(model.getCoursesListProperty()
-        .filtered(predicate -> predicate.getModuleId() == this.module.getId()));
+        		.filtered(predicate -> predicate.getModuleId() == this.module.getId()));
         
         if(!coursesList.getItems().isEmpty()) {
-        	coursesList.setPrefHeight(coursesList.getItems().size() * 40 + 2);
+        	// TODO: remove magic number:
+        	coursesList.setPrefHeight(coursesList.getItems().size() * 60 + 2);
         	showCoursesList(true);
         }
 	}
@@ -107,7 +124,7 @@ public class ModuleCellViewController extends EqualsView {
 	private void showCoursesList(boolean show) {
 		coursesList.setVisible(show);
 		coursesList.setDisable(!show);
-		coursesList.setMaxHeight((show)?(-1):(0));
+		coursesList.setMaxHeight((show) ? (-1) : (0) );
 	}
 	
 	@Override

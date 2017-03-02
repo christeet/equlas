@@ -84,7 +84,7 @@ public class SelectViewController extends EqualsView {
 	
 	private void onSelectedModuleChanged(Module selectedModule) {
 		controller.selectedModuleChanged(selectedModule);
-    	System.out.format("selected Module %s\r\n",entityList.getSelectionModel().getSelectedItem());
+    	System.out.format("selected Module: %s\r\n",entityList.getSelectionModel().getSelectedItem().getShortName());
     	setContent(entityList.getSelectionModel().getSelectedItem());
 	}
 	

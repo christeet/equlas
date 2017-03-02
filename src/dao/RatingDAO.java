@@ -16,6 +16,7 @@ public class RatingDAO {
 	private PreparedStatement psGetRating;
 	private PreparedStatement psInsertRating;
 	private PreparedStatement psUpdateRating;
+	private PreparedStatement psRemoveRating;
 	
 	public RatingDAO(Connection connection) throws SQLException {
 		psGetAllRatingsForCourse = connection.prepareStatement(
@@ -42,6 +43,9 @@ public class RatingDAO {
 				+ "r.studentId=? "
 				+ "AND r.courseId=? "
 				+ "AND version=?");
+
+		psRemoveRating = connection.prepareStatement(
+				"DELETE FROM Rating WHERE studentId=? AND courseId=?");
 		
 	}
 	
@@ -54,8 +58,15 @@ public class RatingDAO {
 		else {
 			updateRating(existingRating, successRate);
 		}
-
 	}
+
+	public int removeRating(int studentId, int courseId) throws SQLException {
+		psRemoveRating.setInt(1, studentId);
+		psRemoveRating.setInt(2, courseId);
+		int nbrOfModifiedRecords = psRemoveRating.executeUpdate();
+		return nbrOfModifiedRecords;
+	}
+	
 	
 	public Rating getRating(int studentId, int courseId) throws SQLException {
 		psGetRating.setInt(1, studentId);

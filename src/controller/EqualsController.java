@@ -18,4 +18,12 @@ public class EqualsController {
 	public void selectedModuleChanged(Module module) {
 		model.setSelectedModule(module);
 	}
+	
+	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
+		model.setNewSuccessRate(studentId, courseId, newSuccessRate);
+	}
+	
+	public void removeRating(int studentId, int courseId) {
+		model.removeRating(studentId, courseId);
+	}
 }
