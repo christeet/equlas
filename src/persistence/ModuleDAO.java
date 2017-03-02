@@ -12,7 +12,7 @@ import data.UserRole;
 
 public class ModuleDAO {
 
-	private final String moduleFileds = "m.id, m.name, m.shortName, m.startDate, m.endDate, m.headId, m.assistantId";
+	private final String moduleFields = "m.id, m.name, m.shortName, m.startDate, m.endDate, m.headId, m.assistantId";
 	private PreparedStatement psGetAllModules;
 	private PreparedStatement psGetModulesByStudent;
 	private PreparedStatement psGetModulesByAssistant;
@@ -22,19 +22,19 @@ public class ModuleDAO {
 	public ModuleDAO(Connection connection) throws SQLException {
 		psGetAllModules = connection.prepareStatement("SELECT * FROM Module;");
 		psGetModulesByStudent = connection.prepareStatement(
-				"SELECT * FROM Module m "
+				"SELECT distinct " + moduleFields + " FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
-				+ "where r.studentId=?");
+				+ "where r.studentId=?;");
 		psGetModulesByAssistant = connection.prepareStatement(
-				"SELECT * FROM Module "
+				"SELECT " + moduleFields + " FROM Module m "
 				+ "where assistantId=?;");
 		psGetModulesByHead = connection.prepareStatement(
-				"SELECT * FROM Module "
+				"SELECT " + moduleFields + " FROM Module m "
 				+ "where headId=?;");
 		
 		// only select module, if the teacher is not also the head of the module:
 		psGetModulesByTeacher = connection.prepareStatement(
-				"SELECT distinct " + moduleFileds +" FROM Module m "
+				"SELECT distinct " + moduleFields + " FROM Module m "
 				+ "left join Course c on c.moduleId = m.id "
 				+ "where c.professorId = ? and m.headId != ?");
 	}
