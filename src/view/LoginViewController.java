@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import resources.I18n;
 import util.IObserver;
+import util.Prefs;
 
 public class LoginViewController extends EqualsView implements IObserver<UserLogin> {
 	
@@ -31,6 +32,7 @@ public class LoginViewController extends EqualsView implements IObserver<UserLog
 
 	@Override
 	protected void init() {
+		usernameField.setText(Prefs.get().getLastLoggedInUser());
 		model.getUserLogin().addObserver(this);
 	}
 

@@ -19,6 +19,7 @@ public class Prefs {
 	private double windowHeight = 600;
 	private String localeTag = Locale.getDefault().toLanguageTag();
 	private boolean isMaximized = false;
+	private String lastLoggedInUser = "";
 	
 	
 	private void loadFromProperties() {
@@ -26,6 +27,7 @@ public class Prefs {
 		windowHeight = Double.parseDouble(properties.getProperty("windowHeight"));
 		isMaximized = Boolean.parseBoolean(properties.getProperty("isMaximized"));
 		localeTag = properties.getProperty("locale");
+		lastLoggedInUser = properties.getProperty("lastLoggedInUser");
 	}
 	
 	private void saveToProperties() {
@@ -33,6 +35,7 @@ public class Prefs {
 		properties.setProperty("windowHeight", Double.toString(windowHeight));
 		properties.setProperty("isMaximized", Boolean.toString(isMaximized));
 		properties.setProperty("locale", localeTag);
+		properties.setProperty("lastLoggedInUser", lastLoggedInUser);
 	}
 	
 	private Prefs() {
@@ -121,6 +124,14 @@ public class Prefs {
     
     public void setLocale(String value) {
         this.localeTag = value;
+    }
+    
+    public String getLastLoggedInUser() {
+        return lastLoggedInUser;
+    }
+    
+    public void setLastLoggedInUser(String value) {
+        this.lastLoggedInUser = value;
     }
     
 }

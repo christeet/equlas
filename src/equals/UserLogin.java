@@ -6,6 +6,7 @@ import data.Person;
 import persistence.DAOFactory;
 import persistence.PersonDAO;
 import util.IObservable;
+import util.Prefs;
 
 public class UserLogin extends IObservable<UserLogin> {
 	
@@ -21,7 +22,8 @@ public class UserLogin extends IObservable<UserLogin> {
 	public void checkPassword(String password, String username) {
 		
 		//***************** <DEBUG CODE>  ****************************************/
-		if(username.isEmpty() && password.isEmpty()) { username="swp1"; password="stud"; }
+		if(username.isEmpty()) { username="swp1";}
+		if(password.isEmpty()) { password="stud"; }
 		//***************** </DEBUG CODE> ****************************************/
 		
 		this.username = username;
@@ -31,6 +33,8 @@ public class UserLogin extends IObservable<UserLogin> {
 			if(p.getPassword().equals(String.valueOf(password.hashCode()))) {
 				loginState = LoginState.LOGGED_IN;
 				currentUser = p;
+				Prefs.get().setLastLoggedInUser(username);
+				Prefs.save();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
