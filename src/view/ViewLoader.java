@@ -5,9 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import controller.EqualsController;
+import equals.EqualsModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import model.EqualsModel;
 import resources.I18n;
 
 public class ViewLoader {

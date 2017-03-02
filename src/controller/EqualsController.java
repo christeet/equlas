@@ -1,7 +1,7 @@
 package controller;
 
 import data.Module;
-import model.EqualsModel;
+import equals.EqualsModel;
 
 public class EqualsController {
 	

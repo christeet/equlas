@@ -1,10 +1,10 @@
-package model;
+package equals;
 
 import java.sql.SQLException;
 
-import dao.DAOFactory;
-import dao.PersonDAO;
 import data.Person;
+import persistence.DAOFactory;
+import persistence.PersonDAO;
 import util.IObservable;
 
 public class UserLogin extends IObservable<UserLogin> {

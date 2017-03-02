@@ -1,11 +1,7 @@
-package model;
+package equals;
 
 import java.sql.SQLException;
 
-import dao.CourseDAO;
-import dao.DAOFactory;
-import dao.ModuleDAO;
-import dao.RatingDAO;
 import data.Course;
 import data.Module;
 import data.Person;
@@ -14,6 +10,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import persistence.CourseDAO;
+import persistence.DAOFactory;
+import persistence.ModuleDAO;
+import persistence.RatingDAO;
 import util.IObserver;
 
 public class EqualsModel implements IObserver<UserLogin> {

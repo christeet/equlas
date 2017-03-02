@@ -1,8 +1,8 @@
 package view;
 
 import controller.EqualsController;
+import equals.EqualsModel;
 import javafx.scene.Parent;
-import model.EqualsModel;
 
 public abstract class EqualsView {
 	protected Parent rootNode;

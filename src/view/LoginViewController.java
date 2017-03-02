@@ -1,12 +1,12 @@
 package view;
 
+import equals.UserLogin;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import model.UserLogin;
 import resources.I18n;
 import util.IObserver;
 

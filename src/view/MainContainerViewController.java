@@ -2,12 +2,12 @@ package view;
 
 import java.util.Locale;
 
+import equals.UserLogin;
 import javafx.beans.property.Property;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
-import model.UserLogin;
 import resources.I18n;
 import util.IObserver;
 import util.Prefs;
