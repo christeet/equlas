@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -35,6 +36,10 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) {
+		
+		// get locale as set in properties file (or system default)
+		I18n.setLocale(Locale.forLanguageTag(Prefs.get().getLocale()));
+		
 		EqualsModel model = new EqualsModel();
 		EqualsController controller = new EqualsController(model);
 
@@ -48,7 +53,6 @@ public class Main extends Application {
 			if(!stage.isMaximized()) {
 				Prefs.get().setWindowWidth((double)newSceneWidth);
 				savePreferencesDelayed();
-				System.out.println("width changed");
 			}
 		});
 		
@@ -56,14 +60,12 @@ public class Main extends Application {
 			if(!stage.isMaximized()) {
 				Prefs.get().setWindowHeight((double)newSceneHeight);
 				savePreferencesDelayed();
-				System.out.println("height changed"); 
 			}
 		});
 
 		stage.setMaximized(Prefs.get().getMaximized());
 		stage.maximizedProperty().addListener((obs, old, maximized) -> {
 			Prefs.get().setMaximized(maximized);
-			System.out.println("maximized changed");
 			Prefs.save();
 		});
 		stage.setTitle(I18n.getString("login.title"));
