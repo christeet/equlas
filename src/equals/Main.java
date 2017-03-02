@@ -2,9 +2,12 @@ package equals;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import controller.EqualsController;
 import dao.CourseDAO;
@@ -21,11 +24,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.EqualsModel;
 import resources.I18n;
+import util.Prefs;
 import view.EqualsView;
 import view.ViewLoader;
 
 public class Main extends Application {
 
+	private ScheduledExecutorService preferencesSaveExecutor = Executors.newScheduledThreadPool(1);
+	private ScheduledFuture<?> preferencesSaveTask = null;
+	
 	@Override
 	public void start(Stage stage) {
 		EqualsModel model = new EqualsModel();
@@ -34,9 +41,31 @@ public class Main extends Application {
 		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
 				"../view/MainContainerView.fxml")
 				, model, controller);
-		//mainWindow.setContentView(userLogin);
-		Scene scene = new Scene(mainWindow.getRootNode(), 800, 600);
 		
+		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());
+		
+		scene.widthProperty().addListener((obs, old, newSceneWidth) -> {
+			if(!stage.isMaximized()) {
+				Prefs.get().setWindowWidth((double)newSceneWidth);
+				savePreferencesDelayed();
+				System.out.println("width changed");
+			}
+		});
+		
+		scene.heightProperty().addListener((obs, old, newSceneHeight) -> {
+			if(!stage.isMaximized()) {
+				Prefs.get().setWindowHeight((double)newSceneHeight);
+				savePreferencesDelayed();
+				System.out.println("height changed"); 
+			}
+		});
+
+		stage.setMaximized(Prefs.get().getMaximized());
+		stage.maximizedProperty().addListener((obs, old, maximized) -> {
+			Prefs.get().setMaximized(maximized);
+			System.out.println("maximized changed");
+			Prefs.save();
+		});
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);
 		stage.show();
@@ -48,6 +77,13 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		//consoleDebug();
+	}
+
+	private void savePreferencesDelayed() {
+		if(null != preferencesSaveTask) preferencesSaveTask.cancel(false);
+		preferencesSaveTask = preferencesSaveExecutor.schedule(() -> {
+			Prefs.save();
+		}, 1, TimeUnit.SECONDS);
 	}
 	
 	private static void consoleDebug() {
