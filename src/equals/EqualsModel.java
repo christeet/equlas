@@ -21,7 +21,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 	private UserLogin userLogin;
 	private Module contextModule = null;
-	RatingDAO ratingDao;
+	private RatingDAO ratingDao;
 
 	private ObservableList<Module> moduleList = FXCollections.observableArrayList();
 	private ObservableList<Course> coursesList = FXCollections.observableArrayList();

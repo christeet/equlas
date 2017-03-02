@@ -12,6 +12,7 @@ import data.UserRole;
 
 public class ModuleDAO {
 
+	private final String moduleFileds = "m.id, m.name, m.shortName, m.startDate, m.endDate, m.headId, m.assistantId";
 	private PreparedStatement psGetAllModules;
 	private PreparedStatement psGetModulesByStudent;
 	private PreparedStatement psGetModulesByAssistant;
@@ -33,9 +34,9 @@ public class ModuleDAO {
 		
 		// only select module, if the teacher is not also the head of the module:
 		psGetModulesByTeacher = connection.prepareStatement(
-				"SELECT * FROM Module m "
+				"SELECT distinct " + moduleFileds +" FROM Module m "
 				+ "left join Course c on c.moduleId = m.id "
-				+ "where c.professorId=? and m.headId!=?");
+				+ "where c.professorId = ? and m.headId != ?");
 	}
 	
 	public ArrayList<Module> getAllModules() throws SQLException {
