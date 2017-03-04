@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:iqs="http://iqs.ti.bfh.ch">
+<html xmlns:iqs="http://iqs.ti.bfh.ch" xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>Leistungsnachweis</title>
     </head>
 
     <body>
         <iqs:iteration id="students">
-            
-            <div class="normal">
-            <b>Leistungsnachweis</b>
-            </div> 
+            <h2>Leistungsnachweis</h2>
                   
-            <iqs:smallSpace/>
+            <iqs:emptyLines3/>
 
             <div class="normal">
                 <iqs:data id="studentSalutation"/>
@@ -22,7 +19,7 @@
             
             <div class="normal">von <iqs:data id="studentPlaceOfOrigin"/>, geboren am <iqs:data id="studentDateOfBirth"/></div>
 
-            <iqs:mediumSpace/>
+            <iqs:emptyLines3/>
 
             <div class="normal">hat das</div>
 
@@ -31,13 +28,13 @@
             
             <div class="normal">erfolgreich abgeschlossen.</div>
             
-            <iqs:smallSpace/>
+            <iqs:emptyLines3/>
                    
             <div class="normal">
                 Das CAS dauerte vom <iqs:data id="moduleStartDate"/> bis zum <iqs:data id="moduleEndDate"/> und entsprach einem Arbeitspensum von 12 ECTS.
             </div>
 
-            <iqs:mediumSpace/>
+            <iqs:emptyLines3/>
             
             
             <table>
@@ -46,12 +43,12 @@
                     <th>Gewicht</th>
                     <th>Erfolg</th>
                 </tr>
+                
                 <iqs:data id="courses" />
-                    
                 
             </table>
             
-            <iqs:largeSpace/>
+            <iqs:emptyLines6/>
 
             <div>Bern, <iqs:currentDate/></div>
             <div><img src="schmidhauser.jpg"/></div>

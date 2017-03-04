@@ -7,12 +7,12 @@
     <xsl:output method="xhtml" indent="yes"/>
 
     <xsl:param name="moduleDocument"/>
-    <xsl:variable name="module" select="document($moduleDocument)/students"/>
+    <xsl:variable name="students" select="$moduleDocument/students"/>
 	
     <xsl:template match="iqs:iteration">
         <xsl:param name="studentShortName"/>
         <xsl:variable name="iteration" select="."/>
-        <xsl:for-each select="$module/student">
+        <xsl:for-each select="$students/student">
             <xsl:sort select="lastName"/>
             <xsl:sort select="firstName"/>
             <xsl:apply-templates select="$iteration/node() | @*">
@@ -23,7 +23,7 @@
 
     <xsl:template match="iqs:data">
         <xsl:param name="studentShortName"/>
-        <xsl:variable name="student" select="$module/student[shortName = $studentShortName]"/>
+        <xsl:variable name="student" select="$students/student[shortName = $studentShortName]"/>
         <xsl:choose>
             <!-- student data -->
             <xsl:when test="@id = 'studentSalutation'">
@@ -44,13 +44,13 @@
 
             <!-- module data -->
             <xsl:when test="@id = 'moduleName'">
-                <xsl:value-of select="$module/name"/>
+                <xsl:value-of select="$student/module/name"/>
             </xsl:when>
             <xsl:when test="@id = 'moduleStartDate'">
-                <xsl:value-of select="format-dateTime($module/startDate, '[D]. [MNn] [Y]', 'de', (), ())"/>
+                <xsl:value-of select="format-date($student/module/startDate, '[D]. [MNn] [Y]', 'de', (), ())"/>
             </xsl:when>
             <xsl:when test="@id = 'moduleEndDate'">
-                <xsl:value-of select="format-dateTime($module/endDate, '[D]. [MNn] [Y]', 'de', (), ())"/>
+                <xsl:value-of select="format-date($student/module/endDate, '[D]. [MNn] [Y]', 'de', (), ())"/>
             </xsl:when>
             <!-- signature data -->
         </xsl:choose>

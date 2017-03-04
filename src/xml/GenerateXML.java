@@ -168,7 +168,7 @@ public class GenerateXML {
 				
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty(OutputKeys.METHOD, "html");
+			transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			DOMSource source = new DOMSource(doc);

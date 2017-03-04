@@ -2,7 +2,7 @@
 
 <!-- XSL stylesheet for the transformation of an XHTML document to a XSL-FO document -->
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:h="http://www.w3.org/1999/xhtml">
+    xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
 
     <!-- page layout -->
     <xsl:template name="pageMaster">
@@ -76,7 +76,7 @@
     </xsl:template>
     
     <xsl:template match="h:table">
-        <fo:table table-layout="fixed">
+        <fo:table table-layout="fixed" width="100%">
             <fo:table-column column-number="1" column-width="80mm"/>
             <fo:table-column column-number="2" column-width="40mm"/>
             <fo:table-column column-number="3" column-width="40mm"/>
@@ -86,7 +86,14 @@
                         <xsl:when test="h:th">
                             <fo:table-row>
                                 <xsl:for-each select="h:th">
-                                    <fo:table-cell><fo:block font-size="12" font-weight="1600"><xsl:apply-templates /></fo:block></fo:table-cell>
+                                    <fo:table-cell><fo:block><fo:inline font-weight="600"><xsl:apply-templates /></fo:inline></fo:block></fo:table-cell>
+                                </xsl:for-each>
+                            </fo:table-row>
+                        </xsl:when>
+                        <xsl:when test="h:td/@*">
+                            <fo:table-row>
+                                <xsl:for-each select="h:td">
+                                    <fo:table-cell><fo:block font-size="10" font-weight="600"><xsl:apply-templates /></fo:block></fo:table-cell>
                                 </xsl:for-each>
                             </fo:table-row>
                         </xsl:when>
@@ -111,7 +118,7 @@
         <fo:block space-before="15mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class='emptyLines6']">
-        <fo:block space-before="20mm"/>
+        <fo:block space-before="30mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class = 'pageBreak']">
         <fo:block page-break-after="always"/>
@@ -122,6 +129,12 @@
         <xsl:attribute name="font-family">Arial</xsl:attribute>
         <xsl:attribute name="font-size">10pt</xsl:attribute>
         <xsl:attribute name="line-height">15pt</xsl:attribute>
+    </xsl:attribute-set>
+    <xsl:attribute-set name="normal-bold">
+        <xsl:attribute name="font-family">Arial</xsl:attribute>
+        <xsl:attribute name="font-size">10pt</xsl:attribute>
+        <xsl:attribute name="line-height">15pt</xsl:attribute>
+        <xsl:attribute name="font-weight">bold</xsl:attribute>
     </xsl:attribute-set>
     <xsl:attribute-set name="heading1" use-attribute-sets="standart">
         <xsl:attribute name="font-size">20pt</xsl:attribute>

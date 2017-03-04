@@ -79,10 +79,10 @@
         <fo:block space-before="5mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class='emptyLines3']">
-        <fo:block space-before="10mm"/>
+        <fo:block space-before="15mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class='emptyLines6']">
-        <fo:block space-before="20mm"/>
+        <fo:block space-before="30mm"/>
     </xsl:template>
     <xsl:template match="h:div[@class = 'pageBreak']">
         <fo:block page-break-before="always"/>
