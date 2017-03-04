@@ -1,5 +1,6 @@
 package view;
 
+import data.Course;
 import data.Module;
 import data.Person;
 import javafx.application.Platform;
@@ -59,12 +60,13 @@ public class SelectViewController extends EqualsView {
                 		Platform.runLater(() -> {
 	                        super.updateItem(cellModule, bln);
 	                        if (cellModule != null) {
-
                         		ModuleCellViewController cellView = (ModuleCellViewController) ViewLoader.create(
                         						getClass().getResource("ModuleCellView.fxml"),
                         						model, 
                         						controller);
-                        		cellView.setModule(cellModule);
+                        		cellView.setModule(cellModule, course -> {
+                        			onSelectedCourseChanged(cellModule, course);
+                        		});
                         		setGraphic(cellView.getRootNode());
 	                        }
 	                        this.widthProperty().addListener((obs,old,value) -> {
@@ -77,15 +79,41 @@ public class SelectViewController extends EqualsView {
                 };
                 return lc;
             }
-
         });
-
 	}
 	
 	private void onSelectedModuleChanged(Module selectedModule) {
+		if(selectedModule == null) return;
 		controller.selectedModuleChanged(selectedModule);
-    	System.out.format("selected Module: %s\r\n",entityList.getSelectionModel().getSelectedItem().getShortName());
-    	setContent(entityList.getSelectionModel().getSelectedItem());
+		if(entityList.isFocused()) {
+	    	System.out.format("***** selected Module: %s\r\n",entityList.getSelectionModel().getSelectedItem().getShortName());
+	    	setContent(selectedModule);
+		} else {
+	    	System.out.format("**** selected a Course of Module: %s\r\n",
+	    			entityList.getSelectionModel().getSelectedItem().getShortName());
+		}
+	}
+	
+	private void onSelectedCourseChanged(Module parentModule, Course selectedCourse) {
+		if(parentModule == null || selectedCourse == null) return;
+		entityList.getSelectionModel().select(parentModule);
+		controller.selectedCourseChanged(selectedCourse);
+		switch(parentModule.getUserRole()) {
+		case ASSISTANT:
+			setContentView("CasAssistantView.fxml");
+			break;
+		case HEAD:
+		case TEACHER:
+			setContentView("TeacherView.fxml");
+			TeacherViewController view = (TeacherViewController)currentView;
+			if(view != null) {
+				view.setCourse(selectedCourse);
+			}
+			break;
+		default:
+			System.err.println("wrong state!");
+			break;
+		}
 	}
 	
 	private void setContent(Module selectedModule) {
@@ -100,7 +128,7 @@ public class SelectViewController extends EqualsView {
 			setContentView("StudentView.fxml");
 			break;
 		case TEACHER:
-			setContentView("TeacherView.fxml");
+			//setContentView("TeacherView.fxml");
 			break;
 		default:
 			break;
