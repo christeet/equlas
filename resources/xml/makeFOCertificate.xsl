@@ -91,8 +91,8 @@
     <!-- styles -->
     <xsl:attribute-set name="normal-center">
         <xsl:attribute name="font-family">Arial</xsl:attribute>
-        <xsl:attribute name="font-size">10pt</xsl:attribute>
-        <xsl:attribute name="line-height">15pt</xsl:attribute>
+        <xsl:attribute name="font-size">14pt</xsl:attribute>
+        <xsl:attribute name="line-height">22pt</xsl:attribute>
         <xsl:attribute name="text-align">center</xsl:attribute>
     </xsl:attribute-set>
     <xsl:attribute-set name="normal">

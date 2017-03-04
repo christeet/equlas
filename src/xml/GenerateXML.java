@@ -17,15 +17,15 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import dao.CourseDAO;
-import dao.DAOFactory;
-import dao.ModuleDAO;
-import dao.PersonDAO;
-import dao.RatingDAO;
 import data.Course;
 import data.Module;
 import data.Rating;
 import data.Student;
+import persistence.CourseDAO;
+import persistence.DAOFactory;
+import persistence.ModuleDAO;
+import persistence.PersonDAO;
+import persistence.RatingDAO;
 
 public class GenerateXML {
 	
@@ -65,7 +65,7 @@ public class GenerateXML {
 		CourseDAO courseDAO = DAOFactory.getInstance().createCourseDAO();
 		ArrayList<Course> courseList = null;
 		try {
-			courseList = courseDAO.getCourseByStudentModule(student.getId(), module.getId());
+			courseList = courseDAO.getCoursesByModuleAndStudent(module, student);
 		} catch (SQLException e) {
 			System.out.println("Could not get Course from DAOFactory!");
 		}

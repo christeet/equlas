@@ -12,12 +12,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -25,7 +25,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -38,13 +38,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Frankfurt am Main, geboren am 18. September 1966</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Frankfurt am Main, geboren am 18. September 1966</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -56,7 +56,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -82,12 +82,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -95,7 +95,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -108,13 +108,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Nyon, geboren am 18. Februar 1966</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Nyon, geboren am 18. Februar 1966</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -126,7 +126,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -152,12 +152,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -165,7 +165,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -178,13 +178,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Zürich, geboren am 24. September 1980</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Zürich, geboren am 24. September 1980</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -196,7 +196,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -222,12 +222,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -235,7 +235,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -248,13 +248,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Lenzburg, geboren am 15. Juli 1967</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Lenzburg, geboren am 15. Juli 1967</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -266,7 +266,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -292,12 +292,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -305,7 +305,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -318,13 +318,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Zürich, geboren am 16. April 1959</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Zürich, geboren am 16. April 1959</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -336,7 +336,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -362,12 +362,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -375,7 +375,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -388,13 +388,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Sarnen, geboren am 28. Oktober 1976</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Sarnen, geboren am 28. Oktober 1976</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -406,7 +406,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -432,12 +432,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -445,7 +445,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -458,13 +458,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Lausanne, geboren am 6. September 1966</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Lausanne, geboren am 6. September 1966</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -476,7 +476,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -502,12 +502,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -515,7 +515,77 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Herr
+         
+      </fo:block>
+      
+      <fo:block space-before="5mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Christian Etter</fo:block>
+      
+      <fo:block space-before="5mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Fräschels, geboren am 29. Mai 1981</fo:block>
+      
+      
+      <fo:block space-before="15mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
+      
+      <fo:block space-before="5mm"/>
+      
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Certificate of Advanced Studies BFH in</fo:block>
+      
+      <fo:block font-family="Arial" font-size="20pt" font-weight="bold" line-height="28pt" text-align="center">Software Development</fo:block>
+      
+      
+      <fo:block space-before="30mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
+         und entsprach einem Arbeitspensum von 12 ECTS.
+         
+      </fo:block>
+      
+      
+      <fo:block space-before="30mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Bern, 4. März 2017</fo:block>
+      
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt"><fo:external-graphic src="schmidhauser.jpg"/></fo:block>
+      
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Arno Schmidhauser</fo:block>
+      
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Leiter Weiterbildung</fo:block>
+      
+      <fo:block font-family="Arial" font-size="10pt" line-height="15pt">Technik und Informatik</fo:block>
+      
+      
+      
+      <fo:block page-break-before="always"/>
+      
+      <fo:block space-before="15mm"/>
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         Die Berner Fachhochschule
+         
+      </fo:block>    
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
+         erteilt
+         
+      </fo:block>    
+      
+      <fo:block space-before="15mm"/>
+      
+      
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Frau
          
       </fo:block>
@@ -528,13 +598,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Oberwil, geboren am 25. Juli 1959</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Oberwil, geboren am 25. Juli 1959</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -546,7 +616,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -572,12 +642,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -585,7 +655,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -598,13 +668,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Zürich, geboren am 18. August 1968</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Zürich, geboren am 18. August 1968</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -616,7 +686,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -642,12 +712,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -655,7 +725,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -668,13 +738,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Genf, geboren am 25. März 1967</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Genf, geboren am 25. März 1967</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -686,7 +756,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -712,12 +782,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -725,7 +795,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Frau
          
       </fo:block>
@@ -738,13 +808,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Luzern, geboren am 28. Juni 1964</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Luzern, geboren am 28. Juni 1964</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -756,7 +826,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -782,12 +852,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -795,7 +865,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -808,13 +878,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Baar, geboren am 19. Januar 1968</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Baar, geboren am 19. Januar 1968</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -826,7 +896,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -852,12 +922,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -865,7 +935,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -878,13 +948,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Schaffhausen, geboren am 24. April 1965</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Schaffhausen, geboren am 24. April 1965</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -896,7 +966,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
@@ -922,12 +992,12 @@
       
       <fo:block space-before="15mm"/>
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Die Berner Fachhochschule
          
       </fo:block>    
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          erteilt
          
       </fo:block>    
@@ -935,7 +1005,7 @@
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Herr
          
       </fo:block>
@@ -948,13 +1018,13 @@
       <fo:block space-before="5mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">von Altdorf, geboren am 24. Juni 1961</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">von Altdorf, geboren am 24. Juni 1961</fo:block>
       
       
       <fo:block space-before="15mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">das</fo:block>
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">das</fo:block>
       
       <fo:block space-before="5mm"/>
       
@@ -966,7 +1036,7 @@
       <fo:block space-before="30mm"/>
       
       
-      <fo:block font-family="Arial" font-size="10pt" line-height="15pt" text-align="center">
+      <fo:block font-family="Arial" font-size="14pt" line-height="22pt" text-align="center">
          Das CAS dauerte vom 23. März 2016 bis zum  23. September 2016
          und entsprach einem Arbeitspensum von 12 ECTS.
          
