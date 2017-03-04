@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane fx:id="container" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainContainerViewController">
+   <top>
+      <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <ToggleButton fx:id="toggleDe" mnemonicParsing="false" selected="true" text="DE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="toggleGroupLanguage" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton fx:id="toggleEn" mnemonicParsing="false" text="EN" toggleGroup="$toggleGroupLanguage" />
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

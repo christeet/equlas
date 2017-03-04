@@ -1,4 +1,4 @@
-package dao;
+package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +12,10 @@ import data.UserRole;
 
 public class ModuleDAO {
 
+	private final String moduleFileds = "m.id, m.name, m.shortName, m.startDate, m.endDate, m.headId, m.assistantId";
 	private PreparedStatement psGetAllModules;
 	private PreparedStatement psGetModulesByStudent;
+	private PreparedStatement psGetModulesByAssistant;
 	private PreparedStatement psGetModulesByHead;
 	private PreparedStatement psGetModulesByTeacher;
 	private PreparedStatement psGetAllModulesByName;
@@ -25,15 +27,18 @@ public class ModuleDAO {
 				"SELECT * FROM Module m "
 				+ "left join Registration r on r.moduleId = m.id "
 				+ "where r.studentId=?");
+		psGetModulesByAssistant = connection.prepareStatement(
+				"SELECT * FROM Module "
+				+ "where assistantId=?;");
 		psGetModulesByHead = connection.prepareStatement(
 				"SELECT * FROM Module "
 				+ "where headId=?;");
 		
 		// only select module, if the teacher is not also the head of the module:
 		psGetModulesByTeacher = connection.prepareStatement(
-				"SELECT * FROM Module m "
+				"SELECT distinct " + moduleFileds +" FROM Module m "
 				+ "left join Course c on c.moduleId = m.id "
-				+ "where c.professorId=? and m.headId!=?");
+				+ "where c.professorId = ? and m.headId != ?");
 	}
 	
 	public ArrayList<Module> getAllModulesByName(String shortName) throws SQLException {
@@ -45,6 +50,12 @@ public class ModuleDAO {
 	public ArrayList<Module> getAllModules() throws SQLException {
 		ResultSet resultSet = psGetAllModules.executeQuery();
 		return getModuleListFromResultSet(resultSet, null);
+	}
+	
+	public ArrayList<Module> getModulesByAssistant(Person assistant) throws SQLException {
+		psGetModulesByAssistant.setInt(1, assistant.getId());
+		ResultSet resultSet = psGetModulesByAssistant.executeQuery();
+		return getModuleListFromResultSet(resultSet, UserRole.ASSISTANT);
 	}
 	
 	public ArrayList<Module> getModulesByStudent(Person student) throws SQLException {

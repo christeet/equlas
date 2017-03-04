@@ -2,16 +2,15 @@ package equals;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import controller.EqualsController;
-import dao.CourseDAO;
-import dao.DAOFactory;
-import dao.ModuleDAO;
-import dao.PersonDAO;
-import dao.RatingDAO;
 import data.Course;
 import data.Module;
 import data.Person;
@@ -19,23 +18,56 @@ import data.Student;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.EqualsModel;
+import persistence.CourseDAO;
+import persistence.DAOFactory;
+import persistence.ModuleDAO;
+import persistence.PersonDAO;
+import persistence.RatingDAO;
 import resources.I18n;
+import util.Prefs;
 import view.EqualsView;
 import view.ViewLoader;
 import xml.GenerateXML;
 
 public class Main extends Application {
 
+	private ScheduledExecutorService preferencesSaveExecutor = Executors.newScheduledThreadPool(1);
+	private ScheduledFuture<?> preferencesSaveTask = null;
+	
 	@Override
-	public void start(Stage stage) throws MalformedURLException {
+	public void start(Stage stage) {
+		
+		// get locale as set in properties file (or system default)
+		I18n.setLocale(Locale.forLanguageTag(Prefs.get().getLocale()));
+		
 		EqualsModel model = new EqualsModel();
 		EqualsController controller = new EqualsController(model);
 
-		EqualsView mainWindow = ViewLoader.create(getClass().getResource("../view/ParentView.fxml"), model, controller);
-		//mainWindow.setContentView(userLogin);
-		Scene scene = new Scene(mainWindow.getRootNode(), 800, 600);
+		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
+				"../view/MainContainerView.fxml")
+				, model, controller);
 		
+		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());
+		
+		scene.widthProperty().addListener((obs, old, newSceneWidth) -> {
+			if(!stage.isMaximized()) {
+				Prefs.get().setWindowWidth((double)newSceneWidth);
+				savePreferencesDelayed();
+			}
+		});
+		
+		scene.heightProperty().addListener((obs, old, newSceneHeight) -> {
+			if(!stage.isMaximized()) {
+				Prefs.get().setWindowHeight((double)newSceneHeight);
+				savePreferencesDelayed();
+			}
+		});
+
+		stage.setMaximized(Prefs.get().getMaximized());
+		stage.maximizedProperty().addListener((obs, old, maximized) -> {
+			Prefs.get().setMaximized(maximized);
+			Prefs.save();
+		});
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);
 		stage.show();
@@ -49,6 +81,13 @@ public class Main extends Application {
 		//consoleDebug();
 		GenerateXML gen = new GenerateXML("SD-FS16");
 		gen.makeXMLDocument();
+	}
+
+	private void savePreferencesDelayed() {
+		if(null != preferencesSaveTask) preferencesSaveTask.cancel(false);
+		preferencesSaveTask = preferencesSaveExecutor.schedule(() -> {
+			Prefs.save();
+		}, 1, TimeUnit.SECONDS);
 	}
 	
 	private static void consoleDebug() {

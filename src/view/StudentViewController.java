@@ -1,15 +1,23 @@
 package view;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
+import java.text.NumberFormat;
+import java.text.ParseException;
+
+import data.Course;
+import data.Module;
+import data.Rating;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.StringConverter;
 
 public class StudentViewController extends EqualsView {
 	
@@ -23,9 +31,15 @@ public class StudentViewController extends EqualsView {
 	
 	@FXML
 	private TableColumn<Data, String> courseColumn;
+
+	@FXML
+	private TableColumn<Data, String> weightColumn;
 	
 	@FXML
-	private TableColumn<Data, Number> weightColumn, successColumn;
+	private TableColumn<Data, Number> successColumn;
+	
+	private Module contextModule;
+	private int studentId;
 	
 	@FXML
 	protected void onSave() {
@@ -34,26 +48,64 @@ public class StudentViewController extends EqualsView {
 	
 	@FXML
 	protected void initialize() {
-		courseColumn.setCellValueFactory(d -> d.getValue().courseProperty());
+		table.setEditable(true);
+		courseColumn.setCellValueFactory(d -> d.getValue().courseNameProperty());
 		weightColumn.setCellValueFactory(d -> d.getValue().weightProperty());
 		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
+		this.data = table.getItems();
 		
-	  this.data = FXCollections.observableArrayList();
+		
+		successColumn.setCellFactory(TextFieldTableCell.<Data, Number>forTableColumn(new StringConverter<Number>() {
+	        private final NumberFormat nf = NumberFormat.getNumberInstance();
+	        
+	        {
+	             nf.setMaximumFractionDigits(1);
+	             nf.setMinimumFractionDigits(1);
+	        }
+
+	        @Override public String toString(final Number value) {
+	        	if(value.intValue() == -1) {
+	        		return "";
+	        	}
+	            return nf.format(value);
+	        }
+
+	        @Override public Number fromString(final String s) {
+	        	if(s.isEmpty()) {
+	        		return -1;
+	        	}
+	            try {
+					return nf.parse(s);
+				} catch (ParseException e) {
+					e.printStackTrace();
+					return -1;
+				} 
+	        }
+	    }));
+		successColumn.setOnEditCommit((CellEditEvent<Data, Number> t) -> {
+			setNewSuccessRate(t.getRowValue(), t.getNewValue().intValue());
+			t.getRowValue().successProperty().set(t.getNewValue().intValue());
+		});
 	}
 	
 	@Override
 	public void init() {
-		TableColumn<Data, String> courseNameCol = new TableColumn<>("Course Name");
-		
-		
-//		for(String name : this.model.getStudentName()) {
-//			if(name.equals(this.userName())) {
-//				for(String course : this.model.getUserCourses())
-//				Data d = new Data(course.getName(), this.model.getCourseWeight(course), this.model.getStudentCourseSuccess());
-//				this.data.add(d);
-//				table.setItems(this.data);
-//			}
-//		}
+		studentId = model.getUserLogin().getUser().getId();
+		contextModule = model.getContextModule();
+		System.out.format("ContextModule is %s (Nr %d)\r\n", contextModule.getShortName(), contextModule.getId());
+		for(Course course : model.getCoursesListProperty().filtered(p -> p.getModuleId() == contextModule.getId())) {
+			Integer success = null;
+			try {
+				Rating rating = model.getRatingListProperty()
+						.filtered(r -> r.getCourseId() == course.getId() 
+									&& r.getStudentId() == studentId)
+						.get(0);
+				success = rating.getSuccessRate();
+			} catch (IndexOutOfBoundsException | NullPointerException e){}
+			
+			Data d = new Data(course, success);
+			this.data.add(d);
+		}
 	}
 	
 	@Override
@@ -61,39 +113,46 @@ public class StudentViewController extends EqualsView {
 		
 	}
 	
+    private void setNewSuccessRate(Data data, int newSuccessRate) {
+    	if(newSuccessRate == -1) {
+        	controller.removeRating(studentId, data.getCourse().getId());
+    	} else {
+    		controller.setNewSuccessRate(studentId, data.getCourse().getId(), newSuccessRate);
+    	}
+    }
+	
 	
   private static class Data {
-    private final StringProperty course;
-    private final DoubleProperty weight;
-    private final DoubleProperty success;
+	private final Course course;
+    private final StringProperty courseName;
+    private final StringProperty weight;
+    private final IntegerProperty success;
 
-    private Data(String course, double weight, int success) {
-        this.course = new SimpleStringProperty(course);
-        this.weight = new SimpleDoubleProperty(weight);
-        this.success = new SimpleDoubleProperty(success);
+    private Data(Course course, Integer success) {
+    	this.course = course;
+        this.courseName = new SimpleStringProperty(course.getName());
+        this.weight = new SimpleStringProperty(String.format("%.1f", course.getWeight()));
+        if(success == null) { success = -1; }
+        this.success = new SimpleIntegerProperty(success);
     }
 
-    private String getCourse() { 
-    	return this.course.get(); 
+    private Course getCourse() { 
+    	return this.course; 
     }
     
-    private StringProperty courseProperty() {
-    	return this.course;
+    private StringProperty courseNameProperty() {
+    	return this.courseName;
     }
     
-    private double getWeight() {
-    	return this.weight.get();
-    }
-    
-    private DoubleProperty weightProperty() {
+    private StringProperty weightProperty() {
     	return this.weight;
     }
 
-    private double getSuccess() {
+    private Integer getSuccess() {
     	return this.success.get();
     }
     
-    private DoubleProperty successProperty() { 
+    private IntegerProperty successProperty() { 
     	return this.success;
     }
   }

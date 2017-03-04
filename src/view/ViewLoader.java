@@ -5,9 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import controller.EqualsController;
+import equals.EqualsModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import model.EqualsModel;
 import resources.I18n;
 
 public class ViewLoader {
@@ -15,12 +15,12 @@ public class ViewLoader {
 	public static EqualsView create(
 			URL fxmlUrl, 
 			EqualsModel model, 
-			EqualsController controller) throws MalformedURLException {
+			EqualsController controller) {
 		FXMLLoader loader;
-		loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
 		Parent rootNode = null;
 		EqualsView view = null;
 		try {
+			loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
 			rootNode = (Parent)loader.load();
 			view = loader.<EqualsView>getController();
 			view.init(rootNode, model, controller);

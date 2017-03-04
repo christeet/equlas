@@ -1,6 +1,7 @@
 package controller;
 
-import model.EqualsModel;
+import data.Module;
+import equals.EqualsModel;
 
 public class EqualsController {
 	
@@ -12,5 +13,17 @@ public class EqualsController {
 	
 	public void loginDataEntered(String password, String username) {
 		this.model.getUserLogin().checkPassword(password, username);
+	}
+	
+	public void selectedModuleChanged(Module module) {
+		model.setSelectedModule(module);
+	}
+	
+	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
+		model.setNewSuccessRate(studentId, courseId, newSuccessRate);
+	}
+	
+	public void removeRating(int studentId, int courseId) {
+		model.removeRating(studentId, courseId);
 	}
 }
