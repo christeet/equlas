@@ -47,6 +47,8 @@ public class SelectViewController extends EqualsView {
 		});
 		entityList.setItems(model.getModuleListProperty());
 		Platform.runLater(() -> {
+			// select first module by default:
+			entityList.requestFocus();
 			entityList.getSelectionModel().select(0);
 		});
 		maxWidth=0;
@@ -80,6 +82,14 @@ public class SelectViewController extends EqualsView {
                 return lc;
             }
         });
+		
+		entityList.focusedProperty().addListener((obs, focusedBefore, focusedNow) -> {
+			if(!focusedBefore && focusedNow) {
+				int index = entityList.getSelectionModel().getSelectedIndex();
+				entityList.getSelectionModel().clearSelection();
+				entityList.getSelectionModel().select(index);
+			}
+		});
 	}
 	
 	private void onSelectedModuleChanged(Module selectedModule) {
@@ -118,6 +128,7 @@ public class SelectViewController extends EqualsView {
 	}
 	
 	private void setContent(Module selectedModule) {
+		System.out.format("UserRole = %s\r\n", selectedModule.getUserRole().name());
 		switch(selectedModule.getUserRole()) {
 		case ASSISTANT:
 			setContentView("CasAssistantView.fxml");

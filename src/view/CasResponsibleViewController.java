@@ -5,21 +5,22 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class CasResponsibleViewController extends EqualsView {
 	
 	private ObservableList<Data> data;
-	
-	@FXML
-	private TableView<Data> table;
-	
-	@FXML
-	private TableColumn<Data, String> studentColumn;
+
+	@FXML private Label casTitleLabel;
+	@FXML private Label successPartComplete;
+	@FXML private TableView<Data> table;
+	@FXML private TableColumn<Data, String> studentColumn;
+	@FXML private Button saveButton;
 	
 	@FXML
 	protected void onSave() {
@@ -50,6 +51,7 @@ public class CasResponsibleViewController extends EqualsView {
 		+ "\nName: "
 		+ person.getName()
 		);
+		casTitleLabel.setText(model.getContextModule().getName());
 		
 //		for(String name : this.model.getStudentName()) {
 //			if(name.equals(this.userName())) {
