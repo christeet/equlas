@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<BorderPane fx:id="container" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainContainerViewController">
+<BorderPane fx:id="container" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainContainerViewController">
    <top>
       <HBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER">
          <children>
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#onLogout" text="%login.logout">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
             <ToggleButton fx:id="toggleDe" mnemonicParsing="false" selected="true" text="DE">
                <toggleGroup>
                   <ToggleGroup fx:id="toggleGroupLanguage" />

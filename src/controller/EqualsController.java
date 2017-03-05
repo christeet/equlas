@@ -16,6 +16,10 @@ public class EqualsController {
 		this.model.getUserLogin().checkPassword(password, username);
 	}
 	
+	public void logout() {
+		this.model.getUserLogin().logout();
+	}
+	
 	public void selectedModuleChanged(Module module) {
 		model.setSelectedModule(module);
 	}
