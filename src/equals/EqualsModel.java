@@ -97,8 +97,8 @@ public class EqualsModel implements IObserver<UserLogin> {
 	}
 	
 	public void setSelectedModule(Module module) {
-		if(module == contextModule) {
-			return; // module already selected; do nothing.
+		if(module == contextModule || module == null) {
+			return; // module already selected (or null); do nothing.
 		}
 		Person user = userLogin.getUser();
 		switch(module.getUserRole()){
@@ -106,12 +106,13 @@ public class EqualsModel implements IObserver<UserLogin> {
 			// TODO: get Ratings of all Students for all Courses of this Module
 			break;
 		case HEAD:
-			// TODO: get Ratings of all Students for all Courses of this Module
+			// get Ratings of all Students for all Courses of this Module
+			getStudentsAndRatingsForModule(module);
 			break;
 		case STUDENT:
 			// get Ratings for all Courses of this Module
 			try {
-				ratingList.setAll(ratingDao.getRatingListForStudent(user.getId()));
+				ratingList.addAll(ratingDao.getRatingListForStudent(user.getId()));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -131,7 +132,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 
 		try {
 			studentList.setAll(personDao.getStudentsByModule(course.getModule()));
-			ratingList.setAll(ratingDao.getRatingListForCourse(course.getId()));
+			ratingList.addAll(ratingDao.getRatingListForCourse(course.getId()));
 
 			/*for(Person s : studentList) {
 				System.out.format("Student %d of Course %d (Module %d): %s\r\n", 
@@ -147,6 +148,22 @@ public class EqualsModel implements IObserver<UserLogin> {
 						r.getCourseId(),
 						r.getSuccessRate());
 			}*/
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void getStudentsAndRatingsForModule(Module module) {
+		PersonDAO personDao = DAOFactory.getInstance().createPersonDAO();
+
+		try {
+			studentList.setAll(personDao.getStudentsByModule(module));
+			ratingList.clear();
+			for(Course c: coursesList) {
+				ratingList.addAll(ratingDao.getRatingListForCourse(c.getId()));
+			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
