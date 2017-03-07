@@ -60,4 +60,18 @@ public class Module {
 	public String toString() {
 		return String.format("%s\r\n%s", getName(), getShortName());
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) return true;
+		Module other = (Module) obj;
+		if(other == null) return false;
+		return other.hashCode() == this.hashCode();
+	}
+
+	@Override
+	public int hashCode() {
+		return this.name.hashCode() + this.id; // very bad hashCode, but it fits our purpose.
+	}
+	
 }

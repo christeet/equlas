@@ -12,27 +12,25 @@ import data.Person;
 
 public class CourseDAO {
 
+	private final String courseFields = "c.id, c.name, c.shortName, c.weight, c.moduleId, c.professorId";
 	private PreparedStatement psGetCoursesByModule;
 	private PreparedStatement psGetCoursesByModuleAndTeacher;
 	private PreparedStatement psGetCoursesByModuleAndStudent;
 	
 	public CourseDAO(Connection connection) throws SQLException {
 		psGetCoursesByModule = connection.prepareStatement(
-				"SELECT c.id, c.name, c.shortName, c.weight, c.moduleId "
-				+ "FROM Course c "
+				"SELECT " + courseFields + " FROM Course c "
 				+ "join Module m on c.moduleId = m.id "
 				+ "and m.shortName like ?;");
 		
 		psGetCoursesByModuleAndTeacher = connection.prepareStatement(
-				"SELECT c.id, c.name, c.shortName, c.weight, c.moduleId "
-				+ "FROM Course c "
+				"SELECT " + courseFields + " FROM Course c "
 				+ "join Module m on c.moduleId = m.id "
 				+ "and m.shortName like ?"
 				+ "and c.professorId = ?;");
 		
 		psGetCoursesByModuleAndStudent = connection.prepareStatement(
-				"SELECT c.id, c.name, c.shortName, c.weight, c.moduleId "
-				+ "FROM Course c "
+				"SELECT " + courseFields + " FROM Course c "
 				+ "join Module m on c.moduleId = m.id "
 				+ "join Registration r on m.id = r.moduleId "
 				+ "and c.moduleId = ? "
@@ -73,7 +71,8 @@ public class CourseDAO {
 				resultSet.getString("name"), 
 				resultSet.getString("shortName"),
 				resultSet.getFloat("weight"),
-				module);
+				module,
+				resultSet.getInt("professorId"));
 	}
 	
 }

@@ -1,6 +1,8 @@
 package equals;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import data.Course;
 import data.Module;
@@ -62,11 +64,12 @@ public class EqualsModel implements IObserver<UserLogin> {
 		ModuleDAO moduleDao = DAOFactory.getInstance().createModuleDAO();
 		Person user = userLogin.getUser();
 		try {
-			moduleList.clear();
-			moduleList.addAll(moduleDao.getModulesByHead(user));
-			moduleList.addAll(moduleDao.getModulesByTeacher(user));
-			moduleList.addAll(moduleDao.getModulesByStudent(user));
-			moduleList.addAll(moduleDao.getModulesByAssistant(user));
+			ArrayList<Module> modules = new ArrayList<>();
+			modules.addAll(moduleDao.getModulesByHead(user));
+			modules.addAll(moduleDao.getModulesByTeacher(user));
+			modules.addAll(moduleDao.getModulesByStudent(user));
+			modules.addAll(moduleDao.getModulesByAssistant(user));
+			moduleList.setAll(modules.stream().distinct().collect(Collectors.toList()));
 			for(Module m : moduleList) {
 				System.out.format("Module %d loaded: %s\r\n", m.getId(), m.getName());
 			}
@@ -79,17 +82,18 @@ public class EqualsModel implements IObserver<UserLogin> {
 		CourseDAO courseDao = DAOFactory.getInstance().createCourseDAO();
 		Person user = userLogin.getUser();
 		try {
-			coursesList.clear();
+			ArrayList<Course> courses = new ArrayList<>();
 			for(Module m : moduleList) {
-				coursesList.addAll(courseDao.getCoursesByModuleAndTeacher(m, user));
-				coursesList.addAll(courseDao.getCoursesByModuleAndStudent(m, user));
+				courses.addAll(courseDao.getCoursesByModuleAndTeacher(m, user));
+				courses.addAll(courseDao.getCoursesByModuleAndStudent(m, user));
 			}
-			/*for(Course c : coursesList) {
+			coursesList.setAll(courses.stream().distinct().collect(Collectors.toList()));
+			for(Course c : coursesList) {
 				System.out.format("Course %d of Module %d loaded: %s\r\n", 
 						c.getId(), 
 						c.getModuleId(), 
 						c.getName());
-			}*/
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

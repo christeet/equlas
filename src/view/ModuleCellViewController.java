@@ -4,7 +4,9 @@ import data.Course;
 import data.Module;
 import data.UserRole;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -23,8 +25,10 @@ public class ModuleCellViewController extends EqualsView {
 	@FXML private ListView<Course> coursesList;
 
 	private static double maxWidth = 0;
+	private ListCell<Module> containingCell;
 	private Module module;
 	private CourseSelector courseSelector;
+	private ObservableList<CourseCellViewController> courseCellViews = FXCollections.observableArrayList();
 	
 	@FXML
 	protected void initialize() {
@@ -35,12 +39,14 @@ public class ModuleCellViewController extends EqualsView {
 	public void init() {
 	}
 	
-	public void setModule(Module module, CourseSelector courseSelector) {
+	public void setModule(ListCell<Module> cell, Module module, CourseSelector courseSelector) {
+		this.containingCell = cell;
 		this.module = module;
 		this.courseSelector = courseSelector;
 		this.moduleTitleLabel.setText(module.getName());
 		this.semesterLabel.setText(module.getShortName());
 		setImageByUserRole(module.getUserRole());
+		
 		
 		switch(this.module.getUserRole()) {
 		case ASSISTANT:
@@ -57,6 +63,10 @@ public class ModuleCellViewController extends EqualsView {
 			break;
 		
 		}
+	}
+	
+	public ObservableList<CourseCellViewController> getCourseCellViews() {
+		return courseCellViews;
 	}
 	
 	private void setImageByUserRole(UserRole userRole) {
@@ -99,24 +109,25 @@ public class ModuleCellViewController extends EqualsView {
             	ListCell<Course> lc = new ListCell<Course>() {
 
                     @Override
-                    protected void updateItem(Course cellCourse, boolean bln) {
+                    protected void updateItem(Course cellCourse, boolean empty) {
                 		Platform.runLater(() -> {
-	                        super.updateItem(cellCourse, bln);
-	                        if (cellCourse != null) {
+	                        super.updateItem(cellCourse, empty);
+	                        if (cellCourse != null && !empty) {
 
                         		CourseCellViewController cellView = (CourseCellViewController) ViewLoader.create(
                         						getClass().getResource("CourseCellView.fxml"),
                         						model, 
                         						controller);
-                        		cellView.setModuleAndCourse(module, cellCourse);
+                        		cellView.setModuleAndCourse(this, module, cellCourse);
                         		Node rootNode = cellView.getRootNode();
                         		setGraphic(rootNode);
+                        		registerCellView(cellView);
+    	                        this.widthProperty().addListener((obs,old,value) -> {
+    	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
+    	                            maxWidth = Math.max(maxWidth, (double)value);
+    	                            listView.setPrefWidth(maxWidth);
+    	                        });
 	                        }
-	                        this.widthProperty().addListener((obs,old,value) -> {
-	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
-	                            maxWidth = Math.max(maxWidth, (double)value);
-	                            listView.setPrefWidth(maxWidth);
-	                        });
                 		});
                     }
                 };
@@ -125,21 +136,53 @@ public class ModuleCellViewController extends EqualsView {
 
         });
 		
+		
+		final int currentTeacher = model.getUserLogin().getUser().getId(); 
         coursesList.setItems(model.getCoursesListProperty()
-        		.filtered(predicate -> predicate.getModuleId() == this.module.getId()));
-        
-        
+        		.filtered(course -> course.getModuleId() == this.module.getId()
+        						/*&& course.getTeacherId() == currentTeacher*/));
         
         if(!coursesList.getItems().isEmpty()) {
         	// TODO: remove magic number:
         	coursesList.setPrefHeight(coursesList.getItems().size() * 60 + 2);
             coursesList.focusedProperty().addListener((obs, old, isFocused) -> {
-            	if(isFocused == false) {
+            	if(!isFocused) {
                 	coursesList.getSelectionModel().clearSelection();
             	}
             });
         	showCoursesList(true);
         }
+
+		containingCell.selectedProperty().addListener((obs, old, selected) -> updateSelection());
+		courseCellViews.addListener(
+				(ListChangeListener.Change<? extends CourseCellViewController> change)  -> setInitialSelection());
+	}
+	
+	/* selects Course from coursesList by default when clicking on a ModuleCell, IF it is the only course. */
+	private void updateSelection() {
+		if(containingCell.isSelected() 
+		&& containingCell.getListView().isFocused()
+		&& courseCellViews.size() == 1) {
+				courseCellViews.get(0).selectCell();
+		}
+	}
+	
+	/* as courseCellViews get added to the list, check if the the currently selected ModuleCell has exactly 1 course
+	 * and select it by default, if so.*/
+	private void setInitialSelection() {
+		if(containingCell.isSelected()) {
+			if(courseCellViews.size() == 1) {
+				courseCellViews.get(0).selectCell();
+			} else {
+				containingCell.getListView().requestFocus();
+			}
+		}
+	}
+	
+	private void registerCellView(CourseCellViewController cellView) {
+		/* remove "old" CourseCellViewControllers associated with the same course */
+		courseCellViews.removeIf(cv -> cv.getCourse().equals(cellView.getCourse()));
+		courseCellViews.add(cellView);
 	}
 	
 	private void onSelectedCourseChanged(Course selectedCourse) {

@@ -7,6 +7,7 @@ public class Course {
 	private String shortName;
 	private float weight;
 	private Module module;
+	private int teacherId;
 	
 	
 	public Course(
@@ -14,7 +15,8 @@ public class Course {
 			String name,
 			String shortName,
 			float weight,
-			Module module)
+			Module module,
+			int teacherId)
 	{
 		this.id = id;
 		this.name = name;
@@ -51,8 +53,25 @@ public class Course {
 		return module;
 	}
 	
+	public int getTeacherId() {
+		return teacherId;
+	}
+	
 	@Override
 	public String toString() {
 		return this.getName();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) return true;
+		Course other = (Course) obj;
+		if(other == null) return false;
+		return other.hashCode() == this.hashCode();
+	}
+
+	@Override
+	public int hashCode() {
+		return this.name.hashCode() + this.id; // very bad hashCode, but it fits our purpose.
 	}
 }
