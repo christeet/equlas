@@ -43,6 +43,9 @@ public class CourseCellViewController extends EqualsView {
 	}
 	
 	private void setImageByUserRole(UserRole userRole) {
+		if(course.getTeacherId() == model.getUserLogin().getUser().getId()) {
+			userRole = UserRole.TEACHER;
+		}
 		String imageFilename = null;
 		switch(userRole) {
 		case ASSISTANT:

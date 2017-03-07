@@ -49,7 +49,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 		switch(userLogin.getLoginState()) {
 		case LOGGED_IN:
 			getModulesByUser();
-			getCoursesByUserAndModules();
+			getCoursesByModules();
 			break;
 		case LOGGED_OUT:
 			break;
@@ -78,19 +78,19 @@ public class EqualsModel implements IObserver<UserLogin> {
 		}
 	}
 	
-	private void getCoursesByUserAndModules() {
+	private void getCoursesByModules() {
 		CourseDAO courseDao = DAOFactory.getInstance().createCourseDAO();
 		Person user = userLogin.getUser();
 		try {
 			ArrayList<Course> courses = new ArrayList<>();
 			for(Module m : moduleList) {
-				courses.addAll(courseDao.getCoursesByModuleAndTeacher(m, user));
-				courses.addAll(courseDao.getCoursesByModuleAndStudent(m, user));
+				courses.addAll(courseDao.getCoursesByModule(m));
 			}
 			coursesList.setAll(courses.stream().distinct().collect(Collectors.toList()));
 			for(Course c : coursesList) {
-				System.out.format("Course %d of Module %d loaded: %s\r\n", 
+				System.out.format("Course %d with ProfessorId %d of Module %d loaded: %s\r\n", 
 						c.getId(), 
+						c.getTeacherId(), 
 						c.getModuleId(), 
 						c.getName());
 			}

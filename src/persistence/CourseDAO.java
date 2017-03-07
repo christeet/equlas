@@ -14,7 +14,6 @@ public class CourseDAO {
 
 	private final String courseFields = "c.id, c.name, c.shortName, c.weight, c.moduleId, c.professorId";
 	private PreparedStatement psGetCoursesByModule;
-	private PreparedStatement psGetCoursesByModuleAndTeacher;
 	private PreparedStatement psGetCoursesByModuleAndStudent;
 	
 	public CourseDAO(Connection connection) throws SQLException {
@@ -22,12 +21,6 @@ public class CourseDAO {
 				"SELECT " + courseFields + " FROM Course c "
 				+ "join Module m on c.moduleId = m.id "
 				+ "and m.shortName like ?;");
-		
-		psGetCoursesByModuleAndTeacher = connection.prepareStatement(
-				"SELECT " + courseFields + " FROM Course c "
-				+ "join Module m on c.moduleId = m.id "
-				+ "and m.shortName like ?"
-				+ "and c.professorId = ?;");
 		
 		psGetCoursesByModuleAndStudent = connection.prepareStatement(
 				"SELECT " + courseFields + " FROM Course c "
@@ -40,13 +33,6 @@ public class CourseDAO {
 	public ArrayList<Course> getCoursesByModule(Module module) throws SQLException {
 		psGetCoursesByModule.setString(1, module.getShortName());
 		ResultSet resultSet = psGetCoursesByModule.executeQuery();
-		return getCourseListFromResultSet(resultSet, module);
-	}
-	
-	public ArrayList<Course> getCoursesByModuleAndTeacher(Module module, Person teacher) throws SQLException {
-		psGetCoursesByModuleAndTeacher.setString(1, module.getShortName());
-		psGetCoursesByModuleAndTeacher.setInt(2, teacher.getId());
-		ResultSet resultSet = psGetCoursesByModuleAndTeacher.executeQuery();
 		return getCourseListFromResultSet(resultSet, module);
 	}
 	

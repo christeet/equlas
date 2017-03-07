@@ -136,11 +136,17 @@ public class ModuleCellViewController extends EqualsView {
 
         });
 		
-		
-		final int currentTeacher = model.getUserLogin().getUser().getId(); 
-        coursesList.setItems(model.getCoursesListProperty()
-        		.filtered(course -> course.getModuleId() == this.module.getId()
-        						/*&& course.getTeacherId() == currentTeacher*/));
+		if(module.getUserRole() == UserRole.TEACHER) {
+			System.out.format("I'm a TEACHER for Module %s\r\n", module.getShortName());
+			final int currentTeacher = model.getUserLogin().getUser().getId(); 
+	        coursesList.setItems(model.getCoursesListProperty()
+	        		.filtered(course -> course.getModuleId() == this.module.getId()
+	        						&& course.getTeacherId() == currentTeacher));
+		} else {
+			System.out.format("I'm a NOT a teacher for Module %s\r\n", module.getShortName());
+	        coursesList.setItems(model.getCoursesListProperty()
+	        		.filtered(course -> course.getModuleId() == this.module.getId()));
+		}
         
         if(!coursesList.getItems().isEmpty()) {
         	// TODO: remove magic number:

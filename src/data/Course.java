@@ -23,6 +23,7 @@ public class Course {
 		this.shortName = shortName;
 		this.weight = weight;
 		this.module = module;
+		this.teacherId = teacherId;
 	}
 	
 	public void print() {
