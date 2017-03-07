@@ -26,7 +26,7 @@ public class PersonDAO {
         + "left join Registration r on r.studentId = p.id "
         + "left join Module m on r.moduleId = m.id "
         + "left join Course c on m.id = c.moduleId "
-        + "left join rating ra on ra.courseId = c.id and ra.studentId = p.id "
+        + "left join Rating ra on ra.courseId = c.id and ra.studentId = p.id "
         + "where m.assistantId != p.id and m.headId != p.id and m.shortName like ? "
         + "group by p.id;");
 		
