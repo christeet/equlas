@@ -27,6 +27,7 @@ import resources.I18n;
 import util.Prefs;
 import view.EqualsView;
 import view.ViewLoader;
+import xml.GenerateXML;
 
 public class Main extends Application {
 
@@ -82,6 +83,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		//consoleDebug();
+//		GenerateXML gen = new GenerateXML("SD-FS16");
+//		gen.makeXMLDocument();
 	}
 
 	private void savePreferencesDelayed() {

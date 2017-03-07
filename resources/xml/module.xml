@@ -1,330 +1,605 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<module>
-  <acronym>SD</acronym>
-  <assistant>
-    <email>andrea.moser@bfh.ch</email>
-    <firstName>Andrea</firstName>
-    <lastName>Moser</lastName>
-    <sex>f</sex>
-    <shortName>msa1</shortName>
-  </assistant>
-  <course>
-    <name>Java</name>
-    <professor>
-      <email>fhs1@bfh.ch</email>
-      <firstName>Stephan</firstName>
-      <lastName>Fischli</lastName>
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+   <student>
+      <firstName>Alex</firstName>
+      <lastName>Aargauer</lastName>
+      <dateOfBirth>1966-09-18</dateOfBirth>
+      <placeOfOrigin>Frankfurt am Main</placeOfOrigin>
       <sex>m</sex>
-      <shortName>fhs1</shortName>
-    </professor>
-    <rating>
-      <student>
-        <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-        <email>rc@students.bfh.ch</email>
-        <firstName>Roberto</firstName>
-        <lastName>Campione</lastName>
-        <placeOfOrigin>Basel BS</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>campr1</shortName>
-      </student>
-      <success>71</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-        <email>cf@students.bfh.ch</email>
-        <firstName>Christian</firstName>
-        <lastName>Furrer</lastName>
-        <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>furrc1</shortName>
-      </student>
-      <success>80</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-        <email>sb@students.bfh.ch</email>
-        <firstName>Judit</firstName>
-        <lastName>Balsiger</lastName>
-        <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-        <sex>f</sex>
-        <shortName>balsj1</shortName>
-      </student>
-      <success>82</success>
-    </rating>
-    <shortName>Java</shortName>
-    <weight>1.8</weight>
-  </course>
-  <course>
-    <name>Projekt</name>
-    <professor>
-      <email>aeb1@bfh.ch</email>
-      <firstName>Beatrice</firstName>
-      <lastName>Amrhein</lastName>
-      <sex>f</sex>
-      <shortName>aeb1</shortName>
-    </professor>
-    <rating>
-      <student>
-        <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-        <email>rc@students.bfh.ch</email>
-        <firstName>Roberto</firstName>
-        <lastName>Campione</lastName>
-        <placeOfOrigin>Basel BS</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>campr1</shortName>
-      </student>
-      <success>75</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-        <email>cf@students.bfh.ch</email>
-        <firstName>Christian</firstName>
-        <lastName>Furrer</lastName>
-        <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>furrc1</shortName>
-      </student>
-      <success>74</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-        <email>sb@students.bfh.ch</email>
-        <firstName>Judit</firstName>
-        <lastName>Balsiger</lastName>
-        <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-        <sex>f</sex>
-        <shortName>balsj1</shortName>
-      </student>
-      <success>85</success>
-    </rating>
-    <shortName>Proj</shortName>
-    <weight>1.6</weight>
-  </course>
-  <course>
-    <name>Algorithmen und Datenstrukturen</name>
-    <professor>
-      <email>aeb1@bfh.ch</email>
-      <firstName>Beatrice</firstName>
-      <lastName>Amrhein</lastName>
-      <sex>f</sex>
-      <shortName>aeb1</shortName>
-    </professor>
-    <rating>
-      <student>
-        <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-        <email>rc@students.bfh.ch</email>
-        <firstName>Roberto</firstName>
-        <lastName>Campione</lastName>
-        <placeOfOrigin>Basel BS</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>campr1</shortName>
-      </student>
-      <success>75</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-        <email>cf@students.bfh.ch</email>
-        <firstName>Christian</firstName>
-        <lastName>Furrer</lastName>
-        <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>furrc1</shortName>
-      </student>
-      <success>74</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-        <email>sb@students.bfh.ch</email>
-        <firstName>Judit</firstName>
-        <lastName>Balsiger</lastName>
-        <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-        <sex>f</sex>
-        <shortName>balsj1</shortName>
-      </student>
-      <success>85</success>
-    </rating>
-    <shortName>AlgoData</shortName>
-    <weight>1.8</weight>
-  </course>
-  <course>
-    <name>Graphische Benutzeroberflächen</name>
-    <professor>
-      <email>lop1@bfh.ch</email>
-      <firstName>Philipp</firstName>
-      <lastName>Locher</lastName>
+      <shortName>aua1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>89</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>87</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>76</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>94</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>79</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Stefan</firstName>
+      <lastName>Abacus</lastName>
+      <dateOfBirth>1966-02-18</dateOfBirth>
+      <placeOfOrigin>Nyon</placeOfOrigin>
       <sex>m</sex>
-      <shortName>lop1</shortName>
-    </professor>
-    <rating>
-      <student>
-        <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-        <email>rc@students.bfh.ch</email>
-        <firstName>Roberto</firstName>
-        <lastName>Campione</lastName>
-        <placeOfOrigin>Basel BS</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>campr1</shortName>
-      </student>
-      <success>75</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-        <email>cf@students.bfh.ch</email>
-        <firstName>Christian</firstName>
-        <lastName>Furrer</lastName>
-        <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>furrc1</shortName>
-      </student>
-      <success>74</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-        <email>sb@students.bfh.ch</email>
-        <firstName>Judit</firstName>
-        <lastName>Balsiger</lastName>
-        <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-        <sex>f</sex>
-        <shortName>balsj1</shortName>
-      </student>
-      <success>85</success>
-    </rating>
-    <shortName>GUI</shortName>
-    <weight>1.6</weight>
-  </course>
-  <course>
-    <endDate>2016-01-13T00:00:00+01:00</endDate>
-    <name>Relationale Datenbanken</name>
-    <professor>
-      <email>mtg1@bfh.ch</email>
-      <firstName>Maitre</firstName>
-      <lastName>Gilles</lastName>
+      <shortName>acs1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>58</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>56</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>87</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Renato</firstName>
+      <lastName>Alliance</lastName>
+      <dateOfBirth>1980-09-24</dateOfBirth>
+      <placeOfOrigin>Zürich</placeOfOrigin>
       <sex>m</sex>
-      <shortName>mtg1</shortName>
-    </professor>
-    <rating>
-      <student>
-        <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-        <email>rc@students.bfh.ch</email>
-        <firstName>Roberto</firstName>
-        <lastName>Campione</lastName>
-        <placeOfOrigin>Basel BS</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>campr1</shortName>
-      </student>
-      <success>82</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-        <email>cf@students.bfh.ch</email>
-        <firstName>Christian</firstName>
-        <lastName>Furrer</lastName>
-        <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-        <sex>m</sex>
-        <shortName>furrc1</shortName>
-      </student>
-      <success>65</success>
-    </rating>
-    <rating>
-      <student>
-        <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-        <email>sb@students.bfh.ch</email>
-        <firstName>Judit</firstName>
-        <lastName>Balsiger</lastName>
-        <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-        <sex>f</sex>
-        <shortName>balsj1</shortName>
-      </student>
-      <success>75</success>
-    </rating>
-    <shortName>RDB</shortName>
-    <weight>1.6</weight>
-  </course>
-  <grade>
-    <ECTS>B</ECTS>
-    <student>
-      <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-      <email>cf@students.bfh.ch</email>
+      <shortName>anr1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>58</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>89</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>58</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
       <firstName>Christian</firstName>
-      <lastName>Furrer</lastName>
-      <placeOfOrigin>Grindelwald BE</placeOfOrigin>
+      <lastName>Bekler</lastName>
+      <dateOfBirth>1967-07-15</dateOfBirth>
+      <placeOfOrigin>Lenzburg</placeOfOrigin>
       <sex>m</sex>
-      <shortName>furrc1</shortName>
-    </student>
-    <totalSuccess>82</totalSuccess>
-  </grade>
-  <grade>
-    <ECTS>A</ECTS>
-    <student>
-      <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-      <email>sb@students.bfh.ch</email>
-      <firstName>Judit</firstName>
-      <lastName>Balsiger</lastName>
-      <placeOfOrigin>Zollikofen BE</placeOfOrigin>
+      <shortName>blc1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>86</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>74</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>61</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Matthias</firstName>
+      <lastName>Caceis</lastName>
+      <dateOfBirth>1959-04-16</dateOfBirth>
+      <placeOfOrigin>Zürich</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>cem1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>47</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>76</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>58</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Daniel</firstName>
+      <lastName>Dreyfus</lastName>
+      <dateOfBirth>1976-10-28</dateOfBirth>
+      <placeOfOrigin>Sarnen</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>dfd1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>53</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>92</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>81</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Thomas</firstName>
+      <lastName>Dritten</lastName>
+      <dateOfBirth>1966-09-06</dateOfBirth>
+      <placeOfOrigin>Lausanne</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>dtt1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>58</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>97</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>86</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Stephanie</firstName>
+      <lastName>Fortis</lastName>
+      <dateOfBirth>1959-07-25</dateOfBirth>
+      <placeOfOrigin>Oberwil</placeOfOrigin>
       <sex>f</sex>
-      <shortName>balsj1</shortName>
-    </student>
-    <totalSuccess>91</totalSuccess>
-  </grade>
-    <grade>
-    <ECTS>B</ECTS>
-  <student>
-    <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-    <email>rc@students.bfh.ch</email>
-    <firstName>Roberto</firstName>
-    <lastName>Campione</lastName>
-    <placeOfOrigin>Basel BS</placeOfOrigin>
-    <sex>m</sex>
-    <shortName>campr1</shortName>
-  </student>
-    <totalSuccess>84</totalSuccess>
-  </grade>
-  <head>
-    <email>aeb1@bfh.ch</email>
-    <firstName>Beatrice</firstName>
-    <lastName>Amrhein</lastName>
-    <sex>f</sex>
-    <shortName>aeb1</shortName>
-  </head>
-  <name>Software Development</name>
-  <semester>HS16</semester>
-  <shortName>SD-HS16</shortName>
-  <startDate>2015-10-19T00:00:00+02:00</startDate>
-  <endDate>2016-03-02T00:00:00+01:00</endDate>
-  <student>
-    <dateOfBirth>1978-05-24T00:00:00+01:00</dateOfBirth>
-    <email>rc@students.bfh.ch</email>
-    <firstName>Roberto</firstName>
-    <lastName>Campione</lastName>
-    <placeOfOrigin>Basel BS</placeOfOrigin>
-    <sex>m</sex>
-    <shortName>campr1</shortName>
-  </student>
-  <student>
-    <dateOfBirth>1982-05-06T00:00:00+02:00</dateOfBirth>
-    <email>sb@students.bfh.ch</email>
-    <firstName>Judit</firstName>
-    <lastName>Balsiger</lastName>
-    <placeOfOrigin>Zollikofen BE</placeOfOrigin>
-    <sex>f</sex>
-    <shortName>balsj1</shortName>
-  </student>
-  <student>
-    <dateOfBirth>1984-05-06T00:00:00+02:00</dateOfBirth>
-    <email>cf@students.bfh.ch</email>
-    <firstName>Christian</firstName>
-    <lastName>Furrer</lastName>
-    <placeOfOrigin>Grindelwald BE</placeOfOrigin>
-    <sex>m</sex>
-    <shortName>furrc1</shortName>
-  </student>
-</module>
+      <shortName>fts1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>51</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>48</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>95</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Marcel</firstName>
+      <lastName>Hard</lastName>
+      <dateOfBirth>1968-08-18</dateOfBirth>
+      <placeOfOrigin>Zürich</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>ham1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>47</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>94</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>81</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Simon</firstName>
+      <lastName>Hasbec</lastName>
+      <dateOfBirth>1967-03-25</dateOfBirth>
+      <placeOfOrigin>Genf</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>hbs1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>58</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>96</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>84</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Christiane</firstName>
+      <lastName>Kaslin</lastName>
+      <dateOfBirth>1964-06-28</dateOfBirth>
+      <placeOfOrigin>Luzern</placeOfOrigin>
+      <sex>f</sex>
+      <shortName>klc1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>73</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>61</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>59</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Daniel</firstName>
+      <lastName>Lombard</lastName>
+      <dateOfBirth>1968-01-19</dateOfBirth>
+      <placeOfOrigin>Baar</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>lad1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>57</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>95</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>83</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Dominik</firstName>
+      <lastName>Oppenheim</lastName>
+      <dateOfBirth>1965-04-24</dateOfBirth>
+      <placeOfOrigin>Schaffhausen</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>oed1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>54</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>77</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>59</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+   <student>
+      <firstName>Philippe</firstName>
+      <lastName>Sarasin</lastName>
+      <dateOfBirth>1961-06-24</dateOfBirth>
+      <placeOfOrigin>Altdorf</placeOfOrigin>
+      <sex>m</sex>
+      <shortName>ssp1</shortName>
+      <courses>
+         <name>Java</name>
+         <weight>1.8</weight>
+         <rating>93</rating>
+      </courses>
+      <courses>
+         <name>Datenstrukturen und Algorithmen</name>
+         <weight>1.8</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>Relationale Datenbanken und SQL</name>
+         <weight>1.6</weight>
+         <rating>83</rating>
+      </courses>
+      <courses>
+         <name>XML Technologien</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <courses>
+         <name>GUI/Ergonomie</name>
+         <weight>1.6</weight>
+         <rating>74</rating>
+      </courses>
+      <courses>
+         <name>Projekt</name>
+         <weight>1.6</weight>
+         <rating>91</rating>
+      </courses>
+      <module>
+         <name>Software Development</name>
+         <startDate>2016-03-23</startDate>
+         <endDate>2016-09-23</endDate>
+      </module>
+   </student>
+</students>

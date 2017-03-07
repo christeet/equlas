@@ -51,7 +51,6 @@ public class RatingDAO {
 	
 	public void setRating(int studentId, int courseId, int successRate) throws SQLException {
 		Rating existingRating = getRating(studentId, courseId);
-		
 		if(existingRating == null) { // INSERT
 			insertRating(studentId, courseId, successRate);
 		}
