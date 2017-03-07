@@ -21,29 +21,29 @@ import org.w3c.dom.Document;
 public class PrintManagerCertificate {
 
 	// private static final String OUTPUT_PATH = "resources/output/";
-	private static final String PATH = "/Users/tgdetch1/equalsSd/resources/";
+	private static final String PATH = "resources";
 
 	public static void main(String[] args) {
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
-			params.put("moduleDocument", builder.parse(PATH + "xml/module.xml"));
+			params.put("moduleDocument", builder.parse(PATH + "/xml/module.xml"));
 
 			// transform template to XHTML document
-			Source stylesheet = new StreamSource(PATH + "xml/resolveModuleTemplate.xsl");
-			Source template = new StreamSource(PATH + "xml/certificateTemplate.xml");
+			Source stylesheet = new StreamSource(PATH + "/xml/resolveModuleTemplate.xsl");
+			Source template = new StreamSource(PATH + "/xml/certificateTemplate.xml");
 			Document xhtmlDocument = PrintManager.transform(stylesheet, template, params);
-			writeDocument(xhtmlDocument, PATH + "output/autoCertificate.html");
+			writeDocument(xhtmlDocument, PATH + "/output/autoCertificate.html");
 
 			// transform XHTML document to FO document
-			Source htmlDocument = new StreamSource(PATH + "output/autoCertificate.html");
-			Source foStylesheet = new StreamSource(PATH + "xml/makeFODocuments.xsl");
+			Source htmlDocument = new StreamSource(PATH + "/output/autoCertificate.html");
+			Source foStylesheet = new StreamSource(PATH + "/xml/makeFODocuments.xsl");
 			Document foDocument = PrintManager.transform(foStylesheet, htmlDocument);
-			writeDocument(foDocument, PATH + "output/autoCertificate.fo");
+			writeDocument(foDocument, PATH + "/output/autoCertificate.fo");
 
 			// render FO document to PDF document
-			Source html = new StreamSource(PATH + "output/autoCertificate.fo");
-			File pdfFile = new File(PATH + "output/fertigCertificate.pdf");
+			Source html = new StreamSource(PATH + "/output/autoCertificate.fo");
+			File pdfFile = new File(PATH + "/output/fertigCertificate.pdf");
 			PrintManager.renderToPDF(html, pdfFile);
 		} catch (Exception ex) {
 			Logger.getLogger(PrintManagerCertificate.class.getName()).log(Level.SEVERE, null, ex);
