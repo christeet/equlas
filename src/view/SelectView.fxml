@@ -21,7 +21,7 @@
       <HBox VBox.vgrow="ALWAYS">
          <children>
             <ListView fx:id="entityList" />
-            <AnchorPane fx:id="container" style="-fx-background-color: red;" HBox.hgrow="ALWAYS" />
+            <AnchorPane fx:id="container" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>

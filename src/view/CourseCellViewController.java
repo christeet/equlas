@@ -5,6 +5,7 @@ import data.Module;
 import data.UserRole;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ public class CourseCellViewController extends EqualsView {
 	@FXML private Label courseTitleLabel;
 	@FXML private Label semesterLabel;
 
+	private ListCell<Course> containingCell;
 	private Module module;
 	private Course course;
 	
@@ -27,12 +29,17 @@ public class CourseCellViewController extends EqualsView {
 	public void init() {
 	}
 	
-	public void setModuleAndCourse(Module module, Course course) {
+	public void setModuleAndCourse(ListCell<Course> cell, Module module, Course course) {
+		this.containingCell = cell;
 		this.module = module;
 		this.course = course;
 		this.courseTitleLabel.setText(course.getName());
 		this.semesterLabel.setText(course.getShortName());
 		setImageByUserRole(module.getUserRole());
+	}
+	
+	public Course getCourse() {
+		return course;
 	}
 	
 	private void setImageByUserRole(UserRole userRole) {
@@ -57,6 +64,13 @@ public class CourseCellViewController extends EqualsView {
 		if(imageFilename != null) {
 			userRoleIcon.setImage(new Image("file:src/resources/" + imageFilename));
 		}
+	}
+	
+	public void selectCell() {
+		System.out.format("Selecting Cell %s of Module %s\r\n",course.getShortName(), module.getShortName());
+		containingCell.getListView().requestFocus();
+		containingCell.getListView().getSelectionModel().clearSelection();
+		containingCell.getListView().getSelectionModel().select(this.course);
 	}
 	
 	@Override

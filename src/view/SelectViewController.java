@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import data.Course;
 import data.Module;
 import data.Person;
@@ -21,6 +23,7 @@ public class SelectViewController extends EqualsView {
 	@FXML private AnchorPane container;
 	@FXML private ListView<Module> entityList;
 
+	private ArrayList<ModuleCellViewController> moduleCellViews = new ArrayList<>();
 	private EqualsView currentView;
 	
 	@Override
@@ -66,10 +69,11 @@ public class SelectViewController extends EqualsView {
                         						getClass().getResource("ModuleCellView.fxml"),
                         						model, 
                         						controller);
-                        		cellView.setModule(cellModule, course -> {
-                        			onSelectedCourseChanged(cellModule, course);
+                        		cellView.setModule(this, cellModule, selectedCourse -> {
+                        			onSelectedCourseChanged(cellModule, selectedCourse);
                         		});
                         		setGraphic(cellView.getRootNode());
+                        		moduleCellViews.add(cellView);
 	                        }
 	                        this.widthProperty().addListener((obs,old,value) -> {
 	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
