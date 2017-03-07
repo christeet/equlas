@@ -22,7 +22,7 @@
             </div>
             <iqs:emptyLines1/>
             
-            <h1><iqs:data id="studentName"/></h1>
+            <h1 class="center"><iqs:data id="studentName"/></h1>
             <iqs:emptyLines1/>
             
             <div class="normal-center">von <iqs:data id="studentPlaceOfOrigin"/>, geboren am <iqs:data id="studentDateOfBirth"/></div>
@@ -31,8 +31,8 @@
 
             <div class="normal-center">das</div>
             <iqs:emptyLines1/>
-            <h1>Certificate of Advanced Studies BFH in</h1>
-            <h1><iqs:data id="moduleName"/></h1>
+            <h1 class="center">Certificate of Advanced Studies BFH in</h1>
+            <h1 class="center"><iqs:data id="moduleName"/></h1>
             
             <iqs:emptyLines3/>
                    

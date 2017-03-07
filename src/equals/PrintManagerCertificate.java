@@ -30,14 +30,14 @@ public class PrintManagerCertificate {
 			params.put("moduleDocument", builder.parse(PATH + "xml/module.xml"));
 
 			// transform template to XHTML document
-			Source stylesheet = new StreamSource(PATH + "xml/resolveCertificate.xsl");
+			Source stylesheet = new StreamSource(PATH + "xml/resolveModuleTemplate.xsl");
 			Source template = new StreamSource(PATH + "xml/certificateTemplate.xml");
 			Document xhtmlDocument = PrintManager.transform(stylesheet, template, params);
 			writeDocument(xhtmlDocument, PATH + "output/autoCertificate.html");
 
 			// transform XHTML document to FO document
 			Source htmlDocument = new StreamSource(PATH + "output/autoCertificate.html");
-			Source foStylesheet = new StreamSource(PATH + "xml/makeFOCertificate.xsl");
+			Source foStylesheet = new StreamSource(PATH + "xml/makeFODocuments.xsl");
 			Document foDocument = PrintManager.transform(foStylesheet, htmlDocument);
 			writeDocument(foDocument, PATH + "output/autoCertificate.fo");
 
