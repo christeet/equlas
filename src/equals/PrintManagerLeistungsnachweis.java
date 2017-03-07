@@ -20,7 +20,7 @@ import org.w3c.dom.Document;
 
 public class PrintManagerLeistungsnachweis {
 
-	private static final String PATH = "/Users/tgdetch1/equalsSd/resources";
+	private static final String PATH = "resources";
 
 	public static void main(String[] args) {
 		try {
