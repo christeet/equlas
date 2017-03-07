@@ -4,7 +4,6 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 import data.Course;
-import data.Module;
 import data.Person;
 import data.Rating;
 import javafx.application.Platform;
@@ -25,16 +24,13 @@ import resources.I18n;
 
 public class TeacherViewController extends EqualsView {
 	
-	private ObservableList<Data> data;
-	
 	@FXML private Label courseLabel;
 	@FXML private Button saveButton;
 	@FXML private TableView<Data> table;
 	@FXML private TableColumn<Data, String> studentColumn;
 	@FXML private TableColumn<Data, Number> successColumn;
-	
-	private int teacherId;
-	private Module contextModule;
+
+	private ObservableList<Data> data;
 	private Course currentCourse;
 	
 	@FXML
@@ -55,8 +51,8 @@ public class TeacherViewController extends EqualsView {
 	        private final NumberFormat nf = NumberFormat.getNumberInstance();
 	        
 	        {
-	             nf.setMaximumFractionDigits(1);
-	             nf.setMinimumFractionDigits(1);
+	             nf.setMaximumFractionDigits(0);
+	             nf.setMinimumFractionDigits(0);
 	        }
 
 	        @Override public String toString(final Number value) {
@@ -95,8 +91,6 @@ public class TeacherViewController extends EqualsView {
 	
 	@Override
 	public void init() {
-		teacherId = model.getUserLogin().getUser().getId();
-		contextModule = model.getContextModule();
 	}
 	
 	public void setCourse(Course currentCourse) {
@@ -120,21 +114,6 @@ public class TeacherViewController extends EqualsView {
 			Data d = new Data(student, success);
 			this.data.add(d);
 		}
-		
-		/*System.out.format("ContextModule is %s (Nr %d)\r\n", contextModule.getShortName(), contextModule.getId());
-		for(Course course : model.getCoursesListProperty().filtered(p -> p.getModuleId() == contextModule.getId())) {
-			Integer success = null;
-			try {
-				Rating rating = model.getRatingListProperty()
-						.filtered(r -> r.getCourseId() == course.getId() 
-									&& r.getStudentId() == studentId)
-						.get(0);
-				success = rating.getSuccessRate();
-			} catch (IndexOutOfBoundsException | NullPointerException e){}
-			
-			Data d = new Data(course, success);
-			this.data.add(d);
-		}*/
 	}
 	
 	@Override
@@ -164,10 +143,6 @@ public class TeacherViewController extends EqualsView {
 	    
 	    private StringProperty studentNameProperty() {
 	    	return this.studentName;
-	    }
-
-	    private Integer getSuccess() {
-	    	return this.success.get();
 	    }
 	    
 	    private IntegerProperty successProperty() { 

@@ -147,10 +147,6 @@ public class StudentViewController extends EqualsView {
     private StringProperty weightProperty() {
     	return this.weight;
     }
-
-    private Integer getSuccess() {
-    	return this.success.get();
-    }
     
     private IntegerProperty successProperty() { 
     	return this.success;

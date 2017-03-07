@@ -37,6 +37,10 @@ public class Rating {
 		return successRate;
 	}
 	
+	public int setSuccessRate() {
+		return successRate;
+	}
+	
 	public int getVersion() {
 		return version;
 	}

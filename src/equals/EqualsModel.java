@@ -178,7 +178,10 @@ public class EqualsModel implements IObserver<UserLogin> {
 	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
 		try {
 			System.out.println("setting new SuccessRate");
-			ratingDao.setRating(studentId, courseId, newSuccessRate);
+			Rating newRating = ratingDao.setRating(studentId, courseId, newSuccessRate);
+			ratingList.removeIf(r -> r.getStudentId() == studentId
+								  && r.getCourseId() == courseId);
+			ratingList.add(newRating);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -188,6 +191,8 @@ public class EqualsModel implements IObserver<UserLogin> {
 		try {
 			System.out.println("remove rating");
 			ratingDao.removeRating(studentId, courseId);
+			ratingList.removeIf(r -> r.getStudentId() == studentId
+								  && r.getCourseId() == courseId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

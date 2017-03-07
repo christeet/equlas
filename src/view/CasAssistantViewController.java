@@ -43,15 +43,6 @@ public class CasAssistantViewController extends EqualsView {
 	
 	@Override
 	public void init() {
-		
-//		for(String name : this.model.getStudentName()) {
-//			if(name.equals(this.userName())) {
-//				for(String course : this.model.getUserCourses())
-//				Data d = new Data(course.getName(), this.model.getCourseWeight(course), this.model.getStudentCourseSuccess());
-//				this.data.add(d);
-//				table.setItems(this.data);
-//			}
-//		}
 	}
 	
 	@Override

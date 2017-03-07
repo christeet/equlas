@@ -201,7 +201,7 @@ public class ModuleCellViewController extends EqualsView {
 	private void showCoursesList(boolean show) {
 		coursesList.setVisible(show);
 		coursesList.setDisable(!show);
-		coursesList.setMaxHeight((show) ? (-1) : (0) );
+		coursesList.setMaxHeight((show) ? (-1) : (0));
 	}
 	
 	@Override
