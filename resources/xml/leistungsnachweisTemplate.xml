@@ -48,7 +48,7 @@
                 
             </table>
             
-            <iqs:emptyLines6/>
+            <iqs:emptyLines3/>
 
             <div>Bern, <iqs:currentDate/></div>
             <div><img src="schmidhauser.jpg"/></div>

@@ -34,7 +34,7 @@
             <h1>Certificate of Advanced Studies BFH in</h1>
             <h1><iqs:data id="moduleName"/></h1>
             
-            <iqs:emptyLines6/>
+            <iqs:emptyLines3/>
                    
             <div class="normal-center">
                 Das CAS dauerte vom <iqs:data id="moduleStartDate"/> bis zum  <iqs:data id="moduleEndDate"/>
