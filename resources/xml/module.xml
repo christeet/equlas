@@ -602,47 +602,4 @@
          <endDate>2016-09-23</endDate>
       </module>
    </student>
-   <student>
-      <firstName>Christian</firstName>
-      <lastName>Etter</lastName>
-      <dateOfBirth>1981-05-29</dateOfBirth>
-      <placeOfOrigin>Fräschels</placeOfOrigin>
-      <sex>m</sex>
-      <shortName>ettec1</shortName>
-      <courses>
-         <name>Java</name>
-         <weight>1.8</weight>
-         <rating>51</rating>
-      </courses>
-      <courses>
-         <name>Datenstrukturen und Algorithmen</name>
-         <weight>1.8</weight>
-         <rating>79</rating>
-      </courses>
-      <courses>
-         <name>Relationale Datenbanken und SQL</name>
-         <weight>1.6</weight>
-         <rating>74</rating>
-      </courses>
-      <courses>
-         <name>XML Technologien</name>
-         <weight>1.6</weight>
-         <rating>65</rating>
-      </courses>
-      <courses>
-         <name>GUI/Ergonomie</name>
-         <weight>1.6</weight>
-         <rating>78</rating>
-      </courses>
-      <courses>
-         <name>Projekt</name>
-         <weight>1.6</weight>
-         <rating>80</rating>
-      </courses>
-      <module>
-         <name>Software Development</name>
-         <startDate>2016-03-23</startDate>
-         <endDate>2016-09-23</endDate>
-      </module>
-   </student>
 </students>
