@@ -48,7 +48,7 @@ public class StudentViewController extends EqualsView {
 	
 	@FXML
 	protected void initialize() {
-		table.setEditable(true);
+		// table.setEditable(true); // ha ha, schön wär's...
 		courseColumn.setCellValueFactory(d -> d.getValue().courseNameProperty());
 		weightColumn.setCellValueFactory(d -> d.getValue().weightProperty());
 		successColumn.setCellValueFactory(d -> d.getValue().successProperty());

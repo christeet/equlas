@@ -3,8 +3,8 @@ package view;
 import java.util.Locale;
 
 import equals.UserLogin;
-import javafx.beans.property.Property;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +17,7 @@ public class MainContainerViewController extends EqualsView implements IObserver
 	private EqualsView currentView;
 	
 	@FXML private BorderPane container;
+	@FXML private Button logoutButton;
 	@FXML private ToggleButton toggleDe;
 	@FXML private ToggleButton toggleEn;
 	@FXML private ToggleGroup toggleGroupLanguage;
@@ -35,11 +36,17 @@ public class MainContainerViewController extends EqualsView implements IObserver
 				Prefs.get().setLocale(newLocaleTag);
 				Prefs.save();
 				I18n.setLocale(Locale.forLanguageTag(newLocaleTag));
+				logoutButton.setText(I18n.getString("login.logout"));
 			}
 			else {
 				old.setSelected(true);
 			}
 		});
+		logoutButton.setVisible(false);
+	}
+	
+	@FXML protected void onLogout() {
+		controller.logout();
 	}
 	
 	@Override
@@ -56,9 +63,11 @@ public class MainContainerViewController extends EqualsView implements IObserver
 	public void update(UserLogin userLogin) {
 		switch(userLogin.getLoginState()) {
 		case LOGGED_IN:
+			logoutButton.setVisible(true);
 			displaySelectView();
 			break;
 		case LOGGED_OUT:
+			logoutButton.setVisible(false);
 			displayLoginView();
 			break;
 		case LOGIN_FAILED:

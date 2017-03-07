@@ -44,6 +44,12 @@ public class UserLogin extends IObservable<UserLogin> {
 		}
 	}
 	
+	public void logout() {
+		loginState = LoginState.LOGGED_OUT;
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
 	public String getUsername() {
 		return  username;
 	}

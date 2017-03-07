@@ -6,7 +6,7 @@ public class Course {
 	private String name;
 	private String shortName;
 	private float weight;
-	private int moduleId;
+	private Module module;
 	
 	
 	public Course(
@@ -14,13 +14,13 @@ public class Course {
 			String name,
 			String shortName,
 			float weight,
-			int moduleId)
+			Module module)
 	{
 		this.id = id;
 		this.name = name;
 		this.shortName = shortName;
 		this.weight = weight;
-		this.moduleId = moduleId;
+		this.module = module;
 	}
 	
 	public void print() {
@@ -44,7 +44,11 @@ public class Course {
 	}
 	
 	public int getModuleId() {
-		return moduleId;
+		return module.getId();
+	}
+	
+	public Module getModule() {
+		return module;
 	}
 	
 	@Override

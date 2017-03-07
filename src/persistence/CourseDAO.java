@@ -42,38 +42,38 @@ public class CourseDAO {
 	public ArrayList<Course> getCoursesByModule(Module module) throws SQLException {
 		psGetCoursesByModule.setString(1, module.getShortName());
 		ResultSet resultSet = psGetCoursesByModule.executeQuery();
-		return getCourseListFromResultSet(resultSet);
+		return getCourseListFromResultSet(resultSet, module);
 	}
 	
 	public ArrayList<Course> getCoursesByModuleAndTeacher(Module module, Person teacher) throws SQLException {
 		psGetCoursesByModuleAndTeacher.setString(1, module.getShortName());
 		psGetCoursesByModuleAndTeacher.setInt(2, teacher.getId());
 		ResultSet resultSet = psGetCoursesByModuleAndTeacher.executeQuery();
-		return getCourseListFromResultSet(resultSet);
+		return getCourseListFromResultSet(resultSet, module);
 	}
 	
 	public ArrayList<Course> getCoursesByModuleAndStudent(Module module, Person student) throws SQLException {
 		psGetCoursesByModuleAndStudent.setInt(1, module.getId());
 		psGetCoursesByModuleAndStudent.setInt(2, student.getId());
 		ResultSet resultSet = psGetCoursesByModuleAndStudent.executeQuery();
-		return getCourseListFromResultSet(resultSet);
+		return getCourseListFromResultSet(resultSet, module);
 	}
 	
-	private ArrayList<Course> getCourseListFromResultSet(ResultSet resultSet) throws SQLException {
+	private ArrayList<Course> getCourseListFromResultSet(ResultSet resultSet, Module module) throws SQLException {
 		ArrayList<Course> resultList = new ArrayList<Course>();
 		while (resultSet != null && resultSet.next()) {
-			resultList.add(getCourseFromResultSet(resultSet));
+			resultList.add(getCourseFromResultSet(resultSet, module));
 		}
 		return resultList;
 	}
 	
-	private Course getCourseFromResultSet(ResultSet resultSet) throws SQLException {
+	private Course getCourseFromResultSet(ResultSet resultSet, Module module) throws SQLException {
 		return new Course(
 				resultSet.getInt("id"),
 				resultSet.getString("name"), 
 				resultSet.getString("shortName"),
 				resultSet.getFloat("weight"),
-				resultSet.getInt("moduleId"));
+				module);
 	}
 	
 }
