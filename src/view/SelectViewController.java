@@ -97,7 +97,7 @@ public class SelectViewController extends EqualsView {
 	    	System.out.format("***** selected Module: %s\r\n",
 	    			entityList.getSelectionModel().getSelectedItem().getShortName());
 			moduleCellViews.stream().filter(m->m.getModule() == selectedModule).forEach(m -> m.deselectCourses());
-	    	setContent(selectedModule);
+	    	setModuleRelatedContent(selectedModule);
 		} else {
 	    	System.out.format("**** selected a Course of Module: %s\r\n",
 	    			entityList.getSelectionModel().getSelectedItem().getShortName());
@@ -109,6 +109,31 @@ public class SelectViewController extends EqualsView {
 		moduleCellViews.stream().filter(m->m.getModule() != parentModule).forEach(m -> m.deselectCourses());
 		entityList.getSelectionModel().select(parentModule);
 		controller.selectedCourseChanged(selectedCourse);
+		setCourseRelatedContent(parentModule, selectedCourse);
+	}
+	
+	private void setModuleRelatedContent(Module selectedModule) {
+		System.out.format("UserRole for Module = %s\r\n", selectedModule.getUserRole().name());
+		switch(selectedModule.getUserRole()) {
+		case ASSISTANT:
+			setContentView("CasAssistantView.fxml");
+			break;
+		case HEAD:
+			setContentView("CasResponsibleView.fxml");
+			break;
+		case STUDENT:
+			setContentView("StudentView.fxml");
+			break;
+		case TEACHER:
+			setContentView("CasResponsibleView.fxml");
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void setCourseRelatedContent(Module parentModule, Course selectedCourse) {
+		System.out.format("UserRole for Module containing Course = %s\r\n", parentModule.getUserRole().name());
 		switch(parentModule.getUserRole()) {
 		case ASSISTANT:
 			setContentView("CasAssistantView.fxml");
@@ -123,26 +148,6 @@ public class SelectViewController extends EqualsView {
 			break;
 		default:
 			System.err.println("wrong state!");
-			break;
-		}
-	}
-	
-	private void setContent(Module selectedModule) {
-		System.out.format("UserRole = %s\r\n", selectedModule.getUserRole().name());
-		switch(selectedModule.getUserRole()) {
-		case ASSISTANT:
-			setContentView("CasAssistantView.fxml");
-			break;
-		case HEAD:
-			setContentView("CasResponsibleView.fxml");
-			break;
-		case STUDENT:
-			setContentView("StudentView.fxml");
-			break;
-		case TEACHER:
-			//setContentView("TeacherView.fxml");
-			break;
-		default:
 			break;
 		}
 	}

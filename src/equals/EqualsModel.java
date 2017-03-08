@@ -123,7 +123,8 @@ public class EqualsModel implements IObserver<UserLogin> {
 			}
 			break;
 		case TEACHER:
-			// do nothing
+			// get Ratings of all Students for this teachers Courses of this Module
+			getStudentsAndRatingsForModuleAndTeacher(module, user);
 			break;
 		default:
 			return;
@@ -166,6 +167,22 @@ public class EqualsModel implements IObserver<UserLogin> {
 			studentList.setAll(personDao.getStudentsByModule(module));
 			ratingList.clear();
 			for(Course c: coursesList) {
+				ratingList.addAll(ratingDao.getRatingListForCourse(c.getId()));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void getStudentsAndRatingsForModuleAndTeacher(Module module, Person teacher) {
+		PersonDAO personDao = DAOFactory.getInstance().createPersonDAO();
+
+		try {
+			studentList.setAll(personDao.getStudentsByModule(module));
+			ratingList.clear();
+			for(Course c: coursesList.filtered(c -> c.getTeacherId() == teacher.getId())) {
 				ratingList.addAll(ratingDao.getRatingListForCourse(c.getId()));
 			}
 			

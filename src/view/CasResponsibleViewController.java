@@ -8,6 +8,7 @@ import data.Course;
 import data.Module;
 import data.Person;
 import data.Rating;
+import data.UserRole;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -55,9 +56,14 @@ public class CasResponsibleViewController extends EqualsView {
 	public void init() {
 		module = model.getContextModule();
 		casTitleLabel.setText(module.getName());
+		UserRole userRole = module.getUserRole();
+		final int teacherId = model.getUserLogin().getUser().getId();
 
 		ArrayList<TableColumn<Data, Number>> tableColumns = new ArrayList<>();
-		FilteredList<Course> courses = model.getCoursesListProperty().filtered(c -> c.getModuleId() == module.getId());
+		FilteredList<Course> courses = model.getCoursesListProperty().filtered(c -> {
+			return c.getModuleId() == module.getId()
+					&& ((userRole==UserRole.TEACHER) ? (c.getTeacherId() == teacherId) : (true));
+			});
 		for(Course c : courses) {
 			TableColumn<Data, Number> courseColumn = new TableColumn<Data, Number>(c.getShortName());
 			courseColumn.setUserData(c);
