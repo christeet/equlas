@@ -18,7 +18,6 @@ import javafx.util.Callback;
 
 public class SelectViewController extends EqualsView {
 
-	private static double maxWidth = 0;
 	@FXML private Label userName;
 	@FXML private AnchorPane container;
 	@FXML private ListView<Module> entityList;
@@ -31,6 +30,7 @@ public class SelectViewController extends EqualsView {
 		Platform.runLater(() -> {
 			Person p = model.getUserLogin().getUser();
 			userName.setText(p.getName());
+			entityList.setPrefWidth(450);
 		});
 		initEntityListBindings();
 	}
@@ -54,7 +54,6 @@ public class SelectViewController extends EqualsView {
 			entityList.requestFocus();
 			entityList.getSelectionModel().select(0);
 		});
-		maxWidth=0;
 		entityList.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
             @Override
             public ListCell<Module> call(ListView<Module> listView) {
@@ -75,11 +74,6 @@ public class SelectViewController extends EqualsView {
                         		setGraphic(cellView.getRootNode());
                         		moduleCellViews.add(cellView);
 	                        }
-	                        this.widthProperty().addListener((obs,old,value) -> {
-	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
-	                            maxWidth = Math.max(maxWidth, (double)value);
-	                            listView.setPrefWidth(maxWidth);
-	                        });
                 		});
                     }
                 };
@@ -102,6 +96,7 @@ public class SelectViewController extends EqualsView {
 		if(entityList.isFocused()) {
 	    	System.out.format("***** selected Module: %s\r\n",
 	    			entityList.getSelectionModel().getSelectedItem().getShortName());
+			moduleCellViews.stream().filter(m->m.getModule() == selectedModule).forEach(m -> m.deselectCourses());
 	    	setContent(selectedModule);
 		} else {
 	    	System.out.format("**** selected a Course of Module: %s\r\n",
@@ -111,6 +106,7 @@ public class SelectViewController extends EqualsView {
 	
 	private void onSelectedCourseChanged(Module parentModule, Course selectedCourse) {
 		if(parentModule == null || selectedCourse == null) return;
+		moduleCellViews.stream().filter(m->m.getModule() != parentModule).forEach(m -> m.deselectCourses());
 		entityList.getSelectionModel().select(parentModule);
 		controller.selectedCourseChanged(selectedCourse);
 		switch(parentModule.getUserRole()) {

@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class ModuleCellViewController extends EqualsView {
@@ -24,7 +25,6 @@ public class ModuleCellViewController extends EqualsView {
 	@FXML private Label semesterLabel;
 	@FXML private ListView<Course> coursesList;
 
-	private static double maxWidth = 0;
 	private ListCell<Module> containingCell;
 	private Module module;
 	private CourseSelector courseSelector;
@@ -65,6 +65,14 @@ public class ModuleCellViewController extends EqualsView {
 		}
 	}
 	
+	public Module getModule() {
+		return module;
+	}
+	
+	public void deselectCourses() {
+		coursesList.getSelectionModel().clearSelection();
+	}
+	
 	public ObservableList<CourseCellViewController> getCourseCellViews() {
 		return courseCellViews;
 	}
@@ -102,7 +110,6 @@ public class ModuleCellViewController extends EqualsView {
 		    }
 		});
 		
-		maxWidth = 0;
 		coursesList.setCellFactory(new Callback<ListView<Course>, ListCell<Course>>() {
             @Override
             public ListCell<Course> call(ListView<Course> listView) {
@@ -122,11 +129,6 @@ public class ModuleCellViewController extends EqualsView {
                         		Node rootNode = cellView.getRootNode();
                         		setGraphic(rootNode);
                         		registerCellView(cellView);
-    	                        this.widthProperty().addListener((obs,old,value) -> {
-    	                            //System.out.format("width of %s: %f\r\n", obs.toString(), value);
-    	                            maxWidth = Math.max(maxWidth, (double)value);
-    	                            listView.setPrefWidth(maxWidth);
-    	                        });
 	                        }
                 		});
                     }
@@ -150,12 +152,7 @@ public class ModuleCellViewController extends EqualsView {
         
         if(!coursesList.getItems().isEmpty()) {
         	// TODO: remove magic number:
-        	coursesList.setPrefHeight(coursesList.getItems().size() * 60 + 2);
-            coursesList.focusedProperty().addListener((obs, old, isFocused) -> {
-            	if(!isFocused) {
-                	coursesList.getSelectionModel().clearSelection();
-            	}
-            });
+        	coursesList.setPrefHeight(coursesList.getItems().size() * 58 + 2);
         	showCoursesList(true);
         }
 
