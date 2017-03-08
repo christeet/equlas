@@ -190,6 +190,7 @@ public class ModuleCellViewController extends EqualsView {
 	
 	private void onSelectedCourseChanged(Course selectedCourse) {
 		if(selectedCourse == null) return;
+		coursesList.requestFocus();
 		courseSelector.courseSelected(selectedCourse);
     	System.out.format("selected Course: %s\r\n",coursesList.getSelectionModel().getSelectedItem().getShortName());
     	//setContent(coursesList.getSelectionModel().getSelectedItem());
