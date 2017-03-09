@@ -1,5 +1,7 @@
 package data;
 
+import java.sql.Date;
+
 public class Person {
 	private int id;
 	private String lastName;
@@ -7,6 +9,8 @@ public class Person {
 	private String sex;
 	private String userName;
 	private String password;
+	private Date dateOfBirth;
+	private String placeOfOrigin;
 	
 	
 	public Person(
@@ -15,7 +19,9 @@ public class Person {
 			String lastName,
 			String sex,
 			String userName,
-			String password
+			String password,
+			Date dateOfBirth,
+			String placeOfOrigin
 			) {
 		this.id = id;
 		this.firstName = firstName;
@@ -55,5 +61,13 @@ public class Person {
 	
 	public String getPassword() {
 		return password;
+	}
+	
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+	
+	public String getPlaceOfOrigin() {
+		return placeOfOrigin;
 	}
 }

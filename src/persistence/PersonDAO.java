@@ -74,10 +74,10 @@ public class PersonDAO {
 		}
 	}
 	
-	public ArrayList<Student> getStudentsByModule(Module module) throws SQLException {
+	public ArrayList<Person> getStudentsByModule(Module module) throws SQLException {
 		psGetStudentsByModule.setString(1, module.getShortName());
 		ResultSet resultSet = psGetStudentsByModule.executeQuery();
-		return getStudentListFromResultSet(resultSet);
+		return getPersonListFromResultSet(resultSet);
 	}
 	
 	public Person getPersonByUserName(String username) throws SQLException {
@@ -126,6 +126,8 @@ public class PersonDAO {
 				resultSet.getString("lastName"),
 				resultSet.getString("sex"),
 				resultSet.getString("userName"),
-				resultSet.getString("password"));
+				resultSet.getString("password"),
+				resultSet.getDate("dateOfBirth"),
+				resultSet.getString("placeOfOrigin"));
 	}
 }

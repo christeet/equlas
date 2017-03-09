@@ -19,9 +19,7 @@ public class Student extends Person {
 			String placeOfOrigin
 			)
 	{
-		super(id, firstName, lastName, sex, userName, password);
-		this.dateOfBirth = dateOfBirth;
-		this.placeOfOrigin = placeOfOrigin;
+		super(id, firstName, lastName, sex, userName, password, dateOfBirth, placeOfOrigin);
 	}
 	
 	@Override

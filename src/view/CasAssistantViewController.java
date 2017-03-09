@@ -30,7 +30,7 @@ public class CasAssistantViewController extends EqualsView {
 
 	private ObservableList<Data> data;
 	private Module module;
-	private ArrayList<Student> students;
+	private ArrayList<Person> students;
 
 	@FXML
 	private Label casTitleLabel;
@@ -41,7 +41,6 @@ public class CasAssistantViewController extends EqualsView {
 	private TableColumn<Data, String> studentColumn;
 	@FXML
 	private Button printButton;
-	private FilteredList<Course> courses;
 
 	@FXML
 	protected void onPrint() {
@@ -53,7 +52,18 @@ public class CasAssistantViewController extends EqualsView {
 	}
 
 	private void evaluateStudentsForCertificate() {
-
+		int summe = 0;
+		ObservableList<Person> studentList = model.getStudentListProperty();
+		for(Person student : studentList) {
+			ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
+					.filtered(r -> r.getStudentId() == student.getId());
+			for(Rating r : ratingStudentList) {
+				summe += r.getSuccessRate();
+			}
+			if(summe >= 50) {
+				students.add(student);
+			}
+		}
 	}
 
 	private void makeXMLLeistungsnachweis() {
@@ -124,7 +134,7 @@ public class CasAssistantViewController extends EqualsView {
 		}
 		table.getColumns().addAll(tableColumns);
 
-		for (Person student : model.getStudentListProperty()) {
+		 for (Person student : model.getStudentListProperty()) {
 			ObservableList<Rating> ratingList = model.getRatingListProperty()
 					.filtered(r -> r.getStudentId() == student.getId());
 
