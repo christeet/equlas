@@ -7,6 +7,7 @@ import data.Course;
 import data.Person;
 import data.Rating;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
@@ -43,7 +45,8 @@ public class TeacherViewController extends EqualsView {
 		table.setEditable(true);
 		studentColumn.setCellValueFactory(d -> d.getValue().studentNameProperty());
 		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
-		studentColumn.setPrefWidth(200);
+		studentColumn.setSortable(true);
+		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
 		
 		
@@ -78,6 +81,12 @@ public class TeacherViewController extends EqualsView {
 			setNewSuccessRate(t.getRowValue(), t.getNewValue().intValue());
 			t.getRowValue().successProperty().set(t.getNewValue().intValue());
 		});
+
+        
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
+        table.minHeightProperty().bind(table.prefHeightProperty());
+        table.maxHeightProperty().bind(table.prefHeightProperty());
 	}
 	
     private void setNewSuccessRate(Data data, int newSuccessRate) {
@@ -114,6 +123,7 @@ public class TeacherViewController extends EqualsView {
 			Data d = new Data(student, success);
 			this.data.add(d);
 		}
+		table.getSortOrder().add(studentColumn);
 	}
 	
 	@Override
