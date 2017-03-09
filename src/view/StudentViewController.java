@@ -6,6 +6,7 @@ import java.text.ParseException;
 import data.Course;
 import data.Module;
 import data.Rating;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,24 +23,15 @@ import javafx.util.StringConverter;
 public class StudentViewController extends EqualsView {
 	
 	private ObservableList<Data> data;
-	
-	@FXML
-	private Label successPartComplete;
-	
-	@FXML
-	private TableView<Data> table;
-	
-	@FXML
-	private TableColumn<Data, String> courseColumn;
-
-	@FXML
-	private TableColumn<Data, String> weightColumn;
-	
-	@FXML
-	private TableColumn<Data, Number> successColumn;
-	
 	private Module contextModule;
 	private int studentId;
+	
+	@FXML private Label successPartComplete;
+	@FXML private TableView<Data> table;
+	@FXML private TableColumn<Data, String> courseColumn;
+	@FXML private TableColumn<Data, String> weightColumn;
+	@FXML private TableColumn<Data, Number> successColumn;
+	
 	
 	@FXML
 	protected void onSave() {
@@ -86,6 +78,10 @@ public class StudentViewController extends EqualsView {
 			setNewSuccessRate(t.getRowValue(), t.getNewValue().intValue());
 			t.getRowValue().successProperty().set(t.getNewValue().intValue());
 		});
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
+        table.minHeightProperty().bind(table.prefHeightProperty());
+        table.maxHeightProperty().bind(table.prefHeightProperty());
 	}
 	
 	@Override
@@ -101,8 +97,11 @@ public class StudentViewController extends EqualsView {
 									&& r.getStudentId() == studentId)
 						.get(0);
 				success = rating.getSuccessRate();
+				//accumulatedSuccess += success * course.getWeight();
+				//currentWeight += course.getWeight();
 			} catch (IndexOutOfBoundsException | NullPointerException e){}
-			
+
+			//totalWeight += course.getWeight();
 			Data d = new Data(course, success);
 			this.data.add(d);
 		}

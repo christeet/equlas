@@ -9,6 +9,7 @@ import data.Module;
 import data.Person;
 import data.Rating;
 import data.UserRole;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -112,6 +113,11 @@ public class CasResponsibleViewController extends EqualsView {
     		Data row = new Data(student, ratingList);
     		data.add(row);
         }
+        
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
+        table.minHeightProperty().bind(table.prefHeightProperty());
+        table.maxHeightProperty().bind(table.prefHeightProperty());
 	}
 
     private void setNewSuccessRate(Course course, Data data, int newSuccessRate) {
