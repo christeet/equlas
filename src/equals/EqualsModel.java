@@ -107,7 +107,8 @@ public class EqualsModel implements IObserver<UserLogin> {
 		Person user = userLogin.getUser();
 		switch(module.getUserRole()){
 		case ASSISTANT:
-			// TODO: get Ratings of all Students for all Courses of this Module
+			// get Ratings of all Students for all Courses of this Module
+			getStudentsAndRatingsForModule(module);
 			break;
 		case HEAD:
 			// get Ratings of all Students for all Courses of this Module
