@@ -23,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
@@ -48,7 +49,8 @@ public class CasResponsibleViewController extends EqualsView {
 	protected void initialize() {
 		table.setEditable(true);
 		studentColumn.setCellValueFactory(d -> d.getValue().getStudentNameProperty());
-		studentColumn.setPrefWidth(200);
+		studentColumn.setSortable(true);
+		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
 	}
 	
@@ -113,6 +115,8 @@ public class CasResponsibleViewController extends EqualsView {
     		Data row = new Data(student, ratingList);
     		data.add(row);
         }
+        
+		table.getSortOrder().add(studentColumn);
         
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
