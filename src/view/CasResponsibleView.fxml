@@ -23,7 +23,7 @@
                </Label>
                 <TableView fx:id="table" VBox.vgrow="ALWAYS">
                   <columns>
-                    <TableColumn fx:id="studentColumn" prefWidth="99.0" text="%view.student" />
+                    <TableColumn fx:id="studentColumn" prefWidth="200.0" text="%view.student" />
                   </columns>
                 </TableView>
                 <Separator prefWidth="200.0" />

@@ -13,17 +13,10 @@ import util.Prefs;
 
 public class LoginViewController extends EqualsView implements IObserver<UserLogin> {
 	
-	@FXML
-	private TextField usernameField;
-	
-	@FXML
-	private PasswordField passwordField;
-	
-	@FXML
-	private Button checkCredentials;
-	
-	@FXML
-	private Label statusLabel;
+	@FXML private TextField usernameField;
+	@FXML private PasswordField passwordField;
+	@FXML private Button checkCredentials;
+	@FXML private Label statusLabel;
 
 	@FXML
 	protected void checkUserCredentials() {
@@ -32,8 +25,11 @@ public class LoginViewController extends EqualsView implements IObserver<UserLog
 
 	@Override
 	protected void init() {
-		usernameField.setText(Prefs.get().getLastLoggedInUser());
 		model.getUserLogin().addObserver(this);
+		Platform.runLater(() -> {
+			usernameField.setText(Prefs.get().getLastLoggedInUser());
+			usernameField.requestFocus();
+		});
 	}
 
 

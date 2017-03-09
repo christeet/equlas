@@ -136,7 +136,6 @@ public class SelectViewController extends EqualsView {
 		System.out.format("UserRole for Module containing Course = %s\r\n", parentModule.getUserRole().name());
 		switch(parentModule.getUserRole()) {
 		case ASSISTANT:
-			setContentView("CasAssistantView.fxml");
 			break;
 		case HEAD:
 		case TEACHER:
