@@ -10,32 +10,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>99</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>89</rating>
+         <rating/>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>87</rating>
+         <rating>89</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>76</rating>
+         <rating>97</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>94</rating>
+         <rating>16</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>79</rating>
+         <rating>95</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -53,32 +53,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>21</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>58</rating>
+         <rating>23</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>51</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>56</rating>
+         <rating>86</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>77</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>87</rating>
+         <rating>25</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -96,32 +96,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>99</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>58</rating>
+         <rating>15</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>82</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>89</rating>
+         <rating>61</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>60</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>58</rating>
+         <rating>17</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -139,32 +139,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>86</rating>
+         <rating>6</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>80</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>74</rating>
+         <rating>81</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>63</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>61</rating>
+         <rating>72</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>73</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -182,32 +182,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>47</rating>
+         <rating>49</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>25</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>76</rating>
+         <rating>78</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>13</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>58</rating>
+         <rating>34</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>29</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -225,27 +225,27 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>45</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>53</rating>
+         <rating>35</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>43</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>92</rating>
+         <rating>10</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>22</rating>
       </courses>
       <courses>
          <name>Projekt</name>
@@ -268,32 +268,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>58</rating>
+         <rating>35</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>33</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>97</rating>
+         <rating>59</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>99</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>86</rating>
+         <rating>13</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>73</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -311,32 +311,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>22</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>51</rating>
+         <rating>92</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>94</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>48</rating>
+         <rating>92</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>78</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>95</rating>
+         <rating>15</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -354,32 +354,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>47</rating>
+         <rating>42</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>67</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>94</rating>
+         <rating>6</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>29</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>81</rating>
+         <rating>30</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>64</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -397,32 +397,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>58</rating>
+         <rating>27</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>45</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>96</rating>
+         <rating>43</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>83</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>84</rating>
+         <rating>81</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>56</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -440,32 +440,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>73</rating>
+         <rating>38</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>21</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>61</rating>
+         <rating>95</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>6</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>59</rating>
+         <rating>51</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>35</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -483,32 +483,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>57</rating>
+         <rating>21</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>1</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>95</rating>
+         <rating>42</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>5</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>83</rating>
+         <rating>2</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>100</rating>
       </courses>
       <module>
          <name>Software Development</name>
@@ -526,32 +526,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>69</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>54</rating>
+         <rating>59</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>87</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>77</rating>
+         <rating>59</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>32</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>59</rating>
+         <rating/>
       </courses>
       <module>
          <name>Software Development</name>
@@ -569,32 +569,32 @@
       <courses>
          <name>Java</name>
          <weight>1.8</weight>
-         <rating>93</rating>
+         <rating>34</rating>
       </courses>
       <courses>
          <name>Datenstrukturen und Algorithmen</name>
          <weight>1.8</weight>
-         <rating>91</rating>
+         <rating>11</rating>
       </courses>
       <courses>
          <name>Relationale Datenbanken und SQL</name>
          <weight>1.6</weight>
-         <rating>83</rating>
+         <rating>57</rating>
       </courses>
       <courses>
          <name>XML Technologien</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>47</rating>
       </courses>
       <courses>
          <name>GUI/Ergonomie</name>
          <weight>1.6</weight>
-         <rating>74</rating>
+         <rating>67</rating>
       </courses>
       <courses>
          <name>Projekt</name>
          <weight>1.6</weight>
-         <rating>91</rating>
+         <rating>93</rating>
       </courses>
       <module>
          <name>Software Development</name>
