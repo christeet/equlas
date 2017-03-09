@@ -23,7 +23,11 @@ public class PrintManagerCertificate {
 	// private static final String OUTPUT_PATH = "resources/output/";
 	private static final String PATH = "resources";
 
-	public static void main(String[] args) {
+	public PrintManagerCertificate() {
+		
+	}
+		
+	public void generateXMLDocument() {
 		try {
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Map<String, Object> params = new HashMap<>();
