@@ -14,7 +14,6 @@ import controller.EqualsController;
 import data.Course;
 import data.Module;
 import data.Person;
-import data.Student;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -120,8 +119,8 @@ public class Main extends Application {
 					c.print();
 				}
 				System.out.println("-- Students --");
-				ArrayList<Student> students = personDAO.getStudentsByModule(m);
-				for(Student s : students) {
+				ArrayList<Person> students = personDAO.getStudentsByModule(m);
+				for(Person s : students) {
 					s.print();
 				}
 			} catch (SQLException e) {

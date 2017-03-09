@@ -6,7 +6,6 @@ import data.Course;
 import data.Module;
 import data.Person;
 import data.Rating;
-import data.Student;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
