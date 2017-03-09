@@ -83,8 +83,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		//consoleDebug();
-//		GenerateXML gen = new GenerateXML("SD-FS16");
-//		gen.makeXMLDocument();
+		GenerateXML gen = new GenerateXML("SD-FS16");
+		gen.makeXMLDocument();
 	}
 
 	private void savePreferencesDelayed() {
