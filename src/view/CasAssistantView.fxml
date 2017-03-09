@@ -29,7 +29,7 @@
                         <Label text="%view.successPartComplete" />
                      </children>
                   </HBox>
-                  <Button fx:id="saveButton" alignment="TOP_LEFT" defaultButton="true" mnemonicParsing="false" onMouseClicked="#onSave" text="%view.save" />
+                  <Button fx:id="printButton" alignment="TOP_LEFT" defaultButton="true" mnemonicParsing="false" onMouseClicked="#onPrint" text="%view.print" />
                </children>
             </VBox>
          </content>
