@@ -30,13 +30,25 @@ import persistence.RatingDAO;
 public class GenerateXML {
 	
 	private String shortName;
+	private ArrayList<Student> students = null;
+	private ArrayList<Student> partialStudents = null;
+	private ArrayList<Module> modules;
+	private Module singleModule = null;
 
 	public GenerateXML(Module module) {
 		this.shortName = module.getShortName();
+		getModule();
 	}
 	
 	public GenerateXML(String shortName) {
 		this.shortName = shortName;
+		getModule();
+	}
+	
+	public GenerateXML(ArrayList<Student> partialStudents, Module singleModule) {
+		this.partialStudents = partialStudents;
+		this.singleModule = singleModule;
+		getModule();
 	}
 	
 	private ArrayList<Module> getDAOModuleByName() {
@@ -83,6 +95,22 @@ public class GenerateXML {
 		return rating;
 	}
 	
+	private void getModule() {
+		if(singleModule == null && partialStudents == null) {
+			this.modules = getDAOModuleByName();
+		} else {
+			this.modules.add(singleModule);
+		}
+	}
+	
+	private void getStudents(Module module) {
+		if(singleModule == null && partialStudents == null) {
+			this.students = getStudentsByModule(module);
+		} else {
+			this.students = partialStudents;
+		}
+	}
+	
 	public void makeXMLDocument() { 
 	  try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -93,11 +121,9 @@ public class GenerateXML {
 			Element studentsTag = doc.createElement("students");
 			doc.appendChild(studentsTag);
 			
-			for(Module m : getDAOModuleByName()) {
-				
-				for(Student student : getStudentsByModule(m)) {
-					System.out.println("Student: " + student.getName());
-					
+			for(Module m : modules) {
+				getStudents(m);
+				for(Student student : students) {
 					Element studentTag = doc.createElement("student");
 					studentsTag.appendChild(studentTag);
 					
@@ -126,8 +152,6 @@ public class GenerateXML {
 					studentTag.appendChild(courseStudentShortName);
 
 					for(Course course : getCourseByStudentModule(student, m)) {
-						System.out.println("course: " + course.getShortName());
-						
 						Element coursesTag = doc.createElement("courses");
 						studentTag.appendChild(coursesTag);
 						
@@ -138,7 +162,6 @@ public class GenerateXML {
 						Element courseWeight = doc.createElement("weight");
 						courseWeight.appendChild(doc.createTextNode(String.valueOf(course.getWeight())));
 						coursesTag.appendChild(courseWeight);
-						
 						
 						Element courseRating = doc.createElement("rating");
 						if(getRatingByStudentCourse(student, course) != null) {
