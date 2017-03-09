@@ -19,8 +19,8 @@ import org.w3c.dom.Element;
 
 import data.Course;
 import data.Module;
+import data.Person;
 import data.Rating;
-import data.Student;
 import persistence.CourseDAO;
 import persistence.DAOFactory;
 import persistence.ModuleDAO;
@@ -30,8 +30,8 @@ import persistence.RatingDAO;
 public class GenerateXML {
 	
 	private String shortName;
-	private ArrayList<Student> students = null;
-	private ArrayList<Student> partialStudents = null;
+	private ArrayList<Person> students = null;
+	private ArrayList<Person> partialStudents = null;
 	private ArrayList<Module> modules;
 	private Module singleModule = null;
 
@@ -45,7 +45,7 @@ public class GenerateXML {
 		getModule();
 	}
 	
-	public GenerateXML(ArrayList<Student> partialStudents, Module singleModule) {
+	public GenerateXML(ArrayList<Person> partialStudents, Module singleModule) {
 		this.partialStudents = partialStudents;
 		this.singleModule = singleModule;
 		getModule();
@@ -62,9 +62,9 @@ public class GenerateXML {
 		return moduleList;
 	}
 	
-	private ArrayList<Student> getStudentsByModule(Module module) {
+	private ArrayList<Person> getStudentsByModule(Module module) {
 		PersonDAO personDAO = DAOFactory.getInstance().createPersonDAO();
-		ArrayList<Student> studentList = null;
+		ArrayList<Person> studentList = null;
 		try {
 			studentList = personDAO.getStudentsByModule(module);
 		} catch (SQLException e) {
@@ -73,7 +73,7 @@ public class GenerateXML {
 		return studentList;
 	}
 	
-	private ArrayList<Course> getCourseByStudentModule(Student student, Module module) {
+	private ArrayList<Course> getCourseByStudentModule(Person student, Module module) {
 		CourseDAO courseDAO = DAOFactory.getInstance().createCourseDAO();
 		ArrayList<Course> courseList = null;
 		try {
@@ -84,7 +84,7 @@ public class GenerateXML {
 		return courseList;
 	}
 	
-	private Rating getRatingByStudentCourse(Student student, Course course) {
+	private Rating getRatingByStudentCourse(Person student, Course course) {
 		RatingDAO ratingDAO = DAOFactory.getInstance().createRatingDAO();
 		Rating rating = null;
 		try {
@@ -123,7 +123,7 @@ public class GenerateXML {
 			
 			for(Module m : modules) {
 				getStudents(m);
-				for(Student student : students) {
+				for(Person student : students) {
 					Element studentTag = doc.createElement("student");
 					studentsTag.appendChild(studentTag);
 					
