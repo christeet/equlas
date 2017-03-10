@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import data.Course;
 import data.Module;
 import data.Person;
-import data.Student;
 
 public class PersonDAO {
 
@@ -47,9 +46,9 @@ public class PersonDAO {
 				+ "where c.id = ?");
 	}
 	
-	public ArrayList<Student> getAllStudents() throws SQLException {
+	public ArrayList<Person> getAllStudents() throws SQLException {
 		ResultSet resultSet = psGetAllUsers.executeQuery();
-		return getStudentListFromResultSet(resultSet);
+		return getPersonListFromResultSet(resultSet);
 	}
 	
 	public Person getPersonByModule(String shortName) throws SQLException {
@@ -91,32 +90,12 @@ public class PersonDAO {
 		}
 	}
 	
-	private ArrayList<Student> getStudentListFromResultSet(ResultSet resultSet) throws SQLException{
-		ArrayList<Student> resultList = new ArrayList<Student>();
-		while (resultSet != null && resultSet.next()) {
-			resultList.add(getStudentFromResultSet(resultSet));
-		}
-		return resultList;
-	}
-	
 	private ArrayList<Person> getPersonListFromResultSet(ResultSet resultSet) throws SQLException{
 		ArrayList<Person> resultList = new ArrayList<Person>();
 		while (resultSet != null && resultSet.next()) {
 			resultList.add(getPersonFromResultSet(resultSet));
 		}
 		return resultList;
-	}
-	
-	private Student getStudentFromResultSet(ResultSet resultSet) throws SQLException{
-		return new Student(
-				resultSet.getInt("id"),
-				resultSet.getString("firstName"),
-				resultSet.getString("lastName"),
-				resultSet.getString("sex"),
-				resultSet.getString("userName"),
-				resultSet.getString("password"),
-				resultSet.getDate("dateOfBirth"),
-				resultSet.getString("placeOfOrigin"));
 	}
 	
 	private Person getPersonFromResultSet(ResultSet resultSet) throws SQLException{

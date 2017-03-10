@@ -33,85 +33,91 @@ public class GenerateXML {
 	private ArrayList<Person> students = null;
 	private ArrayList<Person> partialStudents = null;
 	private ArrayList<Module> modules;
-	private Module singleModule = null;
+	private ArrayList<Module> singleModule = null;
 
-	public GenerateXML(Module module) {
+	public GenerateXML(Module module) throws Exception {
+		System.out.println("XMLGenerate" + module.getShortName());
 		this.shortName = module.getShortName();
 		getModule();
 	}
 	
-	public GenerateXML(String shortName) {
+	public GenerateXML(String shortName) throws Exception {
 		this.shortName = shortName;
 		getModule();
 	}
 	
-	public GenerateXML(ArrayList<Person> partialStudents, Module singleModule) {
+	public GenerateXML(ArrayList<Person> partialStudents, ArrayList<Module> singleModule) throws Exception {
+		System.out.println("partialStudent: " + partialStudents.toString() + "\n" + singleModule.toString());
 		this.partialStudents = partialStudents;
 		this.singleModule = singleModule;
 		getModule();
 	}
 	
-	private ArrayList<Module> getDAOModuleByName() {
+	private ArrayList<Module> getDAOModuleByName() throws Exception {
 		ModuleDAO moduleDAO = DAOFactory.getInstance().createModuleDAO();
 		ArrayList<Module> moduleList = null;
 		try {
 			moduleList = moduleDAO.getAllModulesByName(this.shortName);
 		} catch (SQLException e) {
-			System.out.println("Could not get Module from DAOFactory!");
+			throw new Exception("Could not get Module from DAOFactory!" + e.getMessage());
 		}
 		return moduleList;
 	}
 	
-	private ArrayList<Person> getStudentsByModule(Module module) {
+	private ArrayList<Person> getStudentsByModule(Module module) throws Exception {
 		PersonDAO personDAO = DAOFactory.getInstance().createPersonDAO();
 		ArrayList<Person> studentList = null;
 		try {
 			studentList = personDAO.getStudentsByModule(module);
 		} catch (SQLException e) {
-			System.out.println("Could not get Persons from DAOFactory!");
+			throw new Exception("Could not get Persons from DAOFactory!" + e.getMessage());
 		}
 		return studentList;
 	}
 	
-	private ArrayList<Course> getCourseByStudentModule(Person student, Module module) {
+	private ArrayList<Course> getCourseByStudentModule(Person student, Module module) throws Exception {
 		CourseDAO courseDAO = DAOFactory.getInstance().createCourseDAO();
 		ArrayList<Course> courseList = null;
 		try {
 			courseList = courseDAO.getCoursesByModuleAndStudent(module, student);
 		} catch (SQLException e) {
-			System.out.println("Could not get Course from DAOFactory!");
+			throw new Exception("Could not get Course from DAOFactory!" + e.getMessage());
 		}
 		return courseList;
 	}
 	
-	private Rating getRatingByStudentCourse(Person student, Course course) {
+	private Rating getRatingByStudentCourse(Person student, Course course) throws Exception {
 		RatingDAO ratingDAO = DAOFactory.getInstance().createRatingDAO();
 		Rating rating = null;
 		try {
 			rating = ratingDAO.getRating(student.getId(), course.getId());
 		} catch (SQLException e) {
-			System.out.println("Could not get Rating from DAOFactory!");
+			throw new Exception("Could not get Rating from DAOFactory!" + e.getMessage());
 		}
 		return rating;
 	}
 	
-	private void getModule() {
+	private void getModule() throws Exception {
 		if(singleModule == null && partialStudents == null) {
+			System.out.println("singleModule and partialStudents are null!");
 			this.modules = getDAOModuleByName();
+			System.out.println("Modules: " + modules.get(0).getShortName());
 		} else {
-			this.modules.add(singleModule);
+			System.out.println("singleModule and partialStudents are set!");
+			this.modules = singleModule;
 		}
 	}
 	
-	private void getStudents(Module module) {
+	private void getStudents(Module module) throws Exception {
 		if(singleModule == null && partialStudents == null) {
 			this.students = getStudentsByModule(module);
+			System.out.println("Get Students: " + students.size());
 		} else {
 			this.students = partialStudents;
 		}
 	}
 	
-	public void makeXMLDocument() { 
+	public void makeXMLDocument() throws Exception { 
 	  try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -123,7 +129,16 @@ public class GenerateXML {
 			
 			for(Module m : modules) {
 				getStudents(m);
-				for(Person student : students) {
+				for(Person student : this.students) {
+					System.out.println(
+						"Student einzeln: " 
+						+ student.getFirstName()
+						+ "\n" + student.getLastName()
+						+ "\n" + student.getDateOfBirth()
+						+ "\n" + student.getPlaceOfOrigin()
+						+ "\n" + student.getSex()
+						+ "\n" + student.getUserName()
+					);
 					Element studentTag = doc.createElement("student");
 					studentsTag.appendChild(studentTag);
 					
@@ -202,9 +217,9 @@ public class GenerateXML {
 			System.out.println("File saved!");
 	
 	  } catch (ParserConfigurationException pce) {
-		  pce.printStackTrace();
+		  throw new Exception("ParserConfiguration failure! " + pce.getMessage() + "\n" + pce.getStackTrace());
 	  } catch (TransformerException tfe) {
-		  tfe.printStackTrace();
+		  throw new Exception("TransformerException failure! " + tfe.getMessage() + "\n" + tfe.getStackTrace());
 	  }
 	}
 }

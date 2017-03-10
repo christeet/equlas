@@ -14,7 +14,6 @@ import controller.EqualsController;
 import data.Course;
 import data.Module;
 import data.Person;
-import data.Student;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,7 +26,6 @@ import resources.I18n;
 import util.Prefs;
 import view.EqualsView;
 import view.ViewLoader;
-import xml.GenerateXML;
 
 public class Main extends Application {
 
@@ -83,8 +81,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		//consoleDebug();
-		GenerateXML gen = new GenerateXML("SD-FS16");
-		gen.makeXMLDocument();
+//		GenerateXML gen = new GenerateXML("SD-FS16");
+//		gen.makeXMLDocument();
 	}
 
 	private void savePreferencesDelayed() {
@@ -120,8 +118,8 @@ public class Main extends Application {
 					c.print();
 				}
 				System.out.println("-- Students --");
-				ArrayList<Student> students = personDAO.getStudentsByModule(m);
-				for(Student s : students) {
+				ArrayList<Person> students = personDAO.getStudentsByModule(m);
+				for(Person s : students) {
 					s.print();
 				}
 			} catch (SQLException e) {

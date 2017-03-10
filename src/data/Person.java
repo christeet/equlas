@@ -29,6 +29,8 @@ public class Person {
 		this.sex = sex;
 		this.userName = userName;
 		this.password = password;
+		this.placeOfOrigin = placeOfOrigin;
+		this.dateOfBirth = dateOfBirth;
 	}
 	
 	public void print() {

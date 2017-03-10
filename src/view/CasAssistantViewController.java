@@ -6,7 +6,6 @@ import data.Course;
 import data.Module;
 import data.Person;
 import data.Rating;
-import data.Student;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
@@ -30,11 +29,11 @@ public class CasAssistantViewController extends EqualsView {
 
 	private ObservableList<Data> data;
 	private Module module;
+	private ArrayList<Module> moduleList;
 	private ArrayList<Person> students;
 
 	@FXML
 	private Label casTitleLabel;
-	// @FXML private Label successPartComplete;
 	@FXML
 	private TableView<Data> table;
 	@FXML
@@ -44,47 +43,75 @@ public class CasAssistantViewController extends EqualsView {
 
 	@FXML
 	protected void onPrint() {
-		makeXMLLeistungsnachweis();
-		generateXMLLeistungsnachweis();
-		evaluateStudentsForCertificate();
-		makeXMLCertificate();
-		generateXMLCertificate();
+		try {
+			makeXMLLeistungsnachweis();
+			evaluateStudentsForCertificate();
+			makeXMLCertificate();
+		} catch (Exception e) {
+			System.out.println("XML Generating failed! " + e.getMessage());
+		}
 	}
 
-	private void evaluateStudentsForCertificate() {
-		int summe = 0;
+	private void evaluateStudentsForCertificate() throws Exception {
+		try {
 		ObservableList<Person> studentList = model.getStudentListProperty();
 		for(Person student : studentList) {
-			ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
-					.filtered(r -> r.getStudentId() == student.getId());
-			for(Rating r : ratingStudentList) {
-				summe += r.getSuccessRate();
+			int summe = 0;
+			int countCourse = 0;
+			ObservableList<Course> studentCourses = model.getCoursesListProperty()
+					.filtered(f -> f.getModuleId() == module.getId());
+			for(Course c : studentCourses) {
+				ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
+						.filtered(r -> r.getStudentId() == student.getId() && r.getCourseId() == c.getId());
+				for(Rating r : ratingStudentList) {
+					System.out.println("RatingStudentList: " + r.getSuccessRate());
+					summe = calculateGrade(r.getSuccessRate(), summe);
+					countCourse++;
+				}
+				System.out.println("RatingsSize: " + ratingStudentList.size());
+				
 			}
-			if(summe >= 50) {
-				students.add(student);
+			if((summe / countCourse) >= 50) {
+				System.out.println("EvaluateRating: " + (summe / countCourse));
+				this.students.add(student);
 			}
 		}
+		} catch (Exception e) {
+			throw new Exception("Could not evaluate Students Rating: " + e.getMessage());
+		}
+	}
+	
+	private int calculateGrade(int rate, int sum) {
+		return sum + rate;
 	}
 
 	private void makeXMLLeistungsnachweis() {
 		try {
 			GenerateXML gxl = new GenerateXML(module);
 			gxl.makeXMLDocument();
+			System.out.println("ModuleName: " + module.getName());
+			generatePDFLeistungsnachweis();
 		} catch (Exception eg) {
-			System.out.println("Could not generate XML! Reason: " + eg.getMessage());
+			System.out.println("Could not generate Leistungsnachweis XML! Reason: " + eg.getMessage());
 		}
 	}
 
 	private void makeXMLCertificate() {
 		try {
-			GenerateXML gxc = new GenerateXML(students, module);
+			System.out.println("Students: " + students.toString() + "\nModule: " + module.getShortName());
+			moduleList.add(module);
+			GenerateXML gxc = new GenerateXML(students, moduleList);
+			System.out.println("GXC: " + gxc);
 			gxc.makeXMLDocument();
+			System.out.println("ModuleName: " + module.getName());
+			generatePDFCertificate();
 		} catch (Exception eg) {
-			System.out.println("Could not generate XML! Reason: " + eg.getMessage());
+			eg.printStackTrace();
+			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
 		}
 	}
 
-	private void generateXMLLeistungsnachweis() {
+	private void generatePDFLeistungsnachweis() {
 		try {
 			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis();
 			pml.generateXMLDocument();
@@ -93,7 +120,7 @@ public class CasAssistantViewController extends EqualsView {
 		}
 	}
 
-	private void generateXMLCertificate() {
+	private void generatePDFCertificate() {
 		try {
 			PrintManagerCertificate pmc = new PrintManagerCertificate();
 			pmc.generateXMLDocument();
@@ -104,6 +131,8 @@ public class CasAssistantViewController extends EqualsView {
 
 	@FXML
 	protected void initialize() {
+		students = new ArrayList<Person>();
+		moduleList = new ArrayList<Module>();
 		studentColumn.setCellValueFactory(d -> d.getValue().getStudentNameProperty());
 		studentColumn.setSortable(true);
 		studentColumn.setSortType(SortType.ASCENDING);
