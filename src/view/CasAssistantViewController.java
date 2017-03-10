@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import data.Course;
@@ -47,8 +50,22 @@ public class CasAssistantViewController extends EqualsView {
 			makeXMLLeistungsnachweis();
 			evaluateStudentsForCertificate();
 			makeXMLCertificate();
+			openPDFs();
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
+		}
+	}
+	
+	private void openPDFs() throws Exception {
+		if (Desktop.isDesktopSupported()) {
+		    try {
+		        File fileLeistungsnachweis = new File("resources/output/fertigLeistungsnachweis.pdf");
+		        File fileCertificate = new File("resources/output/fertigCertificate.pdf");
+		        Desktop.getDesktop().open(fileLeistungsnachweis);
+		        Desktop.getDesktop().open(fileCertificate);
+		    } catch (IOException ex) {
+		    	throw new Exception("No Application found to open PDF! " + ex.getMessage());
+		    }
 		}
 	}
 
