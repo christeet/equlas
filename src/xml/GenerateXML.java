@@ -36,7 +36,6 @@ public class GenerateXML {
 	private ArrayList<Module> singleModule = null;
 
 	public GenerateXML(Module module) throws Exception {
-		System.out.println("XMLGenerate" + module.getShortName());
 		this.shortName = module.getShortName();
 		getModule();
 	}
@@ -47,7 +46,6 @@ public class GenerateXML {
 	}
 	
 	public GenerateXML(ArrayList<Person> partialStudents, ArrayList<Module> singleModule) throws Exception {
-		System.out.println("partialStudent: " + partialStudents.toString() + "\n" + singleModule.toString());
 		this.partialStudents = partialStudents;
 		this.singleModule = singleModule;
 		getModule();
@@ -99,11 +97,8 @@ public class GenerateXML {
 	
 	private void getModule() throws Exception {
 		if(singleModule == null && partialStudents == null) {
-			System.out.println("singleModule and partialStudents are null!");
 			this.modules = getDAOModuleByName();
-			System.out.println("Modules: " + modules.get(0).getShortName());
 		} else {
-			System.out.println("singleModule and partialStudents are set!");
 			this.modules = singleModule;
 		}
 	}
@@ -111,7 +106,6 @@ public class GenerateXML {
 	private void getStudents(Module module) throws Exception {
 		if(singleModule == null && partialStudents == null) {
 			this.students = getStudentsByModule(module);
-			System.out.println("Get Students: " + students.size());
 		} else {
 			this.students = partialStudents;
 		}
@@ -130,15 +124,6 @@ public class GenerateXML {
 			for(Module m : modules) {
 				getStudents(m);
 				for(Person student : this.students) {
-					System.out.println(
-						"Student einzeln: " 
-						+ student.getFirstName()
-						+ "\n" + student.getLastName()
-						+ "\n" + student.getDateOfBirth()
-						+ "\n" + student.getPlaceOfOrigin()
-						+ "\n" + student.getSex()
-						+ "\n" + student.getUserName()
-					);
 					Element studentTag = doc.createElement("student");
 					studentsTag.appendChild(studentTag);
 					
