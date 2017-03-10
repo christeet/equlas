@@ -25,13 +25,16 @@
 	                  <TableColumn fx:id="successColumn" prefWidth="100.0" text="%view.success" />
 	              </columns>
 	            </TableView>
-	            <Separator prefWidth="200.0" />
-	            <HBox>
-	               <children>
-	                  <Label text="%view.successPartComplete" />
-	                  <Label fx:id="successPartComplete" />
-	               </children>
-	            </HBox>
+	            <TableView fx:id="totalTable" VBox.vgrow="ALWAYS">
+			      <placeholder>
+			        <Label text=""/>
+			      </placeholder>
+	              <columns>
+	                <TableColumn fx:id="titleColumn" prefWidth="300.0" text="%view.successPartComplete" />
+	                <TableColumn fx:id="emptyColumn" prefWidth="100.0" text="" />
+	                <TableColumn fx:id="totalSuccessColumn" prefWidth="100.0" text="" />
+	              </columns>
+	            </TableView>
 	         </children>
 	      </VBox>
 	   </content>
