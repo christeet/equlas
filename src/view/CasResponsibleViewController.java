@@ -122,14 +122,15 @@ public class CasResponsibleViewController extends EqualsView {
         table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
         table.minHeightProperty().bind(table.prefHeightProperty());
         table.maxHeightProperty().bind(table.prefHeightProperty());
+        
 	}
 
     private void setNewSuccessRate(Course course, Data data, int newSuccessRate) {
     	System.out.format("Setting new rating %d for course %s\r\n", newSuccessRate, course.getShortName());
     	if(newSuccessRate == -1) {
-        	controller.removeRating(data.getStudent().getId(), course.getId());
+        	controller.removeRating(data.getStudent().getId(), course);
     	} else {
-    		controller.setNewSuccessRate(data.getStudent().getId(), course.getId(), newSuccessRate);
+    		controller.setNewSuccessRate(data.getStudent().getId(), course, newSuccessRate);
     	}
     }
 	

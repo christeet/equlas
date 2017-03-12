@@ -35,8 +35,8 @@ public class RatingTest {
 		module2 = new Module(2, "Module2", "mod2", startTime, endTime, UserRole.HEAD);
 		course1 = new Course(1, "Java", "jav", 1.8f, module1, 1);
 		course2 = new Course(2, "XML", "xml", 1.6f, module2, 2);
-		rating1 = new Rating(1, 1, 80, 1);
-		rating2 = new Rating(2, 2, 60, 2);
+		rating1 = new Rating(1, 1, 80, 1, 1);
+		rating2 = new Rating(2, 2, 60, 2, 2);
 		
 	}
 

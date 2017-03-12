@@ -91,9 +91,9 @@ public class TeacherViewController extends EqualsView {
 	
     private void setNewSuccessRate(Data data, int newSuccessRate) {
     	if(newSuccessRate == -1) {
-        	controller.removeRating(data.getStudent().getId(), currentCourse.getId());
+        	controller.removeRating(data.getStudent().getId(), currentCourse);
     	} else {
-    		controller.setNewSuccessRate(data.getStudent().getId(), currentCourse.getId(), newSuccessRate);
+    		controller.setNewSuccessRate(data.getStudent().getId(), currentCourse, newSuccessRate);
     	}
     }
 	

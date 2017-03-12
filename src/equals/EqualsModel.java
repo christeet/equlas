@@ -80,7 +80,6 @@ public class EqualsModel implements IObserver<UserLogin> {
 	
 	private void getCoursesByModules() {
 		CourseDAO courseDao = DAOFactory.getInstance().createCourseDAO();
-		Person user = userLogin.getUser();
 		try {
 			ArrayList<Course> courses = new ArrayList<>();
 			for(Module m : moduleList) {
@@ -117,7 +116,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 		case STUDENT:
 			// get Ratings for all Courses of this Module
 			try {
-				ratingList.addAll(ratingDao.getRatingListForStudent(user.getId()));
+				ratingList.addAll(ratingDao.getRatingListForStudent(user.getId(), module));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -138,7 +137,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 
 		try {
 			studentList.setAll(personDao.getStudentsByModule(course.getModule()));
-			ratingList.addAll(ratingDao.getRatingListForCourse(course.getId()));
+			ratingList.addAll(ratingDao.getRatingListForCourse(course));
 
 			/*for(Person s : studentList) {
 				System.out.format("Student %d of Course %d (Module %d): %s\r\n", 
@@ -168,7 +167,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 			studentList.setAll(personDao.getStudentsByModule(module));
 			ratingList.clear();
 			for(Course c: coursesList) {
-				ratingList.addAll(ratingDao.getRatingListForCourse(c.getId()));
+				ratingList.addAll(ratingDao.getRatingListForCourse(c));
 			}
 			
 		} catch (SQLException e) {
@@ -184,7 +183,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 			studentList.setAll(personDao.getStudentsByModule(module));
 			ratingList.clear();
 			for(Course c: coursesList.filtered(c -> c.getTeacherId() == teacher.getId())) {
-				ratingList.addAll(ratingDao.getRatingListForCourse(c.getId()));
+				ratingList.addAll(ratingDao.getRatingListForCourse(c));
 			}
 			
 		} catch (SQLException e) {
@@ -193,24 +192,24 @@ public class EqualsModel implements IObserver<UserLogin> {
 		}
 	}
 	
-	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
+	public void setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
 		try {
 			System.out.println("setting new SuccessRate");
-			Rating newRating = ratingDao.setRating(studentId, courseId, newSuccessRate);
+			Rating newRating = ratingDao.setRating(studentId, course, newSuccessRate);
 			ratingList.removeIf(r -> r.getStudentId() == studentId
-								  && r.getCourseId() == courseId);
+								  && r.getCourseId() == course.getId());
 			ratingList.add(newRating);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void removeRating(int studentId, int courseId) {
+	public void removeRating(int studentId, Course course) {
 		try {
 			System.out.println("remove rating");
-			ratingDao.removeRating(studentId, courseId);
+			ratingDao.removeRating(studentId, course);
 			ratingList.removeIf(r -> r.getStudentId() == studentId
-								  && r.getCourseId() == courseId);
+								  && r.getCourseId() == course.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -234,5 +233,34 @@ public class EqualsModel implements IObserver<UserLogin> {
 	
 	public ObservableList<Rating> getRatingListProperty() {
 		return ratingList;
+	}
+	
+	public ObservableList<Person> getPrintableStudentsProperty() {
+		return studentList.filtered(s -> {
+			boolean ratingsMissing = coursesList.stream().filter(c -> c.getModuleId() == contextModule.getId())
+					.anyMatch(c -> ratingList.stream().filter(r -> r.getStudentId() == s.getId())
+					.mapToInt(Rating::getCourseId)
+					.noneMatch(ratingCourseId -> c.getId()==ratingCourseId));
+			if(ratingsMissing) {
+				return false;
+			}
+			
+			/* get ratings multiplied by their corresponding weights */
+			double totalRatings = ratingList.stream()
+					.filter(r -> r.getStudentId() == s.getId()
+							  && r.getModuleId() == contextModule.getId())
+					.mapToDouble(r -> r.getSuccessRate() * coursesList.stream()
+											.filter(c -> c.getId() == r.getCourseId())
+											.findFirst().get().getWeight()
+								).sum();
+			/* sum all course-weights */
+			double totalWeight = coursesList.stream().filter(c -> c.getModuleId() == contextModule.getId())
+					.mapToDouble(Course::getWeight).sum();
+
+			System.out.format("student %s: ratings=%f, weights=%f, grade=%f\r\n", 
+					s.getName(), totalRatings, totalWeight, totalRatings / totalWeight);
+			
+			return totalRatings / totalWeight >= 50.0;
+		});
 	}
 }
