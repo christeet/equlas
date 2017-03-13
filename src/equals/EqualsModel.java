@@ -12,6 +12,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 import persistence.CourseDAO;
 import persistence.DAOFactory;
 import persistence.ModuleDAO;
@@ -30,6 +31,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	private ObservableList<Course> coursesList = FXCollections.observableArrayList();
 	private ObservableList<Person> studentList = FXCollections.observableArrayList();
 	private ObservableList<Rating> ratingList = FXCollections.observableArrayList();
+	private ObservableList<String> semesterList = FXCollections.observableArrayList();
 	
 	public EqualsModel() {
 		userLogin = new UserLogin();
@@ -70,9 +72,17 @@ public class EqualsModel implements IObserver<UserLogin> {
 			modules.addAll(moduleDao.getModulesByStudent(user));
 			modules.addAll(moduleDao.getModulesByAssistant(user));
 			moduleList.setAll(modules.stream().distinct().collect(Collectors.toList()));
+			semesterList.clear();
 			for(Module m : moduleList) {
 				System.out.format("Module %d loaded: %s\r\n", m.getId(), m.getName());
+				
+				String semesterTag = m.getShortName().substring(m.getShortName().length()-4);
+				
+				if(!semesterList.contains(semesterTag)) {
+					semesterList.add(semesterTag);
+				}
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -233,6 +243,10 @@ public class EqualsModel implements IObserver<UserLogin> {
 	
 	public ObservableList<Rating> getRatingListProperty() {
 		return ratingList;
+	}
+	
+	public ObservableList<String> getSemestersProperty() {
+		return semesterList;
 	}
 	
 	public ObservableList<Person> getPrintableStudentsProperty() {

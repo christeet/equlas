@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +21,12 @@
       </HBox>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ListView fx:id="entityList" />
+            <VBox fx:id="listContainer">
+               <children>
+                  <ComboBox fx:id="semesterSelector" onAction="#onSemesterSelected" VBox.vgrow="NEVER" />
+                  <ListView fx:id="entityList" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
             <AnchorPane fx:id="container" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>

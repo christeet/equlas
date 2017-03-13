@@ -9,11 +9,13 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class SelectViewController extends EqualsView {
@@ -21,20 +23,37 @@ public class SelectViewController extends EqualsView {
 	@FXML private Label userName;
 	@FXML private AnchorPane container;
 	@FXML private ListView<Module> entityList;
+	@FXML private ComboBox<String> semesterSelector;
+	@FXML private VBox listContainer;
 
 	private ArrayList<ModuleCellViewController> moduleCellViews = new ArrayList<>();
 	private EqualsView currentView;
 	
 	@Override
 	protected void init() {
+		listContainer.setMaxHeight(Double.MAX_VALUE);
 		Platform.runLater(() -> {
 			Person p = model.getUserLogin().getUser();
 			userName.setText(p.getName());
 			entityList.setPrefWidth(450);
 		});
 		initEntityListBindings();
+		initSemesterSelection();
 	}
 	
+	private void initSemesterSelection() {
+		semesterSelector.prefWidthProperty().bind(listContainer.widthProperty());
+		semesterSelector.itemsProperty().addListener((obs, old, newItem) -> {
+			System.out.format("added semester %s\r\n", newItem);
+			Platform.runLater(() -> {
+				semesterSelector.getSelectionModel().select(0);
+			});
+		});
+
+		Platform.runLater(() -> {
+		semesterSelector.itemsProperty().setValue(model.getSemestersProperty());
+		});
+	}
 	/**
 	 * Binds the entityList ListView to the module-list property of the EqualsModel,
 	 * registers to the change in selection of the items
@@ -47,12 +66,6 @@ public class SelectViewController extends EqualsView {
 		    public void onChanged(Change<? extends Module> change) {
 		    	onSelectedModuleChanged(entityList.getSelectionModel().getSelectedItem());
 		    }
-		});
-		entityList.setItems(model.getModuleListProperty());
-		Platform.runLater(() -> {
-			// select first module by default:
-			entityList.requestFocus();
-			entityList.getSelectionModel().select(0);
 		});
 		entityList.setCellFactory(new Callback<ListView<Module>, ListCell<Module>>() {
             @Override
@@ -74,6 +87,9 @@ public class SelectViewController extends EqualsView {
                         		setGraphic(cellView.getRootNode());
                         		moduleCellViews.add(cellView);
 	                        }
+	                        else {
+	                        	setGraphic(null);
+	                        }
                 		});
                     }
                 };
@@ -87,6 +103,19 @@ public class SelectViewController extends EqualsView {
 				entityList.getSelectionModel().clearSelection();
 				entityList.getSelectionModel().select(index);
 			}
+		});
+	}
+	
+	@FXML protected void onSemesterSelected() {
+		moduleCellViews.clear();
+		entityList.getItems().setAll(model.getModuleListProperty().filtered(m -> { 
+				String semesterTag = m.getShortName().substring(m.getShortName().length()-4);
+				return semesterSelector.getSelectionModel().getSelectedItem().equals(semesterTag);
+			}));
+		Platform.runLater(() -> {
+			// select first module by default:
+			entityList.requestFocus();
+			entityList.getSelectionModel().clearAndSelect(0);
 		});
 	}
 	
