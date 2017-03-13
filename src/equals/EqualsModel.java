@@ -12,7 +12,6 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
 import persistence.CourseDAO;
 import persistence.DAOFactory;
 import persistence.ModuleDAO;
@@ -82,6 +81,12 @@ public class EqualsModel implements IObserver<UserLogin> {
 					semesterList.add(semesterTag);
 				}
 			}
+			/* sort semesterList first by year, then by semester */
+			semesterList.sort((a, b) -> { 
+				int byYear = a.substring(2).compareTo(b.substring(2))*-1;
+				if(byYear != 0) return byYear;
+				return a.substring(0,2).compareTo(b.substring(0,2)); // by HS > FS
+			});
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -271,8 +276,8 @@ public class EqualsModel implements IObserver<UserLogin> {
 			double totalWeight = coursesList.stream().filter(c -> c.getModuleId() == contextModule.getId())
 					.mapToDouble(Course::getWeight).sum();
 
-			System.out.format("student %s: ratings=%f, weights=%f, grade=%f\r\n", 
-					s.getName(), totalRatings, totalWeight, totalRatings / totalWeight);
+			/*System.out.format("student %s: ratings=%f, weights=%f, grade=%f\r\n", 
+					s.getName(), totalRatings, totalWeight, totalRatings / totalWeight);*/
 			
 			return totalRatings / totalWeight >= 50.0;
 		});
