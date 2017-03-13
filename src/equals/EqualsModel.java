@@ -71,26 +71,33 @@ public class EqualsModel implements IObserver<UserLogin> {
 			modules.addAll(moduleDao.getModulesByStudent(user));
 			modules.addAll(moduleDao.getModulesByAssistant(user));
 			moduleList.setAll(modules.stream().distinct().collect(Collectors.toList()));
-			semesterList.clear();
 			for(Module m : moduleList) {
 				System.out.format("Module %d loaded: %s\r\n", m.getId(), m.getName());
-				
-				String semesterTag = m.getShortName().substring(m.getShortName().length()-4);
-				
-				if(!semesterList.contains(semesterTag)) {
-					semesterList.add(semesterTag);
-				}
 			}
-			/* sort semesterList first by year, then by semester */
-			semesterList.sort((a, b) -> { 
-				int byYear = a.substring(2).compareTo(b.substring(2))*-1;
-				if(byYear != 0) return byYear;
-				return a.substring(0,2).compareTo(b.substring(0,2)); // by HS > FS
-			});
+			getSemestersByModuleList();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void getSemestersByModuleList() {
+		semesterList.clear();
+		for(Module m : moduleList) {
+			System.out.format("Module %d loaded: %s\r\n", m.getId(), m.getName());
+			
+			String semesterTag = m.getShortName().substring(m.getShortName().length()-4);
+			
+			if(!semesterList.contains(semesterTag)) {
+				semesterList.add(semesterTag);
+			}
+		}
+		/* sort semesterList first by year, then by semester */
+		semesterList.sort((a, b) -> { 
+			int byYear = b.substring(2).compareTo(a.substring(2));
+			if(byYear != 0) return byYear;
+			return b.substring(0,2).compareTo(a.substring(0,2)); // by HS > FS
+		});
 	}
 	
 	private void getCoursesByModules() {
