@@ -2,6 +2,13 @@ package util;
 
 import java.util.Vector;
 
+/**
+ * Implements a generic Observable class. When an observer gets added, 
+ * the observer's "update"-method will get executed immediately.
+ * @author sbol
+ *
+ * @param <T> The type of which the Observable is.
+ */
 public class IObservable<T> {
     private boolean changed = false;
     private Vector<IObserver<T>> obs;
@@ -9,6 +16,12 @@ public class IObservable<T> {
     public IObservable() {
         obs = new Vector<>();
     }
+    
+    /**
+     * adds an observer to the observer-list and executes an update immediately
+     * @param o Observer to be added and whose "update" method will be called.
+     */
+    @SuppressWarnings("unchecked")
     public synchronized void addObserver(IObserver<T> o) {
         if (o == null)
             throw new NullPointerException();
@@ -22,6 +35,7 @@ public class IObservable<T> {
         obs.removeElement(o);
     }
 
+    @SuppressWarnings("unchecked")
     public void notifyObservers() {
         Object[] arrLocal;
 
