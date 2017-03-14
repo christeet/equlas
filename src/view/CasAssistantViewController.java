@@ -20,12 +20,15 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -43,17 +46,30 @@ public class CasAssistantViewController extends EqualsView {
 	private TableColumn<Data, String> studentColumn;
 	@FXML
 	private Button printButton;
+	private File file;
 
 	@FXML
 	protected void onPrint() {
 		try {
-			makeXMLLeistungsnachweis();
+			file = directoryChooser();			
+			makeXMLLeistungsnachweis(file);
 			evaluateStudentsForCertificate();
-			makeXMLCertificate();
+			makeXMLCertificate(file);
 			openPDFs();
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
 		}
+	}
+	
+	private File directoryChooser() {
+		Parent root = getRootNode();
+		Stage stage = (Stage)root.getScene().getWindow();
+		
+		DirectoryChooser chooser = new DirectoryChooser();
+		chooser.setTitle("Directory");
+		chooser.setInitialDirectory(new File("resources/output/"));
+		return chooser.showDialog(stage);
+		
 	}
 	
 	private void openPDFs() throws Exception {
@@ -102,7 +118,7 @@ public class CasAssistantViewController extends EqualsView {
 		return sum + rate;
 	}
 
-	private void makeXMLLeistungsnachweis() {
+	private void makeXMLLeistungsnachweis(File file) {
 		try {
 			GenerateXML gxl = new GenerateXML(module);
 			gxl.makeXMLDocument();
@@ -113,7 +129,7 @@ public class CasAssistantViewController extends EqualsView {
 		}
 	}
 
-	private void makeXMLCertificate() {
+	private void makeXMLCertificate(File file) {
 		try {
 			System.out.println("Students: " + students.toString() + "\nModule: " + module.getShortName());
 			moduleList.add(module);
