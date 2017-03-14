@@ -177,7 +177,7 @@ public class CasAssistantViewController extends EqualsView {
 		studentColumn.setSortable(true);
 		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
-		colorizeRowsWithGoodGrades();
+		colorizeRows();
 	}
 
 	@Override
@@ -229,7 +229,7 @@ public class CasAssistantViewController extends EqualsView {
 	/**
 	 *  colors a row in green, if the corresponding student has good enough grades (>=50%)
 	 *  */
-	void colorizeRowsWithGoodGrades() {
+	void colorizeRows() {
         table.setRowFactory(new Callback<TableView<Data>, TableRow<Data>>() {
             @Override
             public TableRow<Data> call(TableView<Data> tableView) {
@@ -238,7 +238,9 @@ public class CasAssistantViewController extends EqualsView {
                     protected void updateItem(Data data, boolean empty){
                         super.updateItem(data, empty);
                         if(data == null) return;
-                        if (model.getStudentsWithGoodGradesProperty().contains(data.getStudent())) {
+                        if (!model.getStudentsWithCompleteRatingsProperty().contains(data.getStudent())) {
+                            setStyle("-fx-background-color: peachpuff;");
+                        } else if (model.getStudentsWithGoodGradesProperty().contains(data.getStudent())) {
                             setStyle("-fx-background-color: lightgreen;");
                         } else {
                             setStyle("");
