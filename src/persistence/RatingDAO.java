@@ -51,7 +51,7 @@ public class RatingDAO {
 		
 	}
 	
-	public Rating setRating(int studentId, Course course, int successRate) throws SQLException {
+	public Rating setRating(int studentId, Course course, int successRate) throws SQLException, OptimisticLockingException {
 		Rating existingRating = getRating(studentId, course);
 		if(existingRating == null) {
 			insertRating(studentId, course.getId(), successRate);
@@ -119,7 +119,7 @@ public class RatingDAO {
 		psInsertRating.executeUpdate();  
 	}
 	
-	private void updateRating(Rating existingRating, int newSuccessRate) throws SQLException {
+	private void updateRating(Rating existingRating, int newSuccessRate) throws SQLException, OptimisticLockingException {
 		psUpdateRating.setInt(1, newSuccessRate);
 		psUpdateRating.setInt(2, existingRating.getVersion() + 1); // new version (increment of previous version)
 		psUpdateRating.setInt(3, existingRating.getStudentId());
@@ -128,7 +128,7 @@ public class RatingDAO {
 		
 		int nbrOfModifiedRecords = psUpdateRating.executeUpdate();  
 		if (nbrOfModifiedRecords != 1) {
-			throw new SQLException("setting Rating failed!");
+			throw new OptimisticLockingException("setting Rating failed!");
 		}
 	}
 }

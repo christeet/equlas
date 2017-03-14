@@ -42,7 +42,7 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	@FXML
 	protected void onSave() {
-		this.model.getClass();
+		// TODO: IMPLEMENT!!!!!!!
 	}
 	
 	@FXML
