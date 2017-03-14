@@ -22,8 +22,8 @@ public class UserLogin extends IObservable<UserLogin> {
 	public void checkPassword(String password, String username) {
 		
 		//***************** <DEBUG CODE>  ****************************************/
-		if(username.isEmpty()) { username="swp1";}
-		if(password.isEmpty()) { password="stud"; }
+		//if(username.isEmpty()) { username="swp1";}
+		//if(password.isEmpty()) { password="stud"; }
 		//***************** </DEBUG CODE> ****************************************/
 		
 		this.username = username;
