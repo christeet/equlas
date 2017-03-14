@@ -40,8 +40,7 @@ public class CasAssistantViewController extends EqualsView {
 	private ArrayList<Module> moduleList;
 	private ArrayList<Person> students;
 	private File userPDFPath;
-	private Parent root = getRootNode();
-	private Stage stage = (Stage)root.getScene().getWindow();
+
 
 	@FXML
 	private Label casTitleLabel;
@@ -66,6 +65,8 @@ public class CasAssistantViewController extends EqualsView {
 	}
 	
 	private File directoryChooser() {
+		Parent root = getRootNode();
+		Stage stage = (Stage)root.getScene().getWindow();
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle("Directory");
 		chooser.setInitialDirectory(new File("resources/output/"));
@@ -75,8 +76,8 @@ public class CasAssistantViewController extends EqualsView {
 	private void openPDFs() throws Exception {
 //		if (Desktop.isDesktopSupported()) {
 		    try {
-//		    	HostServices hostServices = getHostService();
-//		    	hostServices.showDocument(this.userPDFPath.getAbsolutePath());
+		    	HostServices hostServices = getHostService();
+		    	hostServices.showDocument(this.userPDFPath.getAbsolutePath());
 //		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
 //		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
 //		        Desktop.getDesktop().open(fileLeistungsnachweis);
