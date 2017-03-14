@@ -91,7 +91,8 @@ public class CasAssistantViewController extends EqualsView {
 			        Desktop.getDesktop().open(fileLeistungsnachweis);
 			        Desktop.getDesktop().open(fileCertificate);
 			    } catch (Exception ex) {
-			    	System.out.println("No Application found to open PDF! " + ex.getMessage() + "\n" + ex.getStackTrace());
+			    	System.out.println("No Application found to open PDF! " 
+			    			+ ex.getMessage() + "\n" + ex.getStackTrace());
 			    }
 			}).start();
 		}
@@ -99,7 +100,7 @@ public class CasAssistantViewController extends EqualsView {
 
 	private void evaluateStudentsForCertificate() throws Exception {
 		try {
-			ObservableList<Person> studentList = model.getPrintableStudentsProperty();
+			ObservableList<Person> studentList = model.getStudentsWithGoodGradesProperty();
 			for(Person student : studentList) {
 				int summe = 0;
 				ObservableList<Course> studentCourses = model.getCoursesListProperty()
@@ -236,7 +237,7 @@ public class CasAssistantViewController extends EqualsView {
                     protected void updateItem(Data data, boolean empty){
                         super.updateItem(data, empty);
                         if(data == null) return;
-                        if (model.getPrintableStudentsProperty().contains(data.getStudent())) {
+                        if (model.getStudentsWithGoodGradesProperty().contains(data.getStudent())) {
                             setStyle("-fx-background-color: lightgreen;");
                         } else {
                             setStyle("");

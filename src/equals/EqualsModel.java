@@ -183,16 +183,18 @@ public class EqualsModel implements IObserver<UserLogin> {
 		return semesterList;
 	}
 	
-	public ObservableList<Person> getPrintableStudentsProperty() {
+	public ObservableList<Person> getStudentsWithCompleteRatingsProperty() {
 		return studentList.filtered(s -> {
 			boolean ratingsMissing = courseList.stream().filter(c -> c.getModuleId() == contextModule.getId())
 					.anyMatch(c -> ratingList.stream().filter(r -> r.getStudentId() == s.getId())
 					.mapToInt(Rating::getCourseId)
 					.noneMatch(ratingCourseId -> c.getId()==ratingCourseId));
-			if(ratingsMissing) {
-				return false;
-			}
-			
+			return !ratingsMissing;
+		});
+	}
+	
+	public ObservableList<Person> getStudentsWithGoodGradesProperty() {
+		return getStudentsWithCompleteRatingsProperty().filtered(s -> {
 			/* get ratings multiplied by their corresponding weights */
 			double totalRatings = ratingList.stream()
 					.filter(r -> r.getStudentId() == s.getId()
