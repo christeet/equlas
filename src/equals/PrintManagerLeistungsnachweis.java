@@ -47,7 +47,7 @@ public class PrintManagerLeistungsnachweis {
 
 			// render FO document to PDF document
 			Source html = new StreamSource(PATH + "/output/autoLeistungsnachweis.fo");
-			File pdfFile = new File(userPDFPath + "/fertigLeistungsnachweis.pdf");
+			File pdfFile = new File(userPDFPath + "/Leistungsnachweis.pdf");
 			PrintManager.renderToPDF(html, pdfFile);
 		} catch (Exception ex) {
 			Logger.getLogger(PrintManagerLeistungsnachweis.class.getName()).log(Level.SEVERE, null, ex);
