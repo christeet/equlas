@@ -57,10 +57,6 @@ public class Main extends Application {
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);
 		stage.show();
-		
-		scene.focusOwnerProperty().addListener((obs, old, focusOwner) -> {
-			System.out.format("Focus is on %s\r\n", focusOwner);
-		});
 	}
 	/**
 	 * The entry-point of this program.

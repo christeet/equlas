@@ -3,6 +3,7 @@ package equals;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import data.Course;
@@ -91,7 +92,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 		case TEACHER:
 			// get Ratings of all Students for this teachers Courses of this Module
 			studentList.setAll(getStudentsByModule(module));
-			getRatingsFromCourses(courseList.filtered(c -> c.getTeacherId() == user.getId()));
+			ratingList.setAll(getRatingsFromCourses(courseList.filtered(c -> c.getTeacherId() == user.getId())));
 			break;
 		default:
 			return;
@@ -111,15 +112,33 @@ public class EqualsModel implements IObserver<UserLogin> {
 	public void setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
 		try {
 			System.out.println("setting new SuccessRate");
-			Rating newRating = ratingDao.setRating(studentId, course, newSuccessRate);
+			
+			Optional<Rating> oldRating = ratingList.stream().filter(r -> r.getStudentId() == studentId
+								  && r.getCourseId() == course.getId()).findFirst();
+			Rating newRating = ratingDao.setRating(
+					studentId, 
+					course, 
+					newSuccessRate, 
+					oldRating.isPresent() ? oldRating.get().getVersion() : 0);
 			ratingList.removeIf(r -> r.getStudentId() == studentId
 								  && r.getCourseId() == course.getId());
 			ratingList.add(newRating);
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} catch (OptimisticLockingException e) {
-			System.err.format("Failed to set rating %d for Student %d in Course %d because of optimistic Locking!", 
+			System.err.format("Failed to set rating %d for Student %d in Course %d "
+							+ "because of optimistic Locking!\r\n", 
 					newSuccessRate, studentId, course.getId());
+			/* get all ratings for this course again and replace them in the ratingsList */
+			ArrayList<Rating> newCourseRatings = new ArrayList<>();
+			try {
+				newCourseRatings.addAll(ratingDao.getRatingListForCourse(course));
+				ratingList.removeIf(r -> r.getCourseId() == course.getId());
+				ratingList.addAll(newCourseRatings);
+				
+			} catch (SQLException | NullPointerException ex) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

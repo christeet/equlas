@@ -16,6 +16,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -57,11 +58,25 @@ public class CasResponsibleViewController extends EqualsView {
 	
 	@Override
 	public void init() {
-		module = model.getContextModule();
-		casTitleLabel.setText(module.getName());
+        module = model.getContextModule();
+        casTitleLabel.setText(module.getName());
+        setTableColumns();
+        
+        /* update table-data as soon as the ratings-List changes (used for optimistic locking) */
+        model.getRatingListProperty().addListener((ListChangeListener.Change<? extends Rating> c) -> {
+	        setTableData();
+    	});
+        setTableData();
+        
+        table.setFixedCellSize(25);
+        table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
+        table.minHeightProperty().bind(table.prefHeightProperty());
+        table.maxHeightProperty().bind(table.prefHeightProperty());
+    }
+	
+	private void setTableColumns() {
 		UserRole userRole = module.getUserRole();
 		final int teacherId = model.getUserLogin().getUser().getId();
-
 		ArrayList<TableColumn<Data, Number>> tableColumns = new ArrayList<>();
 		FilteredList<Course> courses = model.getCoursesListProperty().filtered(c -> {
 			return c.getModuleId() == module.getId()
@@ -106,8 +121,10 @@ public class CasResponsibleViewController extends EqualsView {
             tableColumns.add(courseColumn);
 		}
         table.getColumns().addAll(tableColumns);
-        
-        
+	}
+	
+	private void setTableData() {
+		data.clear();
         for(Person student : model.getStudentListProperty()) {
     		ObservableList<Rating> ratingList = model.getRatingListProperty()
     				.filtered(r -> r.getStudentId() == student.getId());
@@ -115,14 +132,7 @@ public class CasResponsibleViewController extends EqualsView {
     		Data row = new Data(student, ratingList);
     		data.add(row);
         }
-        
 		table.getSortOrder().add(studentColumn);
-        
-        table.setFixedCellSize(25);
-        table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
-        table.minHeightProperty().bind(table.prefHeightProperty());
-        table.maxHeightProperty().bind(table.prefHeightProperty());
-        
 	}
 
     private void setNewSuccessRate(Course course, Data data, int newSuccessRate) {

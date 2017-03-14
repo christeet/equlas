@@ -35,7 +35,7 @@ public class RatingDAO {
 				+ "(?, "
 				+ "?, "
 				+ "?, "
-				+ "0);");
+				+ "?);");
 		
 		psUpdateRating = connection.prepareStatement(
 				"UPDATE Rating r SET "
@@ -51,13 +51,13 @@ public class RatingDAO {
 		
 	}
 	
-	public Rating setRating(int studentId, Course course, int successRate) throws SQLException, OptimisticLockingException {
-		Rating existingRating = getRating(studentId, course);
-		if(existingRating == null) {
-			insertRating(studentId, course.getId(), successRate);
+	public Rating setRating(int studentId, Course course, int successRate, int version) 
+			throws SQLException, OptimisticLockingException {
+		if(version == -1) {
+			insertRating(studentId, course.getId(), successRate, 0);
 		}
 		else {
-			updateRating(existingRating, successRate);
+			updateRating(studentId, course.getId(), successRate, version);
 		}
 		return getRating(studentId, course);
 	}
@@ -112,19 +112,20 @@ public class RatingDAO {
 		return resultList;
 	}
 	
-	private void insertRating(int studentId, int courseId, int successRate) throws SQLException {
+	private void insertRating(int studentId, int courseId, int successRate, int version) throws SQLException {
 		psInsertRating.setInt(1, studentId);
 		psInsertRating.setInt(2, courseId);
 		psInsertRating.setInt(3, successRate);
+		psInsertRating.setInt(4, version); 
 		psInsertRating.executeUpdate();  
 	}
 	
-	private void updateRating(Rating existingRating, int newSuccessRate) throws SQLException, OptimisticLockingException {
+	private void updateRating(int studentId, int courseId, int newSuccessRate, int version) throws SQLException, OptimisticLockingException {
 		psUpdateRating.setInt(1, newSuccessRate);
-		psUpdateRating.setInt(2, existingRating.getVersion() + 1); // new version (increment of previous version)
-		psUpdateRating.setInt(3, existingRating.getStudentId());
-		psUpdateRating.setInt(4, existingRating.getCourseId());
-		psUpdateRating.setInt(5, existingRating.getVersion()); // previous version
+		psUpdateRating.setInt(2, version + 1); // new version (increment of previous version)
+		psUpdateRating.setInt(3, studentId);
+		psUpdateRating.setInt(4, courseId);
+		psUpdateRating.setInt(5, version); // previous version
 		
 		int nbrOfModifiedRecords = psUpdateRating.executeUpdate();  
 		if (nbrOfModifiedRecords != 1) {
