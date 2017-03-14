@@ -3,6 +3,7 @@ package view;
 import data.Course;
 import data.Module;
 import data.Rating;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.SortType;
+import resources.I18n;
 import javafx.scene.control.TableView;
 
 public class StudentViewController extends EqualsView {
@@ -66,7 +68,10 @@ public class StudentViewController extends EqualsView {
 	public void init() {
 		studentId = model.getUserLogin().getUser().getId();
 		contextModule = model.getContextModule();
-		casTitleLabel.setText(contextModule.getName());
+		Platform.runLater(() -> {
+			String text = String.format("%s %s", I18n.getString("view.module"), contextModule.getName());
+			casTitleLabel.setText(text);
+		});
 		
 		System.out.format("ContextModule is %s (Nr %d)\r\n", contextModule.getShortName(), contextModule.getId());
 		

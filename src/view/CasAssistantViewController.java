@@ -11,6 +11,7 @@ import data.Rating;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -30,6 +31,8 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import resources.I18n;
+import util.Prefs;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -52,8 +55,11 @@ public class CasAssistantViewController extends EqualsView {
 
 	@FXML
 	protected void onPrint() {
+		printButton.setDisable(true);
 		try {
-			userPDFPath = directoryChooser();			
+			userPDFPath = directoryChooser(Prefs.get().getOutputPath());	
+			Prefs.get().setOutputPath(userPDFPath.getAbsolutePath());
+			Prefs.save();
 			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
 			
@@ -62,14 +68,17 @@ public class CasAssistantViewController extends EqualsView {
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
 		}
+		finally {
+			printButton.setDisable(false);
+		}
 	}
 	
-	private File directoryChooser() {
+	private File directoryChooser(String initialPath) {
 		Parent root = getRootNode();
 		Stage stage = (Stage)root.getScene().getWindow();
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle("Directory");
-		chooser.setInitialDirectory(new File("/"));
+		chooser.setInitialDirectory(new File(initialPath));
 		return chooser.showDialog(stage);
 	}
 	
@@ -173,7 +182,10 @@ public class CasAssistantViewController extends EqualsView {
 	@Override
 	public void init() {
 		module = model.getContextModule();
-		casTitleLabel.setText(module.getName());
+		Platform.runLater(() -> {
+			String text = String.format("%s %s", I18n.getString("view.module"), module.getName());
+			casTitleLabel.setText(text);
+		});
 		UserRole userRole = module.getUserRole();
 		final int teacherId = model.getUserLogin().getUser().getId();
 

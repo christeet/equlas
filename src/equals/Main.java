@@ -31,7 +31,7 @@ public class Main extends Application {
 
 		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
 				"../view/MainContainerView.fxml")
-				, model, controller, this.getHostServices());
+				, model, controller);
 		
 		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());
 		
@@ -57,10 +57,6 @@ public class Main extends Application {
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);
 		stage.show();
-		
-		scene.focusOwnerProperty().addListener((obs, old, focusOwner) -> {
-			System.out.format("Focus is on %s\r\n", focusOwner);
-		});
 	}
 	/**
 	 * The entry-point of this program.

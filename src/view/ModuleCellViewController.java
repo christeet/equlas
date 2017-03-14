@@ -123,8 +123,7 @@ public class ModuleCellViewController extends EqualsView {
                         		CourseCellViewController cellView = (CourseCellViewController) ViewLoader.create(
                         						getClass().getResource("CourseCellView.fxml"),
                         						model, 
-                        						controller,
-                        						getHostService());
+                        						controller);
                         		cellView.setModuleAndCourse(this, module, cellCourse);
                         		Node rootNode = cellView.getRootNode();
                         		setGraphic(rootNode);
