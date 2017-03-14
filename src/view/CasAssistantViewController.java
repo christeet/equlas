@@ -32,6 +32,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import resources.I18n;
+import util.Prefs;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -54,8 +55,11 @@ public class CasAssistantViewController extends EqualsView {
 
 	@FXML
 	protected void onPrint() {
+		printButton.setDisable(true);
 		try {
-			userPDFPath = directoryChooser();			
+			userPDFPath = directoryChooser(Prefs.get().getOutputPath());	
+			Prefs.get().setOutputPath(userPDFPath.getAbsolutePath());
+			Prefs.save();
 			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
 			
@@ -64,14 +68,17 @@ public class CasAssistantViewController extends EqualsView {
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
 		}
+		finally {
+			printButton.setDisable(false);
+		}
 	}
 	
-	private File directoryChooser() {
+	private File directoryChooser(String initialPath) {
 		Parent root = getRootNode();
 		Stage stage = (Stage)root.getScene().getWindow();
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle("Directory");
-		chooser.setInitialDirectory(new File("/"));
+		chooser.setInitialDirectory(new File(initialPath));
 		return chooser.showDialog(stage);
 	}
 	

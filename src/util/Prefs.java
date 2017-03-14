@@ -20,6 +20,7 @@ public class Prefs {
 	private String localeTag = Locale.getDefault().toLanguageTag();
 	private boolean isMaximized = false;
 	private String lastLoggedInUser = "";
+	private String outputPath = "/";
 	
 	
 	private void loadFromProperties() {
@@ -28,6 +29,7 @@ public class Prefs {
 		isMaximized = Boolean.parseBoolean(properties.getProperty("isMaximized"));
 		localeTag = properties.getProperty("locale");
 		lastLoggedInUser = properties.getProperty("lastLoggedInUser");
+		outputPath = properties.getProperty("outputPath");
 	}
 	
 	private void saveToProperties() {
@@ -36,6 +38,7 @@ public class Prefs {
 		properties.setProperty("isMaximized", Boolean.toString(isMaximized));
 		properties.setProperty("locale", localeTag);
 		properties.setProperty("lastLoggedInUser", lastLoggedInUser);
+		properties.setProperty("outputPath", outputPath);
 	}
 	
 	private Prefs() {
@@ -132,6 +135,14 @@ public class Prefs {
     
     public void setLastLoggedInUser(String value) {
         this.lastLoggedInUser = value;
+    }
+    
+    public String getOutputPath() {
+        return outputPath;
+    }
+    
+    public void setOutputPath(String value) {
+        this.outputPath = value;
     }
     
 }
