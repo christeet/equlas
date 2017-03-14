@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import data.Rating;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
+import javafx.application.HostServices;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -39,6 +39,9 @@ public class CasAssistantViewController extends EqualsView {
 	private Module module;
 	private ArrayList<Module> moduleList;
 	private ArrayList<Person> students;
+	private File userPDFPath;
+	private Parent root = getRootNode();
+	private Stage stage = (Stage)root.getScene().getWindow();
 
 	@FXML
 	private Label casTitleLabel;
@@ -48,7 +51,6 @@ public class CasAssistantViewController extends EqualsView {
 	private TableColumn<Data, String> studentColumn;
 	@FXML
 	private Button printButton;
-	private File userPDFPath;
 
 	@FXML
 	protected void onPrint() {
@@ -64,27 +66,25 @@ public class CasAssistantViewController extends EqualsView {
 	}
 	
 	private File directoryChooser() {
-		Parent root = getRootNode();
-		Stage stage = (Stage)root.getScene().getWindow();
-		
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle("Directory");
 		chooser.setInitialDirectory(new File("resources/output/"));
 		return chooser.showDialog(stage);
-		
 	}
 	
 	private void openPDFs() throws Exception {
-		if (Desktop.isDesktopSupported()) {
+//		if (Desktop.isDesktopSupported()) {
 		    try {
-		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
-		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
-		        Desktop.getDesktop().open(fileLeistungsnachweis);
-		        Desktop.getDesktop().open(fileCertificate);
-		    } catch (IOException ex) {
+//		    	HostServices hostServices = getHostService();
+//		    	hostServices.showDocument(this.userPDFPath.getAbsolutePath());
+//		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
+//		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
+//		        Desktop.getDesktop().open(fileLeistungsnachweis);
+//		        Desktop.getDesktop().open(fileCertificate);
+		    } catch (Exception ex) {
 		    	throw new Exception("No Application found to open PDF! " + ex.getMessage());
 		    }
-		}
+//		}
 	}
 
 	private void evaluateStudentsForCertificate() throws Exception {

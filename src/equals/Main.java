@@ -31,7 +31,7 @@ public class Main extends Application {
 
 		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
 				"../view/MainContainerView.fxml")
-				, model, controller);
+				, model, controller, this.getHostServices());
 		
 		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());
 		

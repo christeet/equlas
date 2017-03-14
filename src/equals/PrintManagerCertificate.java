@@ -48,7 +48,7 @@ public class PrintManagerCertificate {
 
 			// render FO document to PDF document
 			Source html = new StreamSource(PATH + "/output/autoCertificate.fo");
-			File pdfFile = new File(userPDFPath + "fertigCertificate.pdf");
+			File pdfFile = new File(userPDFPath + "/fertigCertificate.pdf");
 			PrintManager.renderToPDF(html, pdfFile);
 		} catch (Exception ex) {
 			Logger.getLogger(PrintManagerCertificate.class.getName()).log(Level.SEVERE, null, ex);
