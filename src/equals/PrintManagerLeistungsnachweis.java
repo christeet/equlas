@@ -21,9 +21,10 @@ import org.w3c.dom.Document;
 public class PrintManagerLeistungsnachweis {
 
 	private static final String PATH = "resources";
+	private File userPDFPath;
 
-	public PrintManagerLeistungsnachweis() {
-	
+	public PrintManagerLeistungsnachweis(File userPDFPath) {
+		this.userPDFPath = userPDFPath;
 	}
 	
 	public void generateXMLDocument() {
@@ -46,7 +47,7 @@ public class PrintManagerLeistungsnachweis {
 
 			// render FO document to PDF document
 			Source html = new StreamSource(PATH + "/output/autoLeistungsnachweis.fo");
-			File pdfFile = new File(PATH + "/output/fertigLeistungsnachweis.pdf");
+			File pdfFile = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
 			PrintManager.renderToPDF(html, pdfFile);
 		} catch (Exception ex) {
 			Logger.getLogger(PrintManagerLeistungsnachweis.class.getName()).log(Level.SEVERE, null, ex);

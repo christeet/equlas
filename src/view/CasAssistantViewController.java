@@ -20,6 +20,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -27,6 +28,8 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import xml.GenerateXML;
 
@@ -45,24 +48,37 @@ public class CasAssistantViewController extends EqualsView {
 	private TableColumn<Data, String> studentColumn;
 	@FXML
 	private Button printButton;
+	private File userPDFPath;
 
 	@FXML
 	protected void onPrint() {
 		try {
-			makeXMLLeistungsnachweis();
+			userPDFPath = directoryChooser();			
+			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
-			makeXMLCertificate();
+			makeXMLCertificate(userPDFPath);
 			openPDFs();
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
 		}
 	}
 	
+	private File directoryChooser() {
+		Parent root = getRootNode();
+		Stage stage = (Stage)root.getScene().getWindow();
+		
+		DirectoryChooser chooser = new DirectoryChooser();
+		chooser.setTitle("Directory");
+		chooser.setInitialDirectory(new File("resources/output/"));
+		return chooser.showDialog(stage);
+		
+	}
+	
 	private void openPDFs() throws Exception {
 		if (Desktop.isDesktopSupported()) {
 		    try {
-		        File fileLeistungsnachweis = new File("resources/output/fertigLeistungsnachweis.pdf");
-		        File fileCertificate = new File("resources/output/fertigCertificate.pdf");
+		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
+		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
 		        Desktop.getDesktop().open(fileLeistungsnachweis);
 		        Desktop.getDesktop().open(fileCertificate);
 		    } catch (IOException ex) {
@@ -105,18 +121,18 @@ public class CasAssistantViewController extends EqualsView {
 		return sum + rate;
 	}
 
-	private void makeXMLLeistungsnachweis() {
+	private void makeXMLLeistungsnachweis(File file) {
 		try {
 			GenerateXML gxl = new GenerateXML(module);
 			gxl.makeXMLDocument();
 			System.out.println("ModuleName: " + module.getName());
-			generatePDFLeistungsnachweis();
+			generatePDFLeistungsnachweis(file);
 		} catch (Exception eg) {
 			System.out.println("Could not generate Leistungsnachweis XML! Reason: " + eg.getMessage());
 		}
 	}
 
-	private void makeXMLCertificate() {
+	private void makeXMLCertificate(File file) {
 		try {
 			System.out.println("Students: " + students.toString() + "\nModule: " + module.getShortName());
 			moduleList.add(module);
@@ -124,25 +140,24 @@ public class CasAssistantViewController extends EqualsView {
 			System.out.println("GXC: " + gxc);
 			gxc.makeXMLDocument();
 			System.out.println("ModuleName: " + module.getName());
-			generatePDFCertificate();
+			generatePDFCertificate(file);
 		} catch (Exception eg) {
-			eg.printStackTrace();
 			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
 		}
 	}
 
-	private void generatePDFLeistungsnachweis() {
+	private void generatePDFLeistungsnachweis(File file) {
 		try {
-			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis();
+			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis(file);
 			pml.generateXMLDocument();
 		} catch (Exception el) {
 			System.out.println("Could not Print Leistungsnachweis, because of: " + el.getMessage());
 		}
 	}
 
-	private void generatePDFCertificate() {
+	private void generatePDFCertificate(File file) {
 		try {
-			PrintManagerCertificate pmc = new PrintManagerCertificate();
+			PrintManagerCertificate pmc = new PrintManagerCertificate(file);
 			pmc.generateXMLDocument();
 		} catch (Exception ec) {
 			System.out.println("Could not Print Leistungsnachweis, because of: " + ec.getMessage());
