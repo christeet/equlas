@@ -128,8 +128,8 @@ public class CasAssistantViewController extends EqualsView {
 
 	private void makeXMLLeistungsnachweis(File file) {
 		try {
-			GenerateXML gxl = new GenerateXML(module);
-			gxl.makeXMLDocument();
+			GenerateXML gxl = new GenerateXML(model);
+			gxl.makeXMLDocumentForLeistungsnachweis();
 			System.out.println("ModuleName: " + module.getName());
 			generatePDFLeistungsnachweis(file);
 		} catch (Exception eg) {
@@ -141,9 +141,9 @@ public class CasAssistantViewController extends EqualsView {
 		try {
 			System.out.println("Students: " + students.toString() + "\nModule: " + module.getShortName());
 			moduleList.add(module);
-			GenerateXML gxc = new GenerateXML(students, moduleList);
+			GenerateXML gxc = new GenerateXML(model);
 			System.out.println("GXC: " + gxc);
-			gxc.makeXMLDocument();
+			gxc.makeXMLDocumentForZertifikat();
 			System.out.println("ModuleName: " + module.getName());
 			generatePDFCertificate(file);
 		} catch (Exception eg) {
@@ -182,6 +182,7 @@ public class CasAssistantViewController extends EqualsView {
 
 	@Override
 	public void init() {
+		printButton.disableProperty().bind(Bindings.isEmpty(model.getStudentsWithCompleteRatingsProperty()));
 		module = model.getContextModule();
 		Platform.runLater(() -> {
 			String text = String.format("%s %s", I18n.getString("view.module"), module.getName());

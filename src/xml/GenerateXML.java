@@ -3,6 +3,7 @@ package xml;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,56 +22,20 @@ import data.Course;
 import data.Module;
 import data.Person;
 import data.Rating;
+import equals.EqualsModel;
 import persistence.CourseDAO;
 import persistence.DAOFactory;
-import persistence.ModuleDAO;
 import persistence.PersonDAO;
 import persistence.RatingDAO;
 
 public class GenerateXML {
 	
-	private String shortName;
-	private ArrayList<Person> students = null;
-	private ArrayList<Person> partialStudents = null;
-	private ArrayList<Module> modules;
-	private ArrayList<Module> singleModule = null;
+	private EqualsModel model;
+	private Module module;
 
-	public GenerateXML(Module module) throws Exception {
-		this.shortName = module.getShortName();
-		getModule();
-	}
-	
-	public GenerateXML(String shortName) throws Exception {
-		this.shortName = shortName;
-		getModule();
-	}
-	
-	public GenerateXML(ArrayList<Person> partialStudents, ArrayList<Module> singleModule) throws Exception {
-		this.partialStudents = partialStudents;
-		this.singleModule = singleModule;
-		getModule();
-	}
-	
-	private ArrayList<Module> getDAOModuleByName() throws Exception {
-		ModuleDAO moduleDAO = DAOFactory.getInstance().createModuleDAO();
-		ArrayList<Module> moduleList = null;
-		try {
-			moduleList = moduleDAO.getAllModulesByName(this.shortName);
-		} catch (SQLException e) {
-			throw new Exception("Could not get Module from DAOFactory!" + e.getMessage());
-		}
-		return moduleList;
-	}
-	
-	private ArrayList<Person> getStudentsByModule(Module module) throws Exception {
-		PersonDAO personDAO = DAOFactory.getInstance().createPersonDAO();
-		ArrayList<Person> studentList = null;
-		try {
-			studentList = personDAO.getStudentsByModule(module);
-		} catch (SQLException e) {
-			throw new Exception("Could not get Persons from DAOFactory!" + e.getMessage());
-		}
-		return studentList;
+	public GenerateXML(EqualsModel model) {
+		this.model = model;
+		this.module = model.getContextModule();
 	}
 	
 	private ArrayList<Course> getCourseByStudentModule(Person student, Module module) throws Exception {
@@ -95,23 +60,15 @@ public class GenerateXML {
 		return rating;
 	}
 	
-	private void getModule() throws Exception {
-		if(singleModule == null && partialStudents == null) {
-			this.modules = getDAOModuleByName();
-		} else {
-			this.modules = singleModule;
-		}
+	public void makeXMLDocumentForLeistungsnachweis() throws Exception  {
+		makeXMLDocument(model.getStudentsWithCompleteRatingsProperty());
 	}
 	
-	private void getStudents(Module module) throws Exception {
-		if(singleModule == null && partialStudents == null) {
-			this.students = getStudentsByModule(module);
-		} else {
-			this.students = partialStudents;
-		}
+	public void makeXMLDocumentForZertifikat() throws Exception {
+		makeXMLDocument(model.getStudentsWithGoodGradesProperty());
 	}
 	
-	public void makeXMLDocument() throws Exception { 
+	public void makeXMLDocument(List<Person> students) throws Exception { 
 	  try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -121,72 +78,70 @@ public class GenerateXML {
 			Element studentsTag = doc.createElement("students");
 			doc.appendChild(studentsTag);
 			
-			for(Module m : modules) {
-				getStudents(m);
-				for(Person student : this.students) {
-					Element studentTag = doc.createElement("student");
-					studentsTag.appendChild(studentTag);
-					
-					Element firstname = doc.createElement("firstName");
-					firstname.appendChild(doc.createTextNode(student.getFirstName()));
-					studentTag.appendChild(firstname);
+			for(Person student : students) {
+				Element studentTag = doc.createElement("student");
+				studentsTag.appendChild(studentTag);
 				
-					Element lastname = doc.createElement("lastName");
-					lastname.appendChild(doc.createTextNode(student.getLastName()));
-					studentTag.appendChild(lastname);
-					
-					Element dateofbirth = doc.createElement("dateOfBirth");
-					dateofbirth.appendChild(doc.createTextNode(student.getDateOfBirth().toString()));
-					studentTag.appendChild(dateofbirth);
+				Element firstname = doc.createElement("firstName");
+				firstname.appendChild(doc.createTextNode(student.getFirstName()));
+				studentTag.appendChild(firstname);
+			
+				Element lastname = doc.createElement("lastName");
+				lastname.appendChild(doc.createTextNode(student.getLastName()));
+				studentTag.appendChild(lastname);
+				
+				Element dateofbirth = doc.createElement("dateOfBirth");
+				dateofbirth.appendChild(doc.createTextNode(student.getDateOfBirth().toString()));
+				studentTag.appendChild(dateofbirth);
 
-					Element placeoforigin = doc.createElement("placeOfOrigin");
-					placeoforigin.appendChild(doc.createTextNode(student.getPlaceOfOrigin()));
-					studentTag.appendChild(placeoforigin);
-					
-					Element sex = doc.createElement("sex");
-					sex.appendChild(doc.createTextNode(student.getSex()));
-					studentTag.appendChild(sex);
-					
-					Element courseStudentShortName = doc.createElement("shortName");
-					courseStudentShortName.appendChild(doc.createTextNode(student.getUserName()));
-					studentTag.appendChild(courseStudentShortName);
+				Element placeoforigin = doc.createElement("placeOfOrigin");
+				placeoforigin.appendChild(doc.createTextNode(student.getPlaceOfOrigin()));
+				studentTag.appendChild(placeoforigin);
+				
+				Element sex = doc.createElement("sex");
+				sex.appendChild(doc.createTextNode(student.getSex()));
+				studentTag.appendChild(sex);
+				
+				Element courseStudentShortName = doc.createElement("shortName");
+				courseStudentShortName.appendChild(doc.createTextNode(student.getUserName()));
+				studentTag.appendChild(courseStudentShortName);
 
-					for(Course course : getCourseByStudentModule(student, m)) {
-						Element coursesTag = doc.createElement("courses");
-						studentTag.appendChild(coursesTag);
-						
-						Element courseName = doc.createElement("name");
-						courseName.appendChild(doc.createTextNode(course.getName()));
-						coursesTag.appendChild(courseName);
-						
-						Element courseWeight = doc.createElement("weight");
-						courseWeight.appendChild(doc.createTextNode(String.valueOf(course.getWeight())));
-						coursesTag.appendChild(courseWeight);
-						
-						Element courseRating = doc.createElement("rating");
-						if(getRatingByStudentCourse(student, course) != null) {
-							courseRating.appendChild(doc.createTextNode(
-							  String.valueOf(getRatingByStudentCourse(student, course).getSuccessRate()))
-							);
-						}
-						coursesTag.appendChild(courseRating);
+				for(Course course : getCourseByStudentModule(student, module)) {
+					Element coursesTag = doc.createElement("courses");
+					studentTag.appendChild(coursesTag);
+					
+					Element courseName = doc.createElement("name");
+					courseName.appendChild(doc.createTextNode(course.getName()));
+					coursesTag.appendChild(courseName);
+					
+					Element courseWeight = doc.createElement("weight");
+					courseWeight.appendChild(doc.createTextNode(String.valueOf(course.getWeight())));
+					coursesTag.appendChild(courseWeight);
+					
+					Element courseRating = doc.createElement("rating");
+					if(getRatingByStudentCourse(student, course) != null) {
+						courseRating.appendChild(doc.createTextNode(
+						  String.valueOf(getRatingByStudentCourse(student, course)
+								  .getSuccessRate()))
+						);
 					}
-					Element moduleTag = doc.createElement("module");
-					
-					Element moduleName = doc.createElement("name");
-					moduleName.appendChild(doc.createTextNode(m.getName()));
-					moduleTag.appendChild(moduleName);
-					
-					Element moduleStartDate = doc.createElement("startDate");
-					moduleStartDate.appendChild(doc.createTextNode(String.valueOf(m.getStartDate())));
-					moduleTag.appendChild(moduleStartDate);
-					
-					Element moduleEndDate = doc.createElement("endDate");
-					moduleEndDate.appendChild(doc.createTextNode(String.valueOf(m.getEndDate())));
-					moduleTag.appendChild(moduleEndDate);
-					
-					studentTag.appendChild(moduleTag);
+					coursesTag.appendChild(courseRating);
 				}
+				Element moduleTag = doc.createElement("module");
+				
+				Element moduleName = doc.createElement("name");
+				moduleName.appendChild(doc.createTextNode(module.getName()));
+				moduleTag.appendChild(moduleName);
+				
+				Element moduleStartDate = doc.createElement("startDate");
+				moduleStartDate.appendChild(doc.createTextNode(String.valueOf(module.getStartDate())));
+				moduleTag.appendChild(moduleStartDate);
+				
+				Element moduleEndDate = doc.createElement("endDate");
+				moduleEndDate.appendChild(doc.createTextNode(String.valueOf(module.getEndDate())));
+				moduleTag.appendChild(moduleEndDate);
+				
+				studentTag.appendChild(moduleTag);
 			}
 				
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
