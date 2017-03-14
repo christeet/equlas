@@ -9,6 +9,7 @@ import data.Module;
 import data.Person;
 import data.Rating;
 import data.UserRole;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
@@ -28,6 +29,7 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import resources.I18n;
 
 public class CasResponsibleViewController extends EqualsView {
 
@@ -59,7 +61,10 @@ public class CasResponsibleViewController extends EqualsView {
 	@Override
 	public void init() {
         module = model.getContextModule();
-        casTitleLabel.setText(module.getName());
+		Platform.runLater(() -> {
+			String text = String.format("%s %s", I18n.getString("view.module"), module.getName());
+			casTitleLabel.setText(text);
+		});
         setTableColumns();
         
         /* update table-data as soon as the ratings-List changes (used for optimistic locking) */

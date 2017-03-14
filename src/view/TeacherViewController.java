@@ -12,6 +12,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -110,6 +111,15 @@ public class TeacherViewController extends EqualsView {
 			courseLabel.setText(text);
 		});
 		
+        /* update table-data as soon as the ratings-List changes (used for optimistic locking) */
+        model.getRatingListProperty().addListener((ListChangeListener.Change<? extends Rating> c) -> {
+	        setTableData();
+    	});
+        setTableData();
+	}
+	
+	private void setTableData() {
+		this.data.clear();
 		for(Person student : model.getStudentListProperty()) {
 			Integer success = null;
 			try {

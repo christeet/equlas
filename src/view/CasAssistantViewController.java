@@ -11,6 +11,7 @@ import data.Rating;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -30,6 +31,7 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import resources.I18n;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -173,7 +175,10 @@ public class CasAssistantViewController extends EqualsView {
 	@Override
 	public void init() {
 		module = model.getContextModule();
-		casTitleLabel.setText(module.getName());
+		Platform.runLater(() -> {
+			String text = String.format("%s %s", I18n.getString("view.module"), module.getName());
+			casTitleLabel.setText(text);
+		});
 		UserRole userRole = module.getUserRole();
 		final int teacherId = model.getUserLogin().getUser().getId();
 
