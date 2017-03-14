@@ -108,9 +108,10 @@ public class EqualsModel implements IObserver<UserLogin> {
 		}
 	}
 	
-	public void setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
+	public boolean setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
 		try {
-			System.out.println("setting new SuccessRate");
+			System.out.format("setting new SuccessRate %d for student %d in course %s\r\n", 
+					newSuccessRate, studentId, course.getShortName());
 			
 			Optional<Rating> oldRating = ratingList.stream().filter(r -> r.getStudentId() == studentId
 								  && r.getCourseId() == course.getId()).findFirst();
@@ -122,6 +123,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 			ratingList.removeIf(r -> r.getStudentId() == studentId
 								  && r.getCourseId() == course.getId());
 			ratingList.add(newRating);
+			return true;
 		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} catch (OptimisticLockingException e) {
@@ -132,24 +134,29 @@ public class EqualsModel implements IObserver<UserLogin> {
 			ArrayList<Rating> newCourseRatings = new ArrayList<>();
 			try {
 				newCourseRatings.addAll(ratingDao.getRatingListForCourse(course));
-				ratingList.removeIf(r -> r.getCourseId() == course.getId());
-				ratingList.addAll(newCourseRatings);
+				ratingList.removeIf(r -> r.getStudentId() == studentId
+						  			  && r.getCourseId() == course.getId());
+				ratingList.addAll(newCourseRatings.stream()
+						.filter(r -> r.getStudentId() == studentId).collect(Collectors.toList()));
 				
 			} catch (SQLException | NullPointerException ex) {
 				e.printStackTrace();
 			}
 		}
+		return false;
 	}
 	
-	public void removeRating(int studentId, Course course) {
+	public boolean removeRating(int studentId, Course course) {
 		try {
 			System.out.println("remove rating");
 			ratingDao.removeRating(studentId, course);
 			ratingList.removeIf(r -> r.getStudentId() == studentId
 								  && r.getCourseId() == course.getId());
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 	public Module getContextModule() {

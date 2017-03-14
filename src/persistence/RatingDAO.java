@@ -120,7 +120,8 @@ public class RatingDAO {
 		psInsertRating.executeUpdate();  
 	}
 	
-	private void updateRating(int studentId, int courseId, int newSuccessRate, int version) throws SQLException, OptimisticLockingException {
+	private void updateRating(int studentId, int courseId, int newSuccessRate, int version) 
+			throws SQLException, OptimisticLockingException {
 		psUpdateRating.setInt(1, newSuccessRate);
 		psUpdateRating.setInt(2, version + 1); // new version (increment of previous version)
 		psUpdateRating.setInt(3, studentId);

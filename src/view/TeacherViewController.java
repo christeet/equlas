@@ -2,6 +2,9 @@ package view;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import data.Course;
 import data.Person;
@@ -12,9 +15,13 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -22,6 +29,7 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Region;
 import javafx.util.StringConverter;
 import resources.I18n;
 
@@ -32,13 +40,37 @@ public class TeacherViewController extends EqualsView {
 	@FXML private TableView<Data> table;
 	@FXML private TableColumn<Data, String> studentColumn;
 	@FXML private TableColumn<Data, Number> successColumn;
+	
 
 	private ObservableList<Data> data;
 	private Course currentCourse;
+	private ObservableMap<Integer, Integer> successRateChanges = FXCollections.observableHashMap();
 	
 	@FXML
 	protected void onSave() {
-		this.model.getClass();
+		int noSaveSuccess = 0;
+		Iterator<Entry<Integer, Integer>> iterator = successRateChanges.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Map.Entry<Integer, Integer> change = (Map.Entry<Integer, Integer>)iterator.next();
+			if(!setNewSuccessRate(change.getKey(), change.getValue())) {
+				noSaveSuccess++;
+			}
+			iterator.remove();
+		}
+		if(noSaveSuccess > 0) {
+			showNoSaveSuccessAlert(noSaveSuccess);
+		}
+	}
+	
+	private void showNoSaveSuccessAlert(int noSaveSuccess) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle(I18n.getString("alert.warning"));
+		alert.setHeaderText(null);
+		alert.setContentText(String.format(I18n.getString("alert.content.noSaveSuccess"), noSaveSuccess));
+		alert.getDialogPane().getChildren().stream()
+			.filter(node -> node instanceof Label)
+			.forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
+		alert.show();
 	}
 	
 	@FXML
@@ -48,8 +80,8 @@ public class TeacherViewController extends EqualsView {
 		successColumn.setCellValueFactory(d -> d.getValue().successProperty());
 		studentColumn.setSortable(true);
 		studentColumn.setSortType(SortType.ASCENDING);
-		this.data = table.getItems();
-		
+		data = table.getItems();
+		saveButton.disableProperty().bind(Bindings.isEmpty(successRateChanges));
 		
 		successColumn.setCellFactory(TextFieldTableCell.<Data, Number>forTableColumn(new StringConverter<Number>() {
 	        private final NumberFormat nf = NumberFormat.getNumberInstance();
@@ -79,22 +111,26 @@ public class TeacherViewController extends EqualsView {
 	        }
 	    }));
 		successColumn.setOnEditCommit((CellEditEvent<Data, Number> t) -> {
-			setNewSuccessRate(t.getRowValue(), t.getNewValue().intValue());
+			addSuccessRateChange(t.getRowValue(), t.getNewValue().intValue());
 			t.getRowValue().successProperty().set(t.getNewValue().intValue());
 		});
 
-        
         table.setFixedCellSize(25);
         table.prefHeightProperty().bind(table.fixedCellSizeProperty().multiply(Bindings.size(table.getItems()).add(2.01)));
         table.minHeightProperty().bind(table.prefHeightProperty());
         table.maxHeightProperty().bind(table.prefHeightProperty());
 	}
-	
-    private void setNewSuccessRate(Data data, int newSuccessRate) {
+
+    private void addSuccessRateChange(Data data, int newSuccessRate) {
+    	System.out.println("adding data");
+    	successRateChanges.put(data.getStudent().getId(), newSuccessRate);
+	}
+    
+    private boolean setNewSuccessRate(int studentId, int newSuccessRate) {
     	if(newSuccessRate == -1) {
-        	controller.removeRating(data.getStudent().getId(), currentCourse);
+        	return controller.removeRating(studentId, currentCourse);
     	} else {
-    		controller.setNewSuccessRate(data.getStudent().getId(), currentCourse, newSuccessRate);
+    		return controller.setNewSuccessRate(studentId, currentCourse, newSuccessRate);
     	}
     }
 	
