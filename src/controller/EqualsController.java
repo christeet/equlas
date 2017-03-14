@@ -28,11 +28,11 @@ public class EqualsController {
 		model.setSelectedCourse(course);
 	}
 	
-	public void setNewSuccessRate(int studentId, int courseId, int newSuccessRate) {
-		model.setNewSuccessRate(studentId, courseId, newSuccessRate);
+	public void setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
+		model.setNewSuccessRate(studentId, course, newSuccessRate);
 	}
 	
-	public void removeRating(int studentId, int courseId) {
-		model.removeRating(studentId, courseId);
+	public void removeRating(int studentId, Course course) {
+		model.removeRating(studentId, course);
 	}
 }

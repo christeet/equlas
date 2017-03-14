@@ -88,7 +88,7 @@ public class GenerateXML {
 		RatingDAO ratingDAO = DAOFactory.getInstance().createRatingDAO();
 		Rating rating = null;
 		try {
-			rating = ratingDAO.getRating(student.getId(), course.getId());
+			rating = ratingDAO.getRating(student.getId(), course);
 		} catch (SQLException e) {
 			throw new Exception("Could not get Rating from DAOFactory!" + e.getMessage());
 		}

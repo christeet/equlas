@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import data.Course;
+import data.Module;
 import data.Rating;
 
 public class RatingDAO {
@@ -49,62 +51,63 @@ public class RatingDAO {
 		
 	}
 	
-	public Rating setRating(int studentId, int courseId, int successRate) throws SQLException {
-		Rating existingRating = getRating(studentId, courseId);
-		if(existingRating == null) { // INSERT
-			insertRating(studentId, courseId, successRate);
+	public Rating setRating(int studentId, Course course, int successRate) throws SQLException, OptimisticLockingException {
+		Rating existingRating = getRating(studentId, course);
+		if(existingRating == null) {
+			insertRating(studentId, course.getId(), successRate);
 		}
 		else {
 			updateRating(existingRating, successRate);
 		}
-		return getRating(studentId, courseId);
+		return getRating(studentId, course);
 	}
 
-	public int removeRating(int studentId, int courseId) throws SQLException {
+	public int removeRating(int studentId, Course course) throws SQLException {
 		psRemoveRating.setInt(1, studentId);
-		psRemoveRating.setInt(2, courseId);
+		psRemoveRating.setInt(2, course.getId());
 		int nbrOfModifiedRecords = psRemoveRating.executeUpdate();
 		return nbrOfModifiedRecords;
 	}
 	
 	
-	public Rating getRating(int studentId, int courseId) throws SQLException {
+	public Rating getRating(int studentId, Course course) throws SQLException {
 		psGetRating.setInt(1, studentId);
-		psGetRating.setInt(2, courseId);
+		psGetRating.setInt(2, course.getId());
 		ResultSet resultSet = psGetRating.executeQuery();
 		if(resultSet.next()) {
-			return getRatingFromResultSet(resultSet);
+			return getRatingFromResultSet(resultSet, course.getModuleId());
 		}
 		else {
 			return null;
 		}
 	}
 	
-	public ArrayList<Rating> getRatingListForCourse(int courseId) throws SQLException {
-		psGetAllRatingsForCourse.setInt(1, courseId);
+	public ArrayList<Rating> getRatingListForCourse(Course course) throws SQLException {
+		psGetAllRatingsForCourse.setInt(1, course.getId());
 		ResultSet resultSet = psGetAllRatingsForCourse.executeQuery();
-		return getRatingListFromResultSet(resultSet);
+		return getRatingListFromResultSet(resultSet, course.getModuleId());
 	}
 	
-	public ArrayList<Rating> getRatingListForStudent(int studentId) throws SQLException {
+	public ArrayList<Rating> getRatingListForStudent(int studentId, Module module) throws SQLException {
 		psGetAllRatingsForStudent.setInt(1, studentId);
 		ResultSet resultSet = psGetAllRatingsForStudent.executeQuery();
-		return getRatingListFromResultSet(resultSet);
+		return getRatingListFromResultSet(resultSet, module.getId());
 	}
 	
-	private Rating getRatingFromResultSet(ResultSet resultSet) throws SQLException{
+	private Rating getRatingFromResultSet(ResultSet resultSet, int moduleId) throws SQLException{
 		return new Rating(
 				resultSet.getInt("studentId"),
 				resultSet.getInt("courseId"),
 				resultSet.getInt("successRate"),
-				resultSet.getInt("version"));
+				resultSet.getInt("version"),
+				moduleId);
 	}
 	
 
-	private ArrayList<Rating> getRatingListFromResultSet(ResultSet resultSet) throws SQLException{
+	private ArrayList<Rating> getRatingListFromResultSet(ResultSet resultSet, int moduleId) throws SQLException{
 		ArrayList<Rating> resultList = new ArrayList<Rating>();
 		while (resultSet != null && resultSet.next()) {
-			resultList.add(getRatingFromResultSet(resultSet));
+			resultList.add(getRatingFromResultSet(resultSet, moduleId));
 		}
 		return resultList;
 	}
@@ -116,7 +119,7 @@ public class RatingDAO {
 		psInsertRating.executeUpdate();  
 	}
 	
-	private void updateRating(Rating existingRating, int newSuccessRate) throws SQLException {
+	private void updateRating(Rating existingRating, int newSuccessRate) throws SQLException, OptimisticLockingException {
 		psUpdateRating.setInt(1, newSuccessRate);
 		psUpdateRating.setInt(2, existingRating.getVersion() + 1); // new version (increment of previous version)
 		psUpdateRating.setInt(3, existingRating.getStudentId());
@@ -125,7 +128,7 @@ public class RatingDAO {
 		
 		int nbrOfModifiedRecords = psUpdateRating.executeUpdate();  
 		if (nbrOfModifiedRecords != 1) {
-			throw new SQLException("setting Rating failed!");
+			throw new OptimisticLockingException("setting Rating failed!");
 		}
 	}
 }

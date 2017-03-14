@@ -25,10 +25,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.SortType;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -95,7 +97,8 @@ public class CasAssistantViewController extends EqualsView {
 					.filtered(f -> f.getModuleId() == module.getId());
 			for(Course c : studentCourses) {
 				ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
-						.filtered(r -> r.getStudentId() == student.getId() && r.getCourseId() == c.getId());
+						.filtered(r -> r.getStudentId() == student.getId() 
+									&& r.getCourseId() == c.getId());
 				for(Rating r : ratingStudentList) {
 					System.out.println("RatingStudentList: " + r.getSuccessRate());
 					summe = calculateGrade(r.getSuccessRate(), summe);
@@ -170,6 +173,7 @@ public class CasAssistantViewController extends EqualsView {
 		studentColumn.setSortable(true);
 		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
+		colorizeRowsWithGoodGrades();
 	}
 
 	@Override
@@ -214,6 +218,30 @@ public class CasAssistantViewController extends EqualsView {
 
 	}
 
+	/**
+	 *  colors a row in green, if the corresponding student has good enough grades (>=50%)
+	 *  */
+	void colorizeRowsWithGoodGrades() {
+        table.setRowFactory(new Callback<TableView<Data>, TableRow<Data>>() {
+            @Override
+            public TableRow<Data> call(TableView<Data> tableView) {
+                final TableRow<Data> row = new TableRow<Data>() {
+                    @Override
+                    protected void updateItem(Data data, boolean empty){
+                        super.updateItem(data, empty);
+                        if(data == null) return;
+                        if (model.getPrintableStudentsProperty().contains(data.getStudent())) {
+                            setStyle("-fx-background-color: lightgreen;");
+                        } else {
+                            setStyle("");
+                        }
+                    }
+                };
+                return row;
+            }
+        });
+	}
+
 	@Override
 	public void dispose() {
 
@@ -230,7 +258,7 @@ public class CasAssistantViewController extends EqualsView {
 			this.ratings = new SimpleListProperty<Rating>(ratings);
 		}
 
-		private Person getStudent() {
+		public Person getStudent() {
 			return student;
 		}
 

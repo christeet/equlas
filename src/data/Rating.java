@@ -6,18 +6,21 @@ public class Rating {
 	private int courseId;
 	private int successRate;
 	private int version;
+	private int moduleId;
 	
 	
 	public Rating(
 			int studentId,
 			int courseId,
 			int successRate,
-			int version)
+			int version,
+			int moduleId)
 	{
 		this.studentId = studentId;
 		this.courseId = courseId;
 		this.successRate = successRate;
 		this.version = version;
+		this.moduleId = moduleId;
 	}
 	
 	public void print() {
@@ -31,6 +34,10 @@ public class Rating {
 	
 	public int getCourseId() {
 		return courseId;
+	}
+	
+	public int getModuleId() {
+		return moduleId;
 	}
 	
 	public int getSuccessRate() {
