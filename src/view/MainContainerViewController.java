@@ -89,7 +89,7 @@ public class MainContainerViewController extends EqualsView implements IObserver
 		if(currentView != null) {
 			currentView.dispose();
 		}
-		EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller, getHostService());
+		EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
 		container.setCenter(newView.getRootNode());
 		currentView = newView;
 	}
