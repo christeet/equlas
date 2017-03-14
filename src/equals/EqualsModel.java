@@ -37,7 +37,6 @@ public class EqualsModel implements IObserver<UserLogin> {
 	public EqualsModel() {
 		userLogin = new UserLogin();
 		userLogin.addObserver(this);
-
 		ratingDao = DAOFactory.getInstance().createRatingDAO();
 	}
 	
@@ -186,9 +185,6 @@ public class EqualsModel implements IObserver<UserLogin> {
 			return totalRatings / totalWeight >= 50.0;
 		});
 	}
-	
-	
-	
 	
 	private List<Module> getModulesByUser(Person user) {
 		ModuleDAO moduleDao = DAOFactory.getInstance().createModuleDAO();

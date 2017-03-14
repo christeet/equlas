@@ -1,7 +1,7 @@
 package view;
 
+import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import data.Course;
@@ -11,7 +11,6 @@ import data.Rating;
 import data.UserRole;
 import equals.PrintManagerCertificate;
 import equals.PrintManagerLeistungsnachweis;
-import javafx.application.HostServices;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -57,6 +56,7 @@ public class CasAssistantViewController extends EqualsView {
 			userPDFPath = directoryChooser();			
 			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
+			
 			makeXMLCertificate(userPDFPath);
 			openPDFs();
 		} catch (Exception e) {
@@ -69,50 +69,44 @@ public class CasAssistantViewController extends EqualsView {
 		Stage stage = (Stage)root.getScene().getWindow();
 		DirectoryChooser chooser = new DirectoryChooser();
 		chooser.setTitle("Directory");
-		chooser.setInitialDirectory(new File("resources/output/"));
+		chooser.setInitialDirectory(new File("/"));
 		return chooser.showDialog(stage);
 	}
 	
 	private void openPDFs() throws Exception {
-//		if (Desktop.isDesktopSupported()) {
-		    try {
-		    	HostServices hostServices = getHostService();
-		    	hostServices.showDocument(this.userPDFPath.getAbsolutePath());
-//		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
-//		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
-//		        Desktop.getDesktop().open(fileLeistungsnachweis);
-//		        Desktop.getDesktop().open(fileCertificate);
-		    } catch (Exception ex) {
-		    	throw new Exception("No Application found to open PDF! " + ex.getMessage());
-		    }
-//		}
+		if (Desktop.isDesktopSupported()) {
+			new Thread(() -> {
+			    try {
+			        File fileLeistungsnachweis = new File(userPDFPath + "/fertigLeistungsnachweis.pdf");
+			        File fileCertificate = new File(userPDFPath + "/fertigCertificate.pdf");
+			        Desktop.getDesktop().open(fileLeistungsnachweis);
+			        Desktop.getDesktop().open(fileCertificate);
+			    } catch (Exception ex) {
+			    	System.out.println("No Application found to open PDF! " + ex.getMessage() + "\n" + ex.getStackTrace());
+			    }
+			}).start();
+		}
 	}
 
 	private void evaluateStudentsForCertificate() throws Exception {
 		try {
-		ObservableList<Person> studentList = model.getStudentListProperty();
-		for(Person student : studentList) {
-			int summe = 0;
-			int countCourse = 0;
-			ObservableList<Course> studentCourses = model.getCoursesListProperty()
-					.filtered(f -> f.getModuleId() == module.getId());
-			for(Course c : studentCourses) {
-				ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
-						.filtered(r -> r.getStudentId() == student.getId() 
-									&& r.getCourseId() == c.getId());
-				for(Rating r : ratingStudentList) {
-					System.out.println("RatingStudentList: " + r.getSuccessRate());
-					summe = calculateGrade(r.getSuccessRate(), summe);
-					countCourse++;
+			ObservableList<Person> studentList = model.getPrintableStudentsProperty();
+			for(Person student : studentList) {
+				int summe = 0;
+				ObservableList<Course> studentCourses = model.getCoursesListProperty()
+						.filtered(f -> f.getModuleId() == module.getId());
+				for(Course c : studentCourses) {
+					ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
+							.filtered(r -> r.getStudentId() == student.getId() 
+										&& r.getCourseId() == c.getId());
+					for(Rating r : ratingStudentList) {
+						System.out.println("RatingStudentList: " + r.getSuccessRate());
+						summe = calculateGrade(r.getSuccessRate(), summe);
+					}
+					System.out.println("RatingsSize: " + ratingStudentList.size());
 				}
-				System.out.println("RatingsSize: " + ratingStudentList.size());
-				
-			}
-			if((summe / countCourse) >= 50) {
-				System.out.println("EvaluateRating: " + (summe / countCourse));
 				this.students.add(student);
 			}
-		}
 		} catch (Exception e) {
 			throw new Exception("Could not evaluate Students Rating: " + e.getMessage());
 		}

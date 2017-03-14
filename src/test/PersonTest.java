@@ -34,11 +34,6 @@ public class PersonTest {
 	}
 	
 	@Test
-	public void testGetFailStudent2Id() {
-		assertFalse(student2.getId() == 1);
-	}
-	
-	@Test
 	public void testGetStudent1FirstName() {
 		assertEquals(student1.getFirstName(), "First1");
 	}
@@ -46,11 +41,6 @@ public class PersonTest {
 	@Test
 	public void testGetStudent2FirstName() {
 		assertEquals(student2.getFirstName(), "First2");
-	}
-	
-	@Test
-	public void testGetFailStudent2FirstName() {
-		assertFalse(student2.getFirstName() == "Falscher Name");
 	}
 	
 	@Test
@@ -64,11 +54,6 @@ public class PersonTest {
 	}
 	
 	@Test
-	public void testGetFailStudent2LastName() {
-		assertFalse(student2.getLastName() == "falscher Name");
-	}
-	
-	@Test
 	public void testGetStudent1Sex() {
 		assertEquals(student1.getSex(), "m");
 	}
@@ -76,11 +61,6 @@ public class PersonTest {
 	@Test
 	public void testGetStudent2Sex() {
 		assertEquals(student2.getSex(), "w");
-	}
-	
-	@Test
-	public void testGetFailStudent1Sex() {
-		assertFalse(student1.getSex() == "c");
 	}
 	
 	@Test
@@ -94,11 +74,6 @@ public class PersonTest {
 	}
 	
 	@Test
-	public void testGetFailStudent1UserName() {
-		assertFalse(student1.getUserName() == "falscher Username");
-	}
-	
-	@Test
 	public void testGetStudent1Password() {
 		assertEquals(student1.getPassword(), "stud");
 	}
@@ -106,11 +81,6 @@ public class PersonTest {
 	@Test
 	public void testGetStudent2Password() {
 		assertEquals(student2.getPassword(), "stud");
-	}
-	
-	@Test
-	public void testGetFailStudent2Password() {
-		assertFalse(student2.getPassword() == "falsches Password");
 	}
 	
 	@Test
@@ -124,11 +94,6 @@ public class PersonTest {
 	}
 	
 	@Test
-	public void testGetFailStudent1DateOfBirth() {
-		assertFalse(student1.getDateOfBirth() == new Date(2017-03-10));
-	}
-	
-	@Test
 	public void testGetStudent1PlaceOfOrigin() {
 		assertEquals(student1.getPlaceOfOrigin(), "Bern");
 	}
@@ -136,11 +101,6 @@ public class PersonTest {
 	@Test
 	public void testGetStudent2PlaceOfOrigin() {
 		assertEquals(student2.getPlaceOfOrigin(), "Locarno");
-	}
-	
-	@Test
-	public void testGetFailStudent2PlaceOfOrigin() {
-		assertFalse(student2.getPlaceOfOrigin() == "falscher Heimatort");
 	}
 
 }

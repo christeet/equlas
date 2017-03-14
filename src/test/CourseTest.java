@@ -40,11 +40,6 @@ public class CourseTest {
 	}
 	
 	@Test
-	public void testFailCourse2Id() {
-		assertFalse(course2.getId() == 1);
-	}
-	
-	@Test
 	public void testGetCourse1Name() {
 		assert(course1.getName() == "Java");
 	}
@@ -52,11 +47,6 @@ public class CourseTest {
 	@Test
 	public void testGetCourse2Name() {
 		assert(course2.getName() == "XML");
-	}
-	
-	@Test
-	public void testGetFailCourse1Name() {
-		assertFalse(course1.getName() == "ava");
 	}
 	
 	@Test
