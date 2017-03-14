@@ -48,15 +48,15 @@ public class CasAssistantViewController extends EqualsView {
 	private TableColumn<Data, String> studentColumn;
 	@FXML
 	private Button printButton;
-	private File file;
+	private File userPDFPath;
 
 	@FXML
 	protected void onPrint() {
 		try {
-			file = directoryChooser();			
-			makeXMLLeistungsnachweis(file);
+			userPDFPath = directoryChooser();			
+			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
-			makeXMLCertificate(file);
+			makeXMLCertificate(userPDFPath);
 			openPDFs();
 		} catch (Exception e) {
 			System.out.println("XML Generating failed! " + e.getMessage());
@@ -77,8 +77,8 @@ public class CasAssistantViewController extends EqualsView {
 	private void openPDFs() throws Exception {
 		if (Desktop.isDesktopSupported()) {
 		    try {
-		        File fileLeistungsnachweis = new File("resources/output/fertigLeistungsnachweis.pdf");
-		        File fileCertificate = new File("resources/output/fertigCertificate.pdf");
+		        File fileLeistungsnachweis = new File(userPDFPath + "fertigLeistungsnachweis.pdf");
+		        File fileCertificate = new File(userPDFPath + "fertigCertificate.pdf");
 		        Desktop.getDesktop().open(fileLeistungsnachweis);
 		        Desktop.getDesktop().open(fileCertificate);
 		    } catch (IOException ex) {
@@ -126,7 +126,7 @@ public class CasAssistantViewController extends EqualsView {
 			GenerateXML gxl = new GenerateXML(module);
 			gxl.makeXMLDocument();
 			System.out.println("ModuleName: " + module.getName());
-			generatePDFLeistungsnachweis();
+			generatePDFLeistungsnachweis(file);
 		} catch (Exception eg) {
 			System.out.println("Could not generate Leistungsnachweis XML! Reason: " + eg.getMessage());
 		}
@@ -140,25 +140,24 @@ public class CasAssistantViewController extends EqualsView {
 			System.out.println("GXC: " + gxc);
 			gxc.makeXMLDocument();
 			System.out.println("ModuleName: " + module.getName());
-			generatePDFCertificate();
+			generatePDFCertificate(file);
 		} catch (Exception eg) {
-			eg.printStackTrace();
 			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
 		}
 	}
 
-	private void generatePDFLeistungsnachweis() {
+	private void generatePDFLeistungsnachweis(File file) {
 		try {
-			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis();
+			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis(file);
 			pml.generateXMLDocument();
 		} catch (Exception el) {
 			System.out.println("Could not Print Leistungsnachweis, because of: " + el.getMessage());
 		}
 	}
 
-	private void generatePDFCertificate() {
+	private void generatePDFCertificate(File file) {
 		try {
-			PrintManagerCertificate pmc = new PrintManagerCertificate();
+			PrintManagerCertificate pmc = new PrintManagerCertificate(file);
 			pmc.generateXMLDocument();
 		} catch (Exception ec) {
 			System.out.println("Could not Print Leistungsnachweis, because of: " + ec.getMessage());
