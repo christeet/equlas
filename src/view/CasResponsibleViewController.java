@@ -3,6 +3,9 @@ package view;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import data.Course;
 import data.Module;
@@ -17,10 +20,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -28,24 +35,49 @@ import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.Region;
 import javafx.util.StringConverter;
 import resources.I18n;
 
 public class CasResponsibleViewController extends EqualsView {
-
-	private ObservableList<Data> data;
-	private Module module;
-
+	
 	@FXML private Label casTitleLabel;
 	@FXML private Label successPartComplete;
 	@FXML private TableView<Data> table;
 	@FXML private TableColumn<Data, String> studentColumn;
 	@FXML private Button saveButton;
-	
-	
+
+	private ObservableList<Data> data;
+	private Module module;
+	private ObservableMap<StudentCourseTuple, Integer> successRateChanges = FXCollections.observableHashMap();
+
+
 	@FXML
 	protected void onSave() {
-		// TODO: IMPLEMENT!!!!!!!
+		int noSaveSuccess = 0;
+		Iterator<Entry<StudentCourseTuple, Integer>> iterator = successRateChanges.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Map.Entry<StudentCourseTuple, Integer> change = (Map.Entry<StudentCourseTuple, Integer>)iterator.next();
+			StudentCourseTuple tuple = change.getKey();
+			if(!setNewSuccessRate(tuple.getStudentId(), tuple.getCourse(), change.getValue())) {
+				noSaveSuccess++;
+			}
+			iterator.remove();
+		}
+		if(noSaveSuccess > 0) {
+			showNoSaveSuccessAlert(noSaveSuccess);
+		}
+	}
+	
+	private void showNoSaveSuccessAlert(int noSaveSuccess) {
+		Alert alert = new Alert(AlertType.WARNING);
+		alert.setTitle(I18n.getString("alert.warning"));
+		alert.setHeaderText(null);
+		alert.setContentText(String.format(I18n.getString("alert.content.noSaveSuccess"), noSaveSuccess));
+		alert.getDialogPane().getChildren().stream()
+			.filter(node -> node instanceof Label)
+			.forEach(node -> ((Label)node).setMinHeight(Region.USE_PREF_SIZE));
+		alert.show();
 	}
 	
 	@FXML
@@ -55,6 +87,7 @@ public class CasResponsibleViewController extends EqualsView {
 		studentColumn.setSortable(true);
 		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
+		saveButton.disableProperty().bind(Bindings.isEmpty(successRateChanges));
 	}
 	
 	
@@ -120,7 +153,7 @@ public class CasResponsibleViewController extends EqualsView {
     	    }));
             courseColumn.setOnEditCommit((CellEditEvent<Data, Number> t) -> {
             	Course currentCourse = (Course)t.getTableColumn().getUserData();
-    			setNewSuccessRate(currentCourse, t.getRowValue(), t.getNewValue().intValue());
+            	addSuccessRateChange(t.getRowValue(), currentCourse, t.getNewValue().intValue());
     			t.getRowValue().getRatingsProperty(currentCourse).set(t.getNewValue().intValue());
     		});
             tableColumns.add(courseColumn);
@@ -140,12 +173,17 @@ public class CasResponsibleViewController extends EqualsView {
 		table.getSortOrder().add(studentColumn);
 	}
 
-    private void setNewSuccessRate(Course course, Data data, int newSuccessRate) {
-    	System.out.format("Setting new rating %d for course %s\r\n", newSuccessRate, course.getShortName());
+    private void addSuccessRateChange(Data data, Course course, int newSuccessRate) {
+    	StudentCourseTuple tuple = new StudentCourseTuple(data.getStudent().getId(), course);
+    	successRateChanges.put(tuple, newSuccessRate);
+
+	}
+    
+    private boolean setNewSuccessRate(int studentId, Course course, int newSuccessRate) {
     	if(newSuccessRate == -1) {
-        	controller.removeRating(data.getStudent().getId(), course);
+        	return controller.removeRating(studentId, course);
     	} else {
-    		controller.setNewSuccessRate(data.getStudent().getId(), course, newSuccessRate);
+    		return controller.setNewSuccessRate(studentId, course, newSuccessRate);
     	}
     }
 	
@@ -154,7 +192,31 @@ public class CasResponsibleViewController extends EqualsView {
 		
 	}
 	
-	
+	private static class StudentCourseTuple {
+		private int studentId;
+		private Course course;
+		
+		StudentCourseTuple(int studentId, Course course) {
+			this.studentId = studentId;
+			this.course = course;
+		}
+		
+		public int getStudentId() { return studentId; }
+		public Course getCourse() { return course; }
+		
+		@Override
+		public boolean equals(Object obj) {
+			if(obj == this) return true;
+			StudentCourseTuple other = (StudentCourseTuple) obj;
+			if(other == null) return false;
+			return other.hashCode() == this.hashCode();
+		}
+
+		@Override
+		public int hashCode() {
+			return this.course.hashCode() + this.studentId; // this hashcode should be good enough.
+		}
+	}
 
 	  private static class Data {
 		private final Person student;
