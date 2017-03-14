@@ -37,11 +37,6 @@ public class ModuleTest {
 	}
 	
 	@Test
-	public void testFailModule2Id() {
-		assertFalse(module2.getId() == 1);
-	}
-	
-	@Test
 	public void testGetModule1Name() {
 		assert(module1.getName() == "Module1");
 	}
@@ -49,11 +44,6 @@ public class ModuleTest {
 	@Test
 	public void testGetModule2Name() {
 		assert(module2.getName() == "Module2");
-	}
-	
-	@Test
-	public void testGetFailModule1Name() {
-		assertFalse(module2.getName() == "falscher Name");
 	}
 	
 	@Test
@@ -67,11 +57,6 @@ public class ModuleTest {
 	}
 	
 	@Test
-	public void testGetFailModule1ShortName() {
-		assertFalse(module1.getShortName() == "falscher Name");
-	}
-	
-	@Test
 	public void testGetModule1StartDate() {
 		assertEquals(module1.getStartDate(), startTime);
 	}
@@ -79,11 +64,6 @@ public class ModuleTest {
 	@Test
 	public void testGetModule2StartDate() {
 		assertEquals(module2.getStartDate(), startTime);
-	}
-	
-	@Test
-	public void testGetFailModule1StartDate() {
-		assertFalse(module1.getStartDate() == new Date(2015-12-31));
 	}
 	
 	@Test
@@ -97,11 +77,6 @@ public class ModuleTest {
 	}
 	
 	@Test
-	public void testGetFailModule1EndDate() {
-		assertFalse(module1.getEndDate() == new Date(2015-12-31));
-	}
-	
-	@Test
 	public void testGetModule1UserRole() {
 		assertEquals(module1.getUserRole(), userRole1);
 	}
@@ -112,11 +87,6 @@ public class ModuleTest {
 	}
 	
 	@Test
-	public void testGetFailModule1UserRole() {
-		assertFalse(module1.getUserRole() == userRole2);
-	}
-	
-	@Test
 	public void testGetModule1ToString() {
 		assertEquals(module1.toString(), module1.getName() + "\r\n" + module1.getShortName());
 	}
@@ -124,11 +94,6 @@ public class ModuleTest {
 	@Test
 	public void testGetModule2ToString() {
 		assertEquals(module2.toString(), module2.getName() + "\r\n" + module2.getShortName());
-	}
-	
-	@Test
-	public void testGetFailModule1ToString() {
-		assertFalse(module1.toString() == module2.getName() + "\r\n" + module1.getShortName());
 	}
 
 }

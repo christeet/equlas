@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 import java.sql.Date;
 
@@ -37,7 +36,6 @@ public class RatingTest {
 		course2 = new Course(2, "XML", "xml", 1.6f, module2, 2);
 		rating1 = new Rating(1, 1, 80, 1, 1);
 		rating2 = new Rating(2, 2, 60, 2, 2);
-		
 	}
 
 	@Test
@@ -51,11 +49,6 @@ public class RatingTest {
 	}
 	
 	@Test
-	public void testGetFailStudent2Id() {
-		assertFalse(rating2.getStudentId() == student1.getId());
-	}
-	
-	@Test
 	public void testGetCourse1Id() {
 		assertEquals(rating1.getCourseId(), course1.getId());
 	}
@@ -63,11 +56,6 @@ public class RatingTest {
 	@Test
 	public void testGetCourse2Id() {
 		assertEquals(rating2.getCourseId(), course2.getId());
-	}
-	
-	@Test
-	public void testGetFailCourse1Id() {
-		assertFalse(rating1.getCourseId() == course2.getId());
 	}
 	
 	@Test
@@ -81,11 +69,6 @@ public class RatingTest {
 	}
 	
 	@Test
-	public void testGetFailSuccessrate2() {
-		assertFalse(rating2.getSuccessRate() == 80);
-	}
-	
-	@Test
 	public void testGetVersion1() {
 		assert(rating1.getVersion() == 1);
 	}
@@ -93,11 +76,6 @@ public class RatingTest {
 	@Test
 	public void testGetVersion2() {
 		assert(rating2.getVersion() == 2);
-	}
-	
-	@Test
-	public void testGetFailVersion1() {
-		assertFalse(rating1.getVersion() == 2);
 	}
 	
 }
