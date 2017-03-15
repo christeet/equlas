@@ -63,7 +63,8 @@ public class CourseCellViewController extends EqualsView {
 			break;
 		}
 		if(imageFilename != null) {
-			userRoleIcon.setImage(new Image("file:src/resources/" + imageFilename));
+			userRoleIcon.setImage(new Image(
+					this.getClass().getResourceAsStream("/resources/" + imageFilename)));
 		}
 	}
 	
