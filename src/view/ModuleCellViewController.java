@@ -121,7 +121,7 @@ public class ModuleCellViewController extends EqualsView {
 	                        if (cellCourse != null && !empty) {
 
                         		CourseCellViewController cellView = (CourseCellViewController) ViewLoader.create(
-                        						getClass().getResource("CourseCellView.fxml"),
+                        				"CourseCellView.fxml",
                         						model, 
                         						controller);
                         		cellView.setModuleAndCourse(this, module, cellCourse);

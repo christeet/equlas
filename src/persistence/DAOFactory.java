@@ -29,7 +29,8 @@ public class DAOFactory {
 					| IllegalAccessException 
 					| ClassNotFoundException 
 					| SQLException e) {
-			  System.out.println(e.getMessage());
+				System.err.println("could not connect to mysql database: ");
+				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -38,14 +39,13 @@ public class DAOFactory {
 								 IllegalAccessException, 
 								 ClassNotFoundException, 
 								 SQLException {
-    
-    Class.forName("com.mysql.jdbc.Driver").newInstance();
-    
-    MysqlDataSource ds = new MysqlDataSource();
-    ds.setServerName("localhost");
-    ds.setDatabaseName("equals1DB");
-    connection = ds.getConnection("root", "alert");
-    System.out.println("Connected!");
+	    Class.forName("com.mysql.jdbc.Driver").newInstance();
+	    
+	    MysqlDataSource ds = new MysqlDataSource();
+	    ds.setServerName("localhost");
+	    ds.setDatabaseName("equals1DB");
+	    connection = ds.getConnection("root", "alert");
+	    System.out.println("Connected!");
 	}
 	
 	public ModuleDAO createModuleDAO() {

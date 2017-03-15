@@ -78,7 +78,7 @@ public class SelectViewController extends EqualsView {
 	                        super.updateItem(cellModule, bln);
 	                        if (cellModule != null) {
                         		ModuleCellViewController cellView = (ModuleCellViewController) ViewLoader.create(
-                        						getClass().getResource("ModuleCellView.fxml"),
+                        						"ModuleCellView.fxml",
                         						model, 
                         						controller);
                         		cellView.setModule(this, cellModule, selectedCourse -> {
@@ -181,7 +181,7 @@ public class SelectViewController extends EqualsView {
 	}
 	
 	private void setContentView(String filename) {
-		EqualsView newView = ViewLoader.create(getClass().getResource(filename), model, controller);
+		EqualsView newView = ViewLoader.create(filename, model, controller);
 		container.getChildren().clear();
 		container.getChildren().add(newView.getRootNode());
 		currentView = newView;

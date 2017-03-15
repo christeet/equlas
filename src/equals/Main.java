@@ -29,8 +29,8 @@ public class Main extends Application {
 		EqualsModel model = new EqualsModel();
 		EqualsController controller = new EqualsController(model);
 
-		EqualsView mainWindow = ViewLoader.create(getClass().getResource(
-				"../view/MainContainerView.fxml")
+		EqualsView mainWindow = ViewLoader.create(
+				"MainContainerView.fxml"
 				, model, controller);
 		
 		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());

@@ -1,7 +1,6 @@
 package view;
 
 import java.io.IOException;
-import java.net.URL;
 
 import controller.EqualsController;
 import equals.EqualsModel;
@@ -12,14 +11,14 @@ import resources.I18n;
 public class ViewLoader {
 	
 	public static EqualsView create(
-			URL fxmlUrl, 
+			String filename, 
 			EqualsModel model, 
 			EqualsController controller) {
 		FXMLLoader loader;
 		Parent rootNode = null;
 		EqualsView view = null;
 		try {
-			loader = new FXMLLoader(fxmlUrl, I18n.getResourceBundle());
+			loader = new FXMLLoader(ViewLoader.class.getResource(filename), I18n.getResourceBundle());
 			rootNode = (Parent)loader.load();
 			view = loader.<EqualsView>getController();
 			view.init(rootNode, model, controller);

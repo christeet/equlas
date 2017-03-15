@@ -25,7 +25,6 @@ import data.Rating;
 import equals.EqualsModel;
 import persistence.CourseDAO;
 import persistence.DAOFactory;
-import persistence.PersonDAO;
 import persistence.RatingDAO;
 
 public class GenerateXML {

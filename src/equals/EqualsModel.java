@@ -38,7 +38,6 @@ public class EqualsModel implements IObserver<UserLogin> {
 	public EqualsModel() {
 		userLogin = new UserLogin();
 		userLogin.addObserver(this);
-		ratingDao = DAOFactory.getInstance().createRatingDAO();
 	}
 	
 	public BooleanProperty loggedInProperty() {
@@ -51,6 +50,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	public void update(UserLogin o) {
 		switch(userLogin.getLoginState()) {
 		case LOGGED_IN:
+			ratingDao = DAOFactory.getInstance().createRatingDAO();
 			moduleList.setAll(getModulesByUser(o.getUser()));
 			semesterList.setAll(getSemestersByModules(moduleList));
 			courseList.setAll(getCoursesByModules(moduleList));
