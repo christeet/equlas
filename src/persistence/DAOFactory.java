@@ -1,12 +1,17 @@
 package persistence;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class DAOFactory {
 	
+	private String dbIniFilename = "equalsDatabase.ini";
 	private Connection connection;
 	private static DAOFactory instance;
 
@@ -39,13 +44,40 @@ public class DAOFactory {
 								 IllegalAccessException, 
 								 ClassNotFoundException, 
 								 SQLException {
-	    Class.forName("com.mysql.jdbc.Driver").newInstance();
-	    
-	    MysqlDataSource ds = new MysqlDataSource();
-	    ds.setServerName("localhost");
-	    ds.setDatabaseName("equals1DB");
-	    connection = ds.getConnection("root", "alert");
-	    System.out.println("Connected!");
+		String serverName;
+		String dataBaseName;
+		String login;
+		String password;
+		
+    	InputStream input = null;
+    	try {
+    		Properties properties = new Properties();
+    		input = new FileInputStream(dbIniFilename);
+    		properties.load(input);
+    		serverName = properties.getProperty("serverName");
+    		dataBaseName = properties.getProperty("dataBaseName");
+    		login = properties.getProperty("login");
+    		password = properties.getProperty("password");
+    	
+		    Class.forName("com.mysql.jdbc.Driver").newInstance();
+		    
+		    MysqlDataSource ds = new MysqlDataSource();
+		    ds.setServerName(serverName);
+		    ds.setDatabaseName(dataBaseName);
+		    connection = ds.getConnection(login, password);
+		    System.out.println("Connected!");
+
+    	} catch (IOException ex) {
+    		System.err.println("Could not find " + dbIniFilename);
+        } finally {
+        	if(input!=null) {
+        		try {
+        			input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+	    	}
+        }
 	}
 	
 	public ModuleDAO createModuleDAO() {

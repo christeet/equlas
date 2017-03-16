@@ -27,7 +27,9 @@ public class Main extends Application {
 				"MainContainerView.fxml"
 				, model, controller);
 		
-		Scene scene = new Scene(mainWindow.getRootNode(), Prefs.get().getWindowWidth(), Prefs.get().getWindowHeight());
+		Scene scene = new Scene(mainWindow.getRootNode(), 
+							Prefs.get().getWindowWidth(), 
+							Prefs.get().getWindowHeight());
 		
 		scene.widthProperty().addListener((obs, old, newSceneWidth) -> {
 			if(!stage.isMaximized()) {
@@ -56,6 +58,7 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 	/**
 	 * The entry-point of this program.
 	 * @param args commandline arguments
