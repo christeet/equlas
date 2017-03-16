@@ -55,6 +55,7 @@ public class CasAssistantViewController extends EqualsView {
 
 	@FXML
 	protected void onPrint() {
+		printButton.disableProperty().unbind();
 		printButton.setDisable(true);
 		try {
 			userPDFPath = directoryChooser(Prefs.get().getOutputPath());	
@@ -68,7 +69,7 @@ public class CasAssistantViewController extends EqualsView {
 			System.out.println("XML Generating failed! " + e.getMessage());
 		}
 		finally {
-			printButton.setDisable(false);
+			setPrintButtonBindings();
 		}
 	}
 	
@@ -85,8 +86,8 @@ public class CasAssistantViewController extends EqualsView {
 		if (Desktop.isDesktopSupported()) {
 			new Thread(() -> {
 			    try {
-			        File fileLeistungsnachweis = new File(userPDFPath + "/fertigLeistungsnachweis.pdf");
-			        File fileCertificate = new File(userPDFPath + "/fertigCertificate.pdf");
+			        File fileLeistungsnachweis = new File(userPDFPath + "/Leistungsnachweis.pdf");
+			        File fileCertificate = new File(userPDFPath + "/Certificate.pdf");
 			        Desktop.getDesktop().open(fileLeistungsnachweis);
 			        Desktop.getDesktop().open(fileCertificate);
 			    } catch (Exception ex) {
@@ -181,7 +182,7 @@ public class CasAssistantViewController extends EqualsView {
 
 	@Override
 	public void init() {
-		printButton.disableProperty().bind(Bindings.isEmpty(model.getStudentsWithCompleteRatingsProperty()));
+		setPrintButtonBindings();
 		module = model.getContextModule();
 		Platform.runLater(() -> {
 			String text = String.format("%s %s", I18n.getString("view.module"), module.getName());
@@ -224,11 +225,15 @@ public class CasAssistantViewController extends EqualsView {
 		table.maxHeightProperty().bind(table.prefHeightProperty());
 
 	}
+	
+	private void setPrintButtonBindings() {
+		printButton.disableProperty().bind(Bindings.isEmpty(model.getStudentsWithCompleteRatingsProperty()));
+	}
 
 	/**
 	 *  colors a row in green, if the corresponding student has good enough grades (>=50%)
 	 *  */
-	void colorizeRows() {
+	private void colorizeRows() {
         table.setRowFactory(new Callback<TableView<Data>, TableRow<Data>>() {
             @Override
             public TableRow<Data> call(TableView<Data> tableView) {
