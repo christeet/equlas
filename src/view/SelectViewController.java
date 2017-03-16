@@ -125,7 +125,7 @@ public class SelectViewController extends EqualsView {
 		if(entityList.isFocused()) {
 	    	System.out.format("***** selected Module: %s\r\n",
 	    			entityList.getSelectionModel().getSelectedItem().getShortName());
-			moduleCellViews.stream().filter(m->m.getModule() == selectedModule).forEach(m -> m.deselectCourses());
+			moduleCellViews.stream().forEach(m -> m.deselectCourses());
 	    	setModuleRelatedContent(selectedModule);
 		} else {
 	    	System.out.format("**** selected a Course of Module: %s\r\n",
