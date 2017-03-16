@@ -1,6 +1,6 @@
 package view;
 
-import java.awt.Desktop;
+import java.awt.Desktop; // awt-module needed, because alternative "HostServices" seems to have a bug.
 import java.io.File;
 import java.util.ArrayList;
 
@@ -59,7 +59,6 @@ public class CasAssistantViewController extends EqualsView {
 		try {
 			userPDFPath = directoryChooser(Prefs.get().getOutputPath());	
 			Prefs.get().setOutputPath(userPDFPath.getAbsolutePath());
-			Prefs.save();
 			makeXMLLeistungsnachweis(userPDFPath);
 			evaluateStudentsForCertificate();
 			

@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import controller.EqualsController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import resources.I18n;
@@ -16,9 +17,6 @@ import view.EqualsView;
 import view.ViewLoader;
 
 public class Main extends Application {
-
-	private ScheduledExecutorService preferencesSaveExecutor = Executors.newScheduledThreadPool(1);
-	private ScheduledFuture<?> preferencesSaveTask = null;
 	
 	@Override
 	public void start(Stage stage) {
@@ -38,21 +36,25 @@ public class Main extends Application {
 		scene.widthProperty().addListener((obs, old, newSceneWidth) -> {
 			if(!stage.isMaximized()) {
 				Prefs.get().setWindowWidth((double)newSceneWidth);
-				savePreferencesDelayed();
 			}
 		});
 		
 		scene.heightProperty().addListener((obs, old, newSceneHeight) -> {
 			if(!stage.isMaximized()) {
 				Prefs.get().setWindowHeight((double)newSceneHeight);
-				savePreferencesDelayed();
 			}
 		});
+		
+		Platform.setImplicitExit(false);
+		stage.setOnCloseRequest((event) -> {
+			Prefs.save();
+            System.out.println("Saved preferences. Goodbye!");
+            Platform.exit();
+        });
 
 		stage.setMaximized(Prefs.get().getMaximized());
 		stage.maximizedProperty().addListener((obs, old, maximized) -> {
 			Prefs.get().setMaximized(maximized);
-			Prefs.save();
 		});
 		stage.setTitle(I18n.getString("login.title"));
 		stage.setScene(scene);
@@ -65,12 +67,5 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 		//consoleDebug();
-	}
-
-	private void savePreferencesDelayed() {
-		if(null != preferencesSaveTask) preferencesSaveTask.cancel(false);
-		preferencesSaveTask = preferencesSaveExecutor.schedule(() -> {
-			Prefs.save();
-		}, 1, TimeUnit.SECONDS);
 	}
 }

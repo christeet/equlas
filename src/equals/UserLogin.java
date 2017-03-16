@@ -34,7 +34,6 @@ public class UserLogin extends IObservable<UserLogin> {
 				loginState = LoginState.LOGGED_IN;
 				currentUser = p;
 				Prefs.get().setLastLoggedInUser(username);
-				Prefs.save();
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

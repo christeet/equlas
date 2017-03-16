@@ -34,7 +34,6 @@ public class MainContainerViewController extends EqualsView implements IObserver
 				String newLocaleTag = (String)toggleBtn.getUserData();
 				System.out.format("selected %s\r\n", newLocaleTag);
 				Prefs.get().setLocale(newLocaleTag);
-				Prefs.save();
 				I18n.setLocale(Locale.forLanguageTag(newLocaleTag));
 				logoutButton.setText(I18n.getString("login.logout"));
 			}
