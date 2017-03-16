@@ -22,6 +22,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
@@ -46,6 +47,7 @@ public class CasResponsibleViewController extends EqualsView {
 	@FXML private TableView<Data> table;
 	@FXML private TableColumn<Data, String> studentColumn;
 	@FXML private Button saveButton;
+	@FXML private Label changesLabel;
 
 	private ObservableList<Data> data;
 	private Module module;
@@ -88,6 +90,10 @@ public class CasResponsibleViewController extends EqualsView {
 		studentColumn.setSortType(SortType.ASCENDING);
 		this.data = table.getItems();
 		saveButton.disableProperty().bind(Bindings.isEmpty(successRateChanges));
+		changesLabel.visibleProperty().bind(Bindings.isEmpty(successRateChanges).not());
+		successRateChanges.addListener((MapChangeListener.Change<? extends StudentCourseTuple, ? extends Integer> c) -> {
+			changesLabel.setText(String.format(I18n.getString("view.changes"), successRateChanges.size()));
+		});
 	}
 	
 	
@@ -146,15 +152,18 @@ public class CasResponsibleViewController extends EqualsView {
     	            try {
     					return nf.parse(s);
     				} catch (ParseException e) {
-    					e.printStackTrace();
-    					return -1;
+    					return -2; // non-valid input
     				} 
     	        }
     	    }));
             courseColumn.setOnEditCommit((CellEditEvent<Data, Number> t) -> {
-            	Course currentCourse = (Course)t.getTableColumn().getUserData();
-            	addSuccessRateChange(t.getRowValue(), currentCourse, t.getNewValue().intValue());
-    			t.getRowValue().getRatingsProperty(currentCourse).set(t.getNewValue().intValue());
+    			int newValue = t.getNewValue().intValue();
+    			if(newValue <= 100 && newValue >= -1) { 
+	            	Course currentCourse = (Course)t.getTableColumn().getUserData();
+	            	addSuccessRateChange(t.getRowValue(), currentCourse, newValue);
+	    			t.getRowValue().getRatingsProperty(currentCourse).set(newValue);
+    			}
+    			table.refresh();
     		});
             tableColumns.add(courseColumn);
 		}

@@ -15,21 +15,31 @@ public class UserLogin extends IObservable<UserLogin> {
 	private String username;
 	private Person currentUser;
 	
+	/**
+	 * Instantiates a 
+	 */
 	public UserLogin() {
 		this.loginState = LoginState.LOGGED_OUT;
 	}
+
 	
+	/**
+	 * Attempts a login with the given username and password 
+	 * and notifies all Observers about the new LoginState
+	 * @param password The unencrypted password
+	 * @param username The username
+	 */
 	public void checkPassword(String password, String username) {
 		
-		//***************** <DEBUG CODE>  ****************************************/
+		//***************** <DEBUG CODE FOR CONVENIENCE>  ****************************************/
 		//if(username.isEmpty()) { username="swp1";}
 		//if(password.isEmpty()) { password="stud"; }
-		//***************** </DEBUG CODE> ****************************************/
+		//***************** </DEBUG CODE FOR CONVENIENCE> ****************************************/
 		
 		this.username = username;
 		loginState = LoginState.LOGIN_FAILED;
 		try {
-			Person p = getDAOUser();
+			Person p = getUserFromDatabase();
 			if(p.getPassword().equals(String.valueOf(password.hashCode()))) {
 				loginState = LoginState.LOGGED_IN;
 				currentUser = p;
@@ -42,7 +52,10 @@ public class UserLogin extends IObservable<UserLogin> {
 			this.notifyObservers();
 		}
 	}
-	
+
+	/**
+	 * Logs out the current user.
+	 */
 	public void logout() {
 		loginState = LoginState.LOGGED_OUT;
 		this.setChanged();
@@ -57,7 +70,7 @@ public class UserLogin extends IObservable<UserLogin> {
 		return currentUser;
 	}
 	
-	private Person getDAOUser() {
+	private Person getUserFromDatabase() {
 		PersonDAO personDAO = DAOFactory.getInstance().createPersonDAO();
 		Person person = null;
 		try {
