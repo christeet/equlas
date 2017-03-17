@@ -67,6 +67,12 @@ public class GenerateXML {
 		makeXMLDocument(model.getStudentsWithGoodGradesProperty());
 	}
 	
+	/**
+	 * Generates an XML file for the given list of students.
+	 * The XML structure is the same for the Zertifikat and the Leistungsnachweis.
+	 * @param students The list of Students for which the Document should be generated
+	 * @throws Exception
+	 */
 	public void makeXMLDocument(List<Person> students) throws Exception { 
 	  try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

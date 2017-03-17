@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.collections.MapChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
@@ -34,8 +35,9 @@ import javafx.util.StringConverter;
 import resources.I18n;
 
 public class TeacherViewController extends EqualsView {
-	
+
 	@FXML private Label courseLabel;
+	@FXML private Label changesLabel;
 	@FXML private Button saveButton;
 	@FXML private TableView<Data> table;
 	@FXML private TableColumn<Data, String> studentColumn;
@@ -83,6 +85,11 @@ public class TeacherViewController extends EqualsView {
 		data = table.getItems();
 		saveButton.disableProperty().bind(Bindings.isEmpty(successRateChanges));
 		
+		changesLabel.visibleProperty().bind(Bindings.isEmpty(successRateChanges).not());
+		successRateChanges.addListener((MapChangeListener.Change<? extends Integer, ? extends Integer> c) -> {
+			changesLabel.setText(String.format(I18n.getString("view.changes"), successRateChanges.size()));
+		});
+		
 		successColumn.setCellFactory(TextFieldTableCell.<Data, Number>forTableColumn(new StringConverter<Number>() {
 	        private final NumberFormat nf = NumberFormat.getNumberInstance();
 	        
@@ -105,14 +112,17 @@ public class TeacherViewController extends EqualsView {
 	            try {
 					return nf.parse(s);
 				} catch (ParseException e) {
-					e.printStackTrace();
-					return -1;
+					return -2; // non-valid input
 				} 
 	        }
 	    }));
 		successColumn.setOnEditCommit((CellEditEvent<Data, Number> t) -> {
-			addSuccessRateChange(t.getRowValue(), t.getNewValue().intValue());
-			t.getRowValue().successProperty().set(t.getNewValue().intValue());
+			int newValue = t.getNewValue().intValue();
+			if(newValue <= 100 && newValue >= -1) { 
+				addSuccessRateChange(t.getRowValue(),newValue);
+				t.getRowValue().successProperty().set(newValue);
+			}
+			table.refresh();
 		});
 
         table.setFixedCellSize(25);

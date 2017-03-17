@@ -137,7 +137,6 @@ public class SelectViewController extends EqualsView {
 		if(parentModule == null || selectedCourse == null) return;
 		moduleCellViews.stream().filter(m->m.getModule() != parentModule).forEach(m -> m.deselectCourses());
 		entityList.getSelectionModel().select(parentModule);
-		controller.selectedCourseChanged(selectedCourse);
 		setCourseRelatedContent(parentModule, selectedCourse);
 	}
 	
