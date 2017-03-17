@@ -34,5 +34,9 @@ public abstract class EqualsView {
 		init();
 	}
 
+	/**
+	 * Returns the hierarchically uppermost node of the scene-graph of this view.
+	 * @return the root-Node
+	 */
 	public Parent getRootNode() { return rootNode; }
 }
