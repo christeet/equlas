@@ -9,7 +9,7 @@ import data.Module;
 import data.Person;
 import data.Rating;
 import data.UserRole;
-import equals.PrintManagerCertificate;
+import equals.GenerateDocuments;
 import equals.PrintManagerLeistungsnachweis;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -130,8 +130,7 @@ public class CasAssistantViewController extends EqualsView {
 		try {
 			GenerateXML gxl = new GenerateXML(model);
 			gxl.makeXMLDocumentForLeistungsnachweis();
-			System.out.println("ModuleName: " + module.getName());
-			generatePDFLeistungsnachweis(file);
+			generatePDF(file, "leistungsnachweis");
 		} catch (Exception eg) {
 			System.out.println("Could not generate Leistungsnachweis XML! Reason: " + eg.getMessage());
 		}
@@ -145,29 +144,29 @@ public class CasAssistantViewController extends EqualsView {
 			System.out.println("GXC: " + gxc);
 			gxc.makeXMLDocumentForZertifikat();
 			System.out.println("ModuleName: " + module.getName());
-			generatePDFCertificate(file);
+			generatePDF(file, "certificate");
 		} catch (Exception eg) {
 			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
 		}
 	}
 
-	private void generatePDFLeistungsnachweis(File file) {
+	private void generatePDF(File file, String document) {
 		try {
-			PrintManagerLeistungsnachweis pml = new PrintManagerLeistungsnachweis(file);
+			GenerateDocuments pml = new GenerateDocuments(file, document);
 			pml.generateXMLDocument();
 		} catch (Exception el) {
-			System.out.println("Could not Print Leistungsnachweis, because of: " + el.getMessage());
+			System.out.println("Could not Print Document " + document + ", because of: " + el.getMessage());
 		}
 	}
 
-	private void generatePDFCertificate(File file) {
-		try {
-			PrintManagerCertificate pmc = new PrintManagerCertificate(file);
-			pmc.generateXMLDocument();
-		} catch (Exception ec) {
-			System.out.println("Could not Print Leistungsnachweis, because of: " + ec.getMessage());
-		}
-	}
+//	private void generatePDFCertificate(File file) {
+//		try {
+//			PrintManagerCertificate pmc = new PrintManagerCertificate(file);
+//			pmc.generateXMLDocument();
+//		} catch (Exception ec) {
+//			System.out.println("Could not Print Leistungsnachweis, because of: " + ec.getMessage());
+//		}
+//	}
 
 	@FXML
 	protected void initialize() {

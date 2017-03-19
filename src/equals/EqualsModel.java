@@ -282,12 +282,14 @@ public class EqualsModel implements IObserver<UserLogin> {
 							.findFirst().get().getWeight())
 					.sum();
 			// sum all course-weights:
-			double totalWeight = courseList.stream().mapToDouble(Course::getWeight).sum();
+			double totalWeight = courseList.stream()
+					.filter(c -> c.getModuleId() == contextModule.getId())
+					.mapToDouble(Course::getWeight)
+					.sum();
 
 			/* System.out.format("student %s: ratings=%f, weights=%f, grade=%f\r\n",
 			 	s.getName(), totalRatings, totalWeight, totalRatings / totalWeight);
 			 */
-
 			return totalRatings / totalWeight >= 50.0;
 		});
 	}
