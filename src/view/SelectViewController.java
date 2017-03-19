@@ -107,10 +107,12 @@ public class SelectViewController extends EqualsView {
 	}
 	
 	@FXML protected void onSemesterSelected() {
+		String selectedSemester = semesterSelector.getSelectionModel().getSelectedItem();
+		if(selectedSemester == null) return;
 		moduleCellViews.clear();
 		entityList.getItems().setAll(model.getModuleListProperty().filtered(m -> { 
 				String semesterTag = m.getShortName().substring(m.getShortName().length()-4);
-				return semesterSelector.getSelectionModel().getSelectedItem().equals(semesterTag);
+				return selectedSemester.equals(semesterTag);
 			}));
 		Platform.runLater(() -> {
 			// select first module by default:
@@ -180,6 +182,9 @@ public class SelectViewController extends EqualsView {
 	}
 	
 	private void setContentView(String filename) {
+		if(currentView != null) {
+			currentView.dispose();
+		}
 		EqualsView newView = ViewLoader.create(filename, model, controller);
 		container.getChildren().clear();
 		container.getChildren().add(newView.getRootNode());
@@ -193,7 +198,6 @@ public class SelectViewController extends EqualsView {
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		
 	}
 }

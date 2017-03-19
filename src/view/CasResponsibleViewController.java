@@ -3,6 +3,7 @@ package view;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,9 +16,7 @@ import data.UserRole;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -230,12 +229,14 @@ public class CasResponsibleViewController extends EqualsView {
 	  private static class Data {
 		private final Person student;
 	    private final StringProperty studentName;
-	    private ListProperty<Rating> ratings;
+	    private HashMap<Integer, SimpleIntegerProperty> ratings = new HashMap<Integer, SimpleIntegerProperty>();
 
 	    private Data(Person student, ObservableList<Rating> ratings) {
 	    	this.student = student;
 	        this.studentName = new SimpleStringProperty(student.getName());
-	        this.ratings = new SimpleListProperty<Rating>(ratings);
+	        for(Rating r : ratings) {
+	        	this.ratings.put(r.getCourseId(), new SimpleIntegerProperty(r.getSuccessRate()));
+	        }
 	    }
 	    
 	    private Person getStudent() {
@@ -247,12 +248,11 @@ public class CasResponsibleViewController extends EqualsView {
 	    }
 	    
 	    public IntegerProperty getRatingsProperty(Course course) { 
-	    	for(Rating r : ratings) {
-	    		if(r.getCourseId() == course.getId()) {
-	    	    	return new SimpleIntegerProperty(r.getSuccessRate());
-	    		}
-	    	}
-	    	return new SimpleIntegerProperty(-1);
+	    	SimpleIntegerProperty rating = ratings.get(course.getId());;
+	    	if(rating != null)
+	    		return rating;
+	    	else
+	    		return new SimpleIntegerProperty(-1);
 	    }
 	  }
 
