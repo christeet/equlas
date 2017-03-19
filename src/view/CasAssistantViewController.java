@@ -10,7 +10,6 @@ import data.Person;
 import data.Rating;
 import data.UserRole;
 import equals.GenerateDocuments;
-import equals.PrintManagerLeistungsnachweis;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
@@ -40,7 +39,6 @@ public class CasAssistantViewController extends EqualsView {
 	private ObservableList<Data> data;
 	private Module module;
 	private ArrayList<Module> moduleList;
-	private ArrayList<Person> students;
 	private File userPDFPath;
 
 
@@ -61,8 +59,6 @@ public class CasAssistantViewController extends EqualsView {
 			userPDFPath = directoryChooser(Prefs.get().getOutputPath());	
 			Prefs.get().setOutputPath(userPDFPath.getAbsolutePath());
 			makeXMLLeistungsnachweis(userPDFPath);
-			evaluateStudentsForCertificate();
-			
 			makeXMLCertificate(userPDFPath);
 			openPDFs();
 		} catch (Exception e) {
@@ -98,34 +94,6 @@ public class CasAssistantViewController extends EqualsView {
 		}
 	}
 
-	private void evaluateStudentsForCertificate() throws Exception {
-		try {
-			ObservableList<Person> studentList = model.getStudentsWithGoodGradesProperty();
-			for(Person student : studentList) {
-				int summe = 0;
-				ObservableList<Course> studentCourses = model.getCoursesListProperty()
-						.filtered(f -> f.getModuleId() == module.getId());
-				for(Course c : studentCourses) {
-					ObservableList<Rating> ratingStudentList = model.getRatingListProperty()
-							.filtered(r -> r.getStudentId() == student.getId() 
-										&& r.getCourseId() == c.getId());
-					for(Rating r : ratingStudentList) {
-						System.out.println("RatingStudentList: " + r.getSuccessRate());
-						summe = calculateGrade(r.getSuccessRate(), summe);
-					}
-					System.out.println("RatingsSize: " + ratingStudentList.size());
-				}
-				this.students.add(student);
-			}
-		} catch (Exception e) {
-			throw new Exception("Could not evaluate Students Rating: " + e.getMessage());
-		}
-	}
-	
-	private int calculateGrade(int rate, int sum) {
-		return sum + rate;
-	}
-
 	private void makeXMLLeistungsnachweis(File file) {
 		try {
 			GenerateXML gxl = new GenerateXML(model);
@@ -138,12 +106,9 @@ public class CasAssistantViewController extends EqualsView {
 
 	private void makeXMLCertificate(File file) {
 		try {
-			System.out.println("Students: " + students.toString() + "\nModule: " + module.getShortName());
 			moduleList.add(module);
 			GenerateXML gxc = new GenerateXML(model);
-			System.out.println("GXC: " + gxc);
 			gxc.makeXMLDocumentForZertifikat();
-			System.out.println("ModuleName: " + module.getName());
 			generatePDF(file, "certificate");
 		} catch (Exception eg) {
 			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
@@ -159,18 +124,8 @@ public class CasAssistantViewController extends EqualsView {
 		}
 	}
 
-//	private void generatePDFCertificate(File file) {
-//		try {
-//			PrintManagerCertificate pmc = new PrintManagerCertificate(file);
-//			pmc.generateXMLDocument();
-//		} catch (Exception ec) {
-//			System.out.println("Could not Print Leistungsnachweis, because of: " + ec.getMessage());
-//		}
-//	}
-
 	@FXML
 	protected void initialize() {
-		students = new ArrayList<Person>();
 		moduleList = new ArrayList<Module>();
 		studentColumn.setCellValueFactory(d -> d.getValue().getStudentNameProperty());
 		studentColumn.setSortable(true);

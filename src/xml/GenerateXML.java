@@ -65,7 +65,6 @@ public class GenerateXML {
 	
 	public void makeXMLDocumentForZertifikat() throws Exception {
 		makeXMLDocument(model.getStudentsWithGoodGradesProperty());
-		System.out.println("Zetifikat ergebnis: " + model.getStudentsWithGoodGradesProperty());
 	}
 	
 	/**
