@@ -57,7 +57,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	/**
 	 * Observable Boolean to get whether a User is logged in or not.
 	 * 
-	 * @return
+	 * @return observable Boolean
 	 */
 	public BooleanProperty loggedInProperty() {
 		return loggedIn;
@@ -66,7 +66,7 @@ public class EqualsModel implements IObserver<UserLogin> {
 	/**
 	 * Returns the UserLogin instance of this EqualsModel.
 	 * 
-	 * @return
+	 * @return the observable UserLogin
 	 */
 	public UserLogin getUserLogin() {
 		return userLogin;
