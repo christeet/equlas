@@ -16,7 +16,7 @@ public class UserLogin extends IObservable<UserLogin> {
 	private Person currentUser;
 	
 	/**
-	 * Instantiates a 
+	 * Instantiates an "empty" UserLogin with {@link LoginState} LOGGED_OUT.
 	 */
 	public UserLogin() {
 		this.loginState = LoginState.LOGGED_OUT;

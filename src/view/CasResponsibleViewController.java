@@ -248,7 +248,7 @@ public class CasResponsibleViewController extends EqualsView {
 	    }
 	    
 	    public IntegerProperty getRatingsProperty(Course course) { 
-	    	SimpleIntegerProperty rating = ratings.get(course.getId());;
+	    	SimpleIntegerProperty rating = ratings.get(course.getId());
 	    	if(rating != null)
 	    		return rating;
 	    	else

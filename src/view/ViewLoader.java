@@ -8,6 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import resources.I18n;
 
+/**
+ * Provides a single static method to create a View.
+ * In this Project, a View is an FXML-View with a "fx:controller" which inherits
+ * from the abstract {@link EqualsView} class.
+ * @author sbol
+ *
+ */
 public class ViewLoader {
 	
 	public static EqualsView create(

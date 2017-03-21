@@ -4,6 +4,12 @@ import controller.EqualsController;
 import equals.EqualsModel;
 import javafx.scene.Parent;
 
+/**
+ * For the {@link ViewLoader} to easily create a View, the View's fx:controller must
+ * inherit from the abstract class {@link EqualsView}.
+ * @author sbol
+ *
+ */
 public abstract class EqualsView {
 	protected Parent rootNode;
 	protected EqualsModel model;
