@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="images"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-api-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/avalon-framework-impl-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/batik-all-1.8.jar"/>

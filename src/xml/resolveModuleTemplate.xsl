@@ -71,15 +71,16 @@
                 <tr>
                     <td id="bold">ECTS-Note:</td>
                     <td></td>
-                    <td id="bold"><xsl:choose>
+                    <td id="bold">
                         <xsl:variable name="summe" select="sum(for $x in $courses return sum($x/rating * $x/weight)) div sum($courses/weight)" />
-                        <xsl:when test="$summe > 89">A</xsl:when>
-                        <xsl:when test="$summe > 79">B</xsl:when>
-                        <xsl:when test="$summe > 69">C</xsl:when>
-                        <xsl:when test="$summe > 59">D</xsl:when>
-                        <xsl:when test="$summe > 49">E</xsl:when>
-                        <xsl:when test="$summe &lt; 50">F</xsl:when>
-                    </xsl:choose>
+                        <xsl:choose>
+	                        <xsl:when test="$summe > 89">A</xsl:when>
+	                        <xsl:when test="$summe > 79">B</xsl:when>
+	                        <xsl:when test="$summe > 69">C</xsl:when>
+	                        <xsl:when test="$summe > 59">D</xsl:when>
+	                        <xsl:when test="$summe > 49">E</xsl:when>
+	                        <xsl:when test="$summe &lt; 50">F</xsl:when>
+                        </xsl:choose>
                     </td>
                 </tr>
             </xsl:when>
