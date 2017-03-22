@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns:iqs="http://iqs.ti.bfh.ch" xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Leistungsnachweis</title>
+    </head>
+
+    <body>
+        <iqs:iteration id="students">
+            <h2>Leistungsnachweis</h2>
+                  
+            <iqs:emptyLines3/>
+
+            <div class="normal">
+                <iqs:data id="studentSalutation"/>
+            </div>
+            
+            <h1><iqs:data id="studentName"/></h1>
+            
+            <div class="normal">von <iqs:data id="studentPlaceOfOrigin"/>, geboren am <iqs:data id="studentDateOfBirth"/></div>
+
+            <iqs:emptyLines3/>
+
+            <div class="normal">hat das</div>
+
+            <h1>Certificate of Advanced Studies BFH in</h1>
+            <h1><iqs:data id="moduleName"/></h1>
+            
+            <div class="normal">erfolgreich abgeschlossen.</div>
+            
+            <iqs:emptyLines3/>
+                   
+            <div class="normal">
+                Das CAS dauerte vom <iqs:data id="moduleStartDate"/> bis zum <iqs:data id="moduleEndDate"/> und entsprach einem Arbeitspensum von 12 ECTS.
+            </div>
+
+            <iqs:emptyLines3/>
+            
+            
+            <table>
+                <tr>
+                    <th>Kompetenznachweis</th>
+                    <th>Gewicht</th>
+                    <th>Erfolg</th>
+                </tr>
+                
+                <iqs:data id="courses" />
+                
+            </table>
+            
+            <iqs:emptyLines3/>
+
+            <div>Bern, <iqs:currentDate/></div>
+            <div><img src="schmidhauser.jpg"/></div>
+            <div>Arno Schmidhauser</div>
+            <div>Leiter Weiterbildung</div>
+            <div>Technik und Informatik</div>
+            
+            <iqs:pageBreak/>
+
+        </iqs:iteration>
+    </body>
+</html>
