@@ -54,7 +54,7 @@ public class Main extends Application {
 		stage.maximizedProperty().addListener((obs, old, maximized) -> {
 			Prefs.get().setMaximized(maximized);
 		});
-		stage.setTitle(I18n.getString("login.title"));
+		stage.setTitle(I18n.getString("equals.title"));
 		stage.setScene(scene);
 		stage.show();
 	}

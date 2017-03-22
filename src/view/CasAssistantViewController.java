@@ -9,7 +9,6 @@ import data.Module;
 import data.Person;
 import data.Rating;
 import data.UserRole;
-import equals.GenerateDocuments;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ListProperty;
@@ -32,6 +31,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import resources.I18n;
 import util.Prefs;
+import xml.GenerateDocuments;
 import xml.GenerateXML;
 
 public class CasAssistantViewController extends EqualsView {
@@ -40,6 +40,8 @@ public class CasAssistantViewController extends EqualsView {
 	private Module module;
 	private ArrayList<Module> moduleList;
 	private File userPDFPath;
+	private final String leistungsnachweiseFileName = "leistungsnachweis";
+	private final String certificatesFileName = "certificate";
 
 
 	@FXML
@@ -82,8 +84,8 @@ public class CasAssistantViewController extends EqualsView {
 		if (Desktop.isDesktopSupported()) {
 			new Thread(() -> {
 			    try {
-			        File fileLeistungsnachweis = new File(userPDFPath + "/Leistungsnachweis.pdf");
-			        File fileCertificate = new File(userPDFPath + "/Certificate.pdf");
+			        File fileLeistungsnachweis = new File(userPDFPath + "/" + leistungsnachweiseFileName + ".pdf");
+			        File fileCertificate = new File(userPDFPath + "/" + certificatesFileName + ".pdf");
 			        Desktop.getDesktop().open(fileLeistungsnachweis);
 			        Desktop.getDesktop().open(fileCertificate);
 			    } catch (Exception ex) {
@@ -98,7 +100,7 @@ public class CasAssistantViewController extends EqualsView {
 		try {
 			GenerateXML gxl = new GenerateXML(model);
 			gxl.makeXMLDocumentForLeistungsnachweis();
-			generatePDF(file, "leistungsnachweis");
+			generatePDF(file, leistungsnachweiseFileName);
 		} catch (Exception eg) {
 			System.out.println("Could not generate Leistungsnachweis XML! Reason: " + eg.getMessage());
 		}
@@ -109,7 +111,7 @@ public class CasAssistantViewController extends EqualsView {
 			moduleList.add(module);
 			GenerateXML gxc = new GenerateXML(model);
 			gxc.makeXMLDocumentForZertifikat();
-			generatePDF(file, "certificate");
+			generatePDF(file, certificatesFileName);
 		} catch (Exception eg) {
 			System.out.println("Could not generate Certificate XML! Reason: " + eg.getMessage());
 		}

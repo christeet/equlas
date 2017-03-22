@@ -155,7 +155,7 @@ public class GenerateXML {
 			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("resources/xml/module.xml"));
+			StreamResult result = new StreamResult(new File("temp/module.xml"));
 		
 			transformer.transform(source, result);
 		
